@@ -1,0 +1,865 @@
+[dotenv@17.2.3] injecting env (7) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Server running on no \\.\pipe\f05cbab6-f1b1-4b8b-92e6-9a88a6699021
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 11
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 8 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== PUBLISHING FORM ===
+Form name: testsmallforms
+Images count: 0
+Sheets count: 2
+Template created with ID: 78
+Found 0 images in HTML at positions: []
+Creating table with SQL: 
+    CREATE TABLE IF NOT EXISTS "checksheet_78_1767770413457" (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER,
+      submitted_at TIMESTAMP DEFAULT NOW(),
+      field_Company_Name_0_sheet1 TEXT, field_Start_Date_1_sheet1 TEXT, field_End_Date_2_sheet1 TEXT, field_Wages_and_Benefits_3_sheet1 TEXT, field_Status_4_sheet1 TEXT, field_Quantity_5_sheet1 TEXT, field_Utilities_6_sheet1 TEXT, field_Office_Supplies_7_sheet1 TEXT, field_Internet_8_sheet1 TEXT, field_Travel_9_sheet1 TEXT, field_COGS_10_sheet1 TEXT, field_Total_Expenses_11_sheet1 TEXT, field_Image_12_sheet1 TEXT, field_Start_Time_13_sheet1 TEXT, field_Enter_Name_0_sheet2 TEXT
+    )
+  
+Table checksheet_78_1767770413457 created successfully
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 3, null: 9 }
+Folder 2 (Sample Folder): direct count = 3
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 2, '5': 1, null: 9 }
+Folder 2 (Sample Folder): direct count = 2
+Folder 5 (Test Folder 2): direct count = 1
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 1
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 2, '5': 1, null: 9 }
+Folder 2 (Sample Folder): direct count = 2
+Folder 5 (Test Folder 2): direct count = 1
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 1
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 2, '5': 1, null: 9 }
+Folder 2 (Sample Folder): direct count = 2
+Folder 5 (Test Folder 2): direct count = 1
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 1
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 2, '5': 1, null: 9 }
+Folder 2 (Sample Folder): direct count = 2
+Folder 5 (Test Folder 2): direct count = 1
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 1
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 2, '5': 1, null: 9 }
+Folder 2 (Sample Folder): direct count = 2
+Folder 5 (Test Folder 2): direct count = 1
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 1
+      }
+    ],
+    "itemCount": 3
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '5': 1, null: 11 }
+Folder 2 (Sample Folder): direct count = 0
+Folder 5 (Test Folder 2): direct count = 1
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 1
+      }
+    ],
+    "itemCount": 1
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { null: 12 }
+Folder 2 (Sample Folder): direct count = 0
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 0
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { null: 12 }
+Folder 2 (Sample Folder): direct count = 0
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 0
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { null: 12 }
+Folder 2 (Sample Folder): direct count = 0
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 0
+  }
+]
+=== DEBUG FOLDER COUNTS ===
+Counts map: { null: 12 }
+Folder 2 (Sample Folder): direct count = 0
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 0
+  }
+]
+=== DEBUG: TEMPLATES API RESPONSE ===
+Total templates: 12
+=== DEBUG FOLDER COUNTS ===
+Counts map: { '2': 2, null: 10 }
+Folder 2 (Sample Folder): direct count = 2
+Folder 5 (Test Folder 2): direct count = 0
+=== FINAL FOLDER TREE ===
+[
+  {
+    "id": 2,
+    "name": "Sample Folder",
+    "parent_id": null,
+    "created_at": "2026-01-04T03:04:20.947Z",
+    "updated_at": "2026-01-04T03:04:20.947Z",
+    "children": [
+      {
+        "id": 5,
+        "name": "Test Folder 2",
+        "parent_id": 2,
+        "created_at": "2026-01-07T07:26:49.212Z",
+        "updated_at": "2026-01-07T07:26:49.212Z",
+        "children": [],
+        "itemCount": 0
+      }
+    ],
+    "itemCount": 2
+  }
+]
