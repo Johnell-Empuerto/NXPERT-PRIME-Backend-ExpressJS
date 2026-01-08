@@ -30,6 +30,7 @@ router.post("/", auth, isAdmin, async (req, res) => {
     contact_number,
     date_hired,
     password,
+    is_admin,
   } = req.body;
 
   // Validate required fields
@@ -66,8 +67,8 @@ router.post("/", auth, isAdmin, async (req, res) => {
     // Insert new user with hashed password
     const result = await pool.query(
       `INSERT INTO Usermaster 
-       (emp_id, name, age, role, department, shift, status, email, contact_number, date_hired, password) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) 
+       (emp_id, name, age, role, department, shift, status, email, contact_number, date_hired, password, is_admin) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) 
        RETURNING *`,
       [
         emp_id,
@@ -81,6 +82,7 @@ router.post("/", auth, isAdmin, async (req, res) => {
         contact_number || null,
         date_hired || new Date(),
         hashedPassword, // Use hashed password instead of plain text
+        is_admin || false,
       ]
     );
 

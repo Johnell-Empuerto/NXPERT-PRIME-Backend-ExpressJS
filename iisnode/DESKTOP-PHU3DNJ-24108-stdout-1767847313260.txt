@@ -437,3 +437,250 @@ Fetching tabs for user: 1
 Found permissions: 4
 Fetching tabs for user: 1
 Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 1
+Found permissions: 4
+Fetching tabs for user: 6
+Found permissions: 0
+Returning all tabs (no custom permissions)
+Fetching tabs for user: 6
+Found permissions: 0
+Returning all tabs (no custom permissions)
+Fetching tabs for user: 6
+Found permissions: 0
+Returning all tabs (no custom permissions)
+Fetching tabs for user: 6
+Found permissions: 0
+Returning all tabs (no custom permissions)
+=== UPDATE PERMISSIONS START ===
+User ID: 1
+Request body received: {
+  "permissions": [
+    {
+      "tab_name": "planning",
+      "tab_label": "Production Planning",
+      "tab_path": "/dashboard/planning",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "tracking",
+      "tab_label": "Process Tracking",
+      "tab_path": "/dashboard/tracking",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "quality",
+      "tab_label": "Quality & Defects",
+      "tab_path": "/dashboard/quality",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "ng_rework",
+      "tab_label": "NG & Rework Management",
+      "tab_path": "/dashboard/quality/ng-rework",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "daily_report",
+      "tab_label": "Daily Production Report",
+      "tab_path": "/dashboard/reports/daily",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "monthly_report",
+      "tab_label": "Monthly Production Report",
+      "tab_path": "/dashboard/reports/monthly",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "yearly_report",
+      "tab_label": "Yearly Production Report",
+      "tab_path": "/dashboard/reports/yearly",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "analytics",
+      "tab_label": "Analytics & Insights",
+      "tab_path": "/dashboard/analytics",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "create_checksheet",
+      "tab_label": "Create Checksheet Templates",
+      "tab_path": "/dashboard/create-checksheet",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "forms",
+      "tab_label": "Form Checksheet",
+      "tab_path": "/dashboard/forms",
+      "is_allowed": true
+    },
+    {
+      "tab_name": "usermaster",
+      "tab_label": "User Master",
+      "tab_path": "/dashboard/usermaster",
+      "is_allowed": true
+    }
+  ]
+}
+Permissions array length: 11
+First permission object structure: {
+  tab_name: 'planning',
+  tab_label: 'Production Planning',
+  tab_path: '/dashboard/planning',
+  is_allowed: true
+}
+First permission keys: [ 'tab_name', 'tab_label', 'tab_path', 'is_allowed' ]
+Deleting existing permissions for user: 1
+Deleted rows: 11
+Permission 1: {
+  tabName: 'planning',
+  tabLabel: 'Production Planning',
+  tabPath: '/dashboard/planning',
+  isAllowed: true
+}
+Permission 2: {
+  tabName: 'tracking',
+  tabLabel: 'Process Tracking',
+  tabPath: '/dashboard/tracking',
+  isAllowed: true
+}
+Permission 3: {
+  tabName: 'quality',
+  tabLabel: 'Quality & Defects',
+  tabPath: '/dashboard/quality',
+  isAllowed: true
+}
+Permission 4: {
+  tabName: 'ng_rework',
+  tabLabel: 'NG & Rework Management',
+  tabPath: '/dashboard/quality/ng-rework',
+  isAllowed: true
+}
+Permission 5: {
+  tabName: 'daily_report',
+  tabLabel: 'Daily Production Report',
+  tabPath: '/dashboard/reports/daily',
+  isAllowed: true
+}
+Permission 6: {
+  tabName: 'monthly_report',
+  tabLabel: 'Monthly Production Report',
+  tabPath: '/dashboard/reports/monthly',
+  isAllowed: true
+}
+Permission 7: {
+  tabName: 'yearly_report',
+  tabLabel: 'Yearly Production Report',
+  tabPath: '/dashboard/reports/yearly',
+  isAllowed: true
+}
+Permission 8: {
+  tabName: 'analytics',
+  tabLabel: 'Analytics & Insights',
+  tabPath: '/dashboard/analytics',
+  isAllowed: true
+}
+Permission 9: {
+  tabName: 'create_checksheet',
+  tabLabel: 'Create Checksheet Templates',
+  tabPath: '/dashboard/create-checksheet',
+  isAllowed: true
+}
+Permission 10: {
+  tabName: 'forms',
+  tabLabel: 'Form Checksheet',
+  tabPath: '/dashboard/forms',
+  isAllowed: true
+}
+Permission 11: {
+  tabName: 'usermaster',
+  tabLabel: 'User Master',
+  tabPath: '/dashboard/usermaster',
+  isAllowed: true
+}
+Batch insert query values: [
+  '1',
+  'planning',
+  'Production Planning',
+  '/dashboard/planning',
+  true,
+  '1',
+  'tracking',
+  'Process Tracking',
+  '/dashboard/tracking',
+  true,
+  '1',
+  'quality',
+  'Quality & Defects',
+  '/dashboard/quality',
+  true,
+  '1',
+  'ng_rework',
+  'NG & Rework Management',
+  '/dashboard/quality/ng-rework',
+  true,
+  '1',
+  'daily_report',
+  'Daily Production Report',
+  '/dashboard/reports/daily',
+  true,
+  '1',
+  'monthly_report',
+  'Monthly Production Report',
+  '/dashboard/reports/monthly',
+  true,
+  '1',
+  'yearly_report',
+  'Yearly Production Report',
+  '/dashboard/reports/yearly',
+  true,
+  '1',
+  'analytics',
+  'Analytics & Insights',
+  '/dashboard/analytics',
+  true,
+  '1',
+  'create_checksheet',
+  'Create Checksheet Templates',
+  '/dashboard/create-checksheet',
+  true,
+  '1',
+  'forms',
+  'Form Checksheet',
+  '/dashboard/forms',
+  true,
+  '1',
+  'usermaster',
+  'User Master',
+  '/dashboard/usermaster',
+  true
+]
+Successfully inserted 11 permissions
+=== UPDATE PERMISSIONS SUCCESS ===
+Fetching tabs for user: 1
+Found permissions: 11
+Fetching tabs for user: 1
+Found permissions: 11

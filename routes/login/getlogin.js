@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
-
 const express = require("express");
 const router = express.Router();
 const pool = require("../../db");
 const cors = require("cors");
-const bcrypt = require("bcrypt"); // Use bcrypt instead of bcryptjs
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 // Enable CORS only for this route
@@ -15,6 +14,15 @@ router.use(
     credentials: true,
   })
 );
+
+// Add debug middleware for this route
+router.use((req, res, next) => {
+  console.log("\n=== LOGIN ROUTE DEBUG ===");
+  console.log(`Time: ${new Date().toISOString()}`);
+  console.log(`Method: ${req.method} ${req.url}`);
+  console.log(`Body: ${JSON.stringify(req.body)}`);
+  next();
+});
 
 router.post("/", async (req, res) => {
   const { empId, password } = req.body;
@@ -28,6 +36,8 @@ router.post("/", async (req, res) => {
   }
 
   try {
+    console.log(`\n=== LOGIN ATTEMPT FOR: ${empId} ===`);
+
     // Find user by emp_id only
     const result = await pool.query(
       "SELECT * FROM Usermaster WHERE emp_id = $1",
@@ -35,6 +45,7 @@ router.post("/", async (req, res) => {
     );
 
     if (result.rows.length === 0) {
+      console.log(`User not found with emp_id: ${empId}`);
       return res.json({
         success: false,
         message: "Invalid Employee ID or password",
@@ -42,9 +53,14 @@ router.post("/", async (req, res) => {
     }
 
     const user = result.rows[0];
+    console.log(`User found: ${user.name} (ID: ${user.user_id})`);
+    console.log(`User is_admin value from DB: ${user.is_admin}`);
+    console.log(`User is_admin type from DB: ${typeof user.is_admin}`);
+    console.log(`User status: ${user.status}`);
 
     // Check if user is active
     if (user.status !== "Active") {
+      console.log(`User is not active. Status: ${user.status}`);
       return res.json({
         success: false,
         message: "Account is not active. Please contact administrator.",
@@ -52,55 +68,84 @@ router.post("/", async (req, res) => {
     }
 
     // Compare the plain text password with the hashed password in database
-    // Using bcrypt.compare() for bcrypt
+    console.log("Comparing password...");
     const isValidPassword = await bcrypt.compare(password, user.password);
 
-    if (isValidPassword) {
-      // Remove sensitive data before sending to client
-      const { password: _, ...userWithoutPassword } = user;
-
-      // ✅ CREATE JWT HERE
-      const token = jwt.sign(
-        {
-          user_id: user.user_id,
-          emp_id: user.emp_id,
-          role: user.role,
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: "1d" }
-      );
-
-      res.json({
-        success: true,
-        user: userWithoutPassword,
-        message: "Login successful",
-        token, // 👈 SEND TOKEN
-        user: userWithoutPassword, // 👈 USER DATA
-      });
-    } else {
-      res.json({
+    if (!isValidPassword) {
+      console.log("Password comparison failed");
+      return res.json({
         success: false,
         message: "Invalid Employee ID or password",
       });
     }
+
+    console.log("Password valid!");
+
+    // Remove sensitive data before sending to client
+    const { password: _, ...userWithoutPassword } = user;
+
+    // ✅ CREATE JWT HERE - ADD DEBUG LOGGING
+    console.log(`\n=== CREATING JWT TOKEN ===`);
+    console.log(`is_admin value for JWT: ${user.is_admin}`);
+    console.log(`is_admin type for JWT: ${typeof user.is_admin}`);
+
+    const jwtPayload = {
+      user_id: user.user_id,
+      emp_id: user.emp_id,
+      role: user.role,
+      is_admin: user.is_admin, // This is what gets encoded
+      name: user.name,
+    };
+
+    console.log("JWT Payload to encode:", jwtPayload);
+
+    const token = jwt.sign(jwtPayload, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    // Decode token to verify payload (optional)
+    const decoded = jwt.decode(token);
+    console.log("JWT Decoded after creation:", decoded);
+
+    // Set cookie if needed (optional)
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+
+    console.log(`\n=== LOGIN SUCCESSFUL ===`);
+    console.log(`Token generated for user: ${user.name}`);
+    console.log(`is_admin in response: ${user.is_admin}`);
+
+    res.json({
+      success: true,
+      message: "Login successful",
+      token, // 👈 SEND TOKEN
+      user: {
+        ...userWithoutPassword,
+        is_admin: user.is_admin,
+      },
+    });
   } catch (err) {
     console.error("Login error:", err.message);
+    console.error("Error stack:", err.stack);
 
-    // Special handling for bcrypt errors
-    if (err.message.includes("data") && err.message.includes("salt")) {
-      console.log("Bcrypt comparison error - possible password format issue");
+    // Handle bcrypt errors more cleanly
+    if (
+      err.message.includes("data") ||
+      err.message.includes("salt") ||
+      err.message.includes("bcrypt")
+    ) {
+      console.log("Password comparison error - possible password format issue");
 
-      // Check if password is in wrong format (not bcrypt hashed)
-      const user = result?.rows[0];
-      if (user && !user.password.startsWith("$2")) {
-        console.log(
-          "Password is not bcrypt hashed. Need to hash existing passwords."
-        );
-        return res.json({
-          success: false,
-          message: "System error. Please contact administrator.",
-        });
-      }
+      // You might want to hash plain passwords on the fly here
+      // Or just return a generic error
+      return res.status(500).json({
+        success: false,
+        message: "Authentication system error",
+      });
     }
 
     res.status(500).json({

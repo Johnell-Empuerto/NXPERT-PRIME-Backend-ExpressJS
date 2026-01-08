@@ -17,7 +17,7 @@ router.use(
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT user_id, emp_id, name, age, role, department, shift, status, date_hired, contact_number, email, created_at, profile_image
+      `SELECT user_id, emp_id, name, age, role, department, shift, status, date_hired, contact_number, email, created_at, profile_image,is_admin
        FROM Usermaster
        WHERE role <> 'Admin'
        ORDER BY name ASC`

@@ -21,7 +21,7 @@ router.get("/:id", auth, isAdmin, async (req, res) => {
     const { id } = req.params;
     const result = await pool.query(
       `SELECT user_id, emp_id, name, age, role, department, shift, status, 
-       email, contact_number, date_hired, profile_image, created_at
+       email, contact_number, date_hired, profile_image, created_at, is_admin
        FROM Usermaster WHERE user_id = $1`,
       [id]
     );
@@ -52,6 +52,7 @@ router.put("/:id", auth, isAdmin, async (req, res) => {
     contact_number,
     date_hired,
     password,
+    is_admin,
   } = req.body;
 
   // Basic validation
@@ -103,8 +104,8 @@ router.put("/:id", auth, isAdmin, async (req, res) => {
         UPDATE Usermaster 
         SET emp_id = $1, name = $2, age = $3, role = $4, department = $5, 
             shift = $6, status = $7, email = $8, contact_number = $9, 
-            date_hired = $10, password = $11
-        WHERE user_id = $12 
+            date_hired = $10, password = $11, is_admin = $12
+        WHERE user_id = $13
         RETURNING *`;
 
       queryParams = [
@@ -119,6 +120,7 @@ router.put("/:id", auth, isAdmin, async (req, res) => {
         contact_number || null,
         date_hired || null,
         hashedPassword,
+        is_admin || false,
         id,
       ];
     } else {
@@ -127,8 +129,8 @@ router.put("/:id", auth, isAdmin, async (req, res) => {
         UPDATE Usermaster 
         SET emp_id = $1, name = $2, age = $3, role = $4, department = $5, 
             shift = $6, status = $7, email = $8, contact_number = $9, 
-            date_hired = $10
-        WHERE user_id = $11 
+            date_hired = $10, is_admin = $11
+        WHERE user_id = $12
         RETURNING *`;
 
       queryParams = [
@@ -142,6 +144,7 @@ router.put("/:id", auth, isAdmin, async (req, res) => {
         email,
         contact_number || null,
         date_hired || null,
+        is_admin || false,
         id,
       ];
     }
