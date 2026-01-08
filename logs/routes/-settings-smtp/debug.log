@@ -1,0 +1,24 @@
+[2026-01-08 16:44:57.896] [DEBUG] Fetching SMTP settings from database
+[2026-01-08 16:44:57.960] [DEBUG] SMTP settings found in database | {
+  "service": "express-app",
+  "route": "/settings/smtp",
+  "has_smtpHost": true,
+  "has_smtpUser": true,
+  "smtpPort": "587",
+  "smtpSecure": false,
+  "has_fromEmail": true,
+  "has_fromName": true
+}
+[2026-01-08 16:44:57.961] [INFO] SMTP settings retrieved successfully
+[2026-01-08 16:44:57.973] [DEBUG] Fetching SMTP settings from database
+[2026-01-08 16:44:57.976] [DEBUG] SMTP settings found in database | {
+  "service": "express-app",
+  "route": "/settings/smtp",
+  "has_smtpHost": true,
+  "has_smtpUser": true,
+  "smtpPort": "587",
+  "smtpSecure": false,
+  "has_fromEmail": true,
+  "has_fromName": true
+}
+[2026-01-08 16:44:57.976] [INFO] SMTP settings retrieved successfully

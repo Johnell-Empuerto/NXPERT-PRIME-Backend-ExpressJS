@@ -5,6 +5,10 @@ const pool = require("../../db");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
+const routeLogger = require("../../middleware/routeLogger"); // Import the middleware
+
+// Apply route-specific logger middleware
+router.use(routeLogger("/auth/login"));
 
 // Enable CORS only for this route
 router.use(
@@ -15,20 +19,17 @@ router.use(
   })
 );
 
-// Add debug middleware for this route
-router.use((req, res, next) => {
-  console.log("\n=== LOGIN ROUTE DEBUG ===");
-  console.log(`Time: ${new Date().toISOString()}`);
-  console.log(`Method: ${req.method} ${req.url}`);
-  console.log(`Body: ${JSON.stringify(req.body)}`);
-  next();
-});
+// No need for separate debug middleware - logger middleware handles it
 
 router.post("/", async (req, res) => {
   const { empId, password } = req.body;
 
+  // Use the logger attached to request
+  const logger = req.logger;
+
   // Validate input
   if (!empId || !password) {
+    logger.warn(`Login attempt failed: Missing empId or password`);
     return res.status(400).json({
       success: false,
       message: "Employee ID and password are required",
@@ -36,7 +37,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    console.log(`\n=== LOGIN ATTEMPT FOR: ${empId} ===`);
+    logger.route(`=== LOGIN ATTEMPT STARTED FOR: ${empId} ===`);
 
     // Find user by emp_id only
     const result = await pool.query(
@@ -45,7 +46,7 @@ router.post("/", async (req, res) => {
     );
 
     if (result.rows.length === 0) {
-      console.log(`User not found with emp_id: ${empId}`);
+      logger.warn(`User not found with emp_id: ${empId}`);
       return res.json({
         success: false,
         message: "Invalid Employee ID or password",
@@ -53,95 +54,104 @@ router.post("/", async (req, res) => {
     }
 
     const user = result.rows[0];
-    console.log(`User found: ${user.name} (ID: ${user.user_id})`);
-    console.log(`User is_admin value from DB: ${user.is_admin}`);
-    console.log(`User is_admin type from DB: ${typeof user.is_admin}`);
-    console.log(`User status: ${user.status}`);
+    logger.debug(`User found: ${user.name} (ID: ${user.user_id})`);
+    logger.debug(`User is_admin value from DB: ${user.is_admin}`);
+    logger.debug(`User is_admin type from DB: ${typeof user.is_admin}`);
+    logger.debug(`User status: ${user.status}`);
 
     // Check if user is active
     if (user.status !== "Active") {
-      console.log(`User is not active. Status: ${user.status}`);
+      logger.warn(
+        `User is not active. Status: ${user.status} for emp_id: ${empId}`
+      );
       return res.json({
         success: false,
         message: "Account is not active. Please contact administrator.",
       });
     }
 
-    // Compare the plain text password with the hashed password in database
-    console.log("Comparing password...");
+    // Compare passwords
+    logger.debug("Starting password comparison...");
     const isValidPassword = await bcrypt.compare(password, user.password);
 
     if (!isValidPassword) {
-      console.log("Password comparison failed");
+      logger.warn(`Password comparison failed for emp_id: ${empId}`);
       return res.json({
         success: false,
         message: "Invalid Employee ID or password",
       });
     }
 
-    console.log("Password valid!");
+    logger.debug("Password validation successful");
 
-    // Remove sensitive data before sending to client
+    // Remove sensitive data
     const { password: _, ...userWithoutPassword } = user;
 
-    // ✅ CREATE JWT HERE - ADD DEBUG LOGGING
-    console.log(`\n=== CREATING JWT TOKEN ===`);
-    console.log(`is_admin value for JWT: ${user.is_admin}`);
-    console.log(`is_admin type for JWT: ${typeof user.is_admin}`);
+    // Create JWT
+    logger.debug(`=== CREATING JWT TOKEN ===`);
+    logger.debug(`is_admin value for JWT: ${user.is_admin}`);
+    logger.debug(`is_admin type for JWT: ${typeof user.is_admin}`);
 
     const jwtPayload = {
       user_id: user.user_id,
       emp_id: user.emp_id,
       role: user.role,
-      is_admin: user.is_admin, // This is what gets encoded
+      is_admin: user.is_admin,
       name: user.name,
     };
 
-    console.log("JWT Payload to encode:", jwtPayload);
+    logger.debug("JWT Payload:", jwtPayload);
 
     const token = jwt.sign(jwtPayload, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
-    // Decode token to verify payload (optional)
     const decoded = jwt.decode(token);
-    console.log("JWT Decoded after creation:", decoded);
+    logger.debug("JWT Decoded:", decoded);
 
-    // Set cookie if needed (optional)
+    // Set cookie
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
-    console.log(`\n=== LOGIN SUCCESSFUL ===`);
-    console.log(`Token generated for user: ${user.name}`);
-    console.log(`is_admin in response: ${user.is_admin}`);
+    logger.route(`=== LOGIN SUCCESSFUL ===`);
+    logger.route(`User: ${user.name} logged in successfully`);
+    logger.info(
+      `Login successful for user: ${user.name} (ID: ${user.user_id})`
+    );
 
     res.json({
       success: true,
       message: "Login successful",
-      token, // 👈 SEND TOKEN
+      token,
       user: {
         ...userWithoutPassword,
         is_admin: user.is_admin,
       },
     });
   } catch (err) {
-    console.error("Login error:", err.message);
-    console.error("Error stack:", err.stack);
+    // Use the request logger
+    const logger = req.logger;
 
-    // Handle bcrypt errors more cleanly
+    logger.error("Login error occurred", {
+      error: err.message,
+      stack: err.stack,
+      empId: empId,
+    });
+
     if (
       err.message.includes("data") ||
       err.message.includes("salt") ||
       err.message.includes("bcrypt")
     ) {
-      console.log("Password comparison error - possible password format issue");
+      logger.error("Password comparison error", {
+        type: "bcrypt_error",
+        empId: empId,
+      });
 
-      // You might want to hash plain passwords on the fly here
-      // Or just return a generic error
       return res.status(500).json({
         success: false,
         message: "Authentication system error",

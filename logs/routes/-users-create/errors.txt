@@ -1,0 +1,19 @@
+[2026-01-08 16:22:06.583] [ERROR] Error Response: POST /Backend/api/addtousermaster
+Meta: {
+  "service": "express-app",
+  "route": "/users/create",
+  "statusCode": 400,
+  "data": {
+    "error": "Employee ID or Email already exists"
+  }
+}
+---
+
+[2026-01-08 16:22:06.585] [ERROR] Error Response: POST /Backend/api/addtousermaster
+Meta: {
+  "service": "express-app",
+  "route": "/users/create",
+  "statusCode": 400
+}
+---
+

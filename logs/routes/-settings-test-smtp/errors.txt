@@ -1,0 +1,46 @@
+[2026-01-08 16:48:22.867] [ERROR] SMTP connection verification failed
+Meta: {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "error": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+  "host": "smtp.gmail.com",
+  "port": "587",
+  "user": "empuertojohnellchess@gmail.com"
+}
+---
+
+[2026-01-08 16:48:22.868] [ERROR] SMTP test failed
+Stack: Error: CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\ssl\record\methods\tlsany_meth.c:85:
+
+Meta: {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "error": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+  "error_code": "ESOCKET",
+  "host": "smtp.gmail.com",
+  "port": "587",
+  "user": "empuertojohnellchess@gmail.com"
+}
+---
+
+[2026-01-08 16:48:22.871] [ERROR] Error Response: POST /Backend/api/test-smtp
+Meta: {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+    "error_code": "ESOCKET"
+  }
+}
+---
+
+[2026-01-08 16:48:22.872] [ERROR] Error Response: POST /Backend/api/test-smtp
+Meta: {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "statusCode": 500
+}
+---
+

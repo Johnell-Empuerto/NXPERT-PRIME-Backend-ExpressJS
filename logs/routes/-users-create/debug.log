@@ -1,0 +1,32 @@
+[2026-01-08 16:22:06.528] [DEBUG] Checking for existing user with same emp_id or email
+[2026-01-08 16:22:06.582] [WARN] User creation failed: Employee ID or Email already exists | {
+  "service": "express-app",
+  "route": "/users/create",
+  "emp_id_exists": false,
+  "email_exists": true
+}
+[2026-01-08 16:22:06.583] [ERROR] Error Response: POST /Backend/api/addtousermaster | {
+  "service": "express-app",
+  "route": "/users/create",
+  "statusCode": 400,
+  "data": {
+    "error": "Employee ID or Email already exists"
+  }
+}
+[2026-01-08 16:22:06.585] [ERROR] Error Response: POST /Backend/api/addtousermaster | {
+  "service": "express-app",
+  "route": "/users/create",
+  "statusCode": 400
+}
+[2026-01-08 16:22:28.136] [DEBUG] Checking for existing user with same emp_id or email
+[2026-01-08 16:22:28.193] [DEBUG] Hashing user password
+[2026-01-08 16:22:28.270] [DEBUG] Inserting new user into database
+[2026-01-08 16:22:28.285] [DEBUG] User created successfully | {
+  "service": "express-app",
+  "route": "/users/create",
+  "user_id": 7,
+  "emp_id": "EMP004",
+  "role": "Operator",
+  "is_admin": false
+}
+[2026-01-08 16:22:28.286] [INFO] New user created: Nielbert Pusayan (ID: 7) by admin: System Administrator

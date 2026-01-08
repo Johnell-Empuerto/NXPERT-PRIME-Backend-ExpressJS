@@ -1,0 +1,51 @@
+[2026-01-08 16:02:36.442] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-08 16:11:33.514] [ERROR] [/auth/forgot-password] Password reset request failed
+[2026-01-08 16:11:33.518] [ERROR] [/auth/forgot-password] Error Response: POST /Backend/api/forgot-password/request-reset
+[2026-01-08 16:13:59.213] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-08 16:15:30.004] [INFO] [/auth/forgot-password] Password reset requested for empId: EMP001
+[2026-01-08 16:15:33.469] [INFO] [/auth/forgot-password] Verification code sent to jeempuerto@n-pax.com for empId: EMP001
+[2026-01-08 16:19:51.641] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-08 16:20:07.004] [WARN] [/auth/login] Password comparison failed for emp_id: ADMIN001
+[2026-01-08 16:20:12.938] [INFO] [/auth/login] Login successful for user: System Administrator (ID: 6)
+[2026-01-08 16:22:06.582] [WARN] [/users/create] User creation failed: Employee ID or Email already exists
+[2026-01-08 16:22:06.583] [ERROR] [/users/create] Error Response: POST /Backend/api/addtousermaster
+[2026-01-08 16:22:06.585] [ERROR] [/users/create] Error Response: POST /Backend/api/addtousermaster
+[2026-01-08 16:22:28.286] [INFO] [/users/create] New user created: Nielbert Pusayan (ID: 7) by admin: System Administrator
+[2026-01-08 16:25:35.261] [INFO] [/auth/login] Login successful for user: Nielbert Pusayan (ID: 7)
+[2026-01-08 16:28:18.754] [WARN] [/auth/login] Password comparison failed for emp_id: ADMIN001
+[2026-01-08 16:28:30.400] [INFO] [/auth/login] Login successful for user: System Administrator (ID: 6)
+[2026-01-08 16:28:58.445] [INFO] [/users/manage] User updated: Nielbert Pusayan (ID: 7) by admin: System Administrator
+[2026-01-08 16:35:40.948] [INFO] [/users/get-all] Successfully served 4 users in 10ms
+[2026-01-08 16:35:40.966] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-08 16:40:48.950] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 16:41:15.272] [INFO] [/user-permissions] Permissions updated for user: 1
+[2026-01-08 16:41:15.300] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 16:41:45.724] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-08 16:41:46.571] [INFO] [/user-permissions] Returned 2 custom tabs for user: 1
+[2026-01-08 16:41:46.615] [INFO] [/user-permissions] Returned 2 custom tabs for user: 1
+[2026-01-08 16:42:00.649] [WARN] [/auth/login] Password comparison failed for emp_id: ADMIN001
+[2026-01-08 16:42:10.546] [INFO] [/auth/login] Login successful for user: System Administrator (ID: 6)
+[2026-01-08 16:42:11.824] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:11.934] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:22.308] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:22.329] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:22.347] [INFO] [/users/get-all] Successfully served 4 users in 12ms
+[2026-01-08 16:42:22.369] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-08 16:42:23.556] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 16:42:33.407] [INFO] [/user-permissions] Permissions updated for user: 1
+[2026-01-08 16:42:33.443] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 16:44:57.961] [INFO] [/settings/smtp] SMTP settings retrieved successfully
+[2026-01-08 16:44:57.976] [INFO] [/settings/smtp] SMTP settings retrieved successfully
+[2026-01-08 16:47:38.621] [INFO] [/settings/test-smtp] SMTP test completed successfully
+[2026-01-08 16:48:22.867] [ERROR] [/settings/test-smtp] SMTP connection verification failed
+[2026-01-08 16:48:22.868] [ERROR] [/settings/test-smtp] SMTP test failed
+[2026-01-08 16:48:22.871] [ERROR] [/settings/test-smtp] Error Response: POST /Backend/api/test-smtp
+[2026-01-08 16:48:22.872] [ERROR] [/settings/test-smtp] Error Response: POST /Backend/api/test-smtp
+[2026-01-08 16:54:02.193] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 16:54:02.223] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 16:54:02.285] [INFO] [/production/plans] Returned 2 production plans to user: System Administrator
+[2026-01-08 16:54:02.299] [INFO] [/production/plans] Returned 2 production plans to user: System Administrator
+[2026-01-08 16:54:02.336] [INFO] [/users/get-all] Successfully served 4 users in 60ms
+[2026-01-08 16:54:02.347] [INFO] [/users/get-all] Successfully served 4 users in 4ms
+[2026-01-08 16:54:35.533] [INFO] [/production/plans] New production plan created
+[2026-01-08 16:54:35.559] [INFO] [/production/plans] Returned 3 production plans to user: System Administrator

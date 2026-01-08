@@ -1,0 +1,97 @@
+[2026-01-08 16:54:02.271] [DEBUG] Fetching all production plans from database
+[2026-01-08 16:54:02.283] [DEBUG] Retrieved 2 production plans
+[2026-01-08 16:54:02.284] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "1": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-08 16:54:02.285] [INFO] Returned 2 production plans to user: System Administrator
+[2026-01-08 16:54:02.295] [DEBUG] Fetching all production plans from database
+[2026-01-08 16:54:02.298] [DEBUG] Retrieved 2 production plans
+[2026-01-08 16:54:02.298] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "1": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-08 16:54:02.299] [INFO] Returned 2 production plans to user: System Administrator
+[2026-01-08 16:54:35.451] [DEBUG] New plan request received | {
+  "service": "express-app",
+  "route": "/production/plans",
+  "product_name": "Steel Bracket",
+  "process_type": "machining",
+  "quantity": 500,
+  "assigned_operator": "Johnell Empuerto",
+  "assigned_machine": "CNC Machine #1",
+  "created_by": "System Administrator"
+}
+[2026-01-08 16:54:35.452] [DEBUG] Inserting new production plan into database
+[2026-01-08 16:54:35.531] [DEBUG] Production plan created successfully | {
+  "service": "express-app",
+  "route": "/production/plans",
+  "plan_id": 5,
+  "product_name": "Steel Bracket",
+  "priority": "medium",
+  "start_date": "2026-01-07T16:00:00.000Z",
+  "end_date": "2026-01-07T16:00:00.000Z"
+}
+[2026-01-08 16:54:35.533] [INFO] New production plan created | {
+  "service": "express-app",
+  "route": "/production/plans",
+  "plan_id": 5,
+  "product_name": "Steel Bracket",
+  "created_by": "System Administrator"
+}
+[2026-01-08 16:54:35.554] [DEBUG] Fetching all production plans from database
+[2026-01-08 16:54:35.557] [DEBUG] Retrieved 3 production plans
+[2026-01-08 16:54:35.558] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-08 16:54:35.559] [INFO] Returned 3 production plans to user: System Administrator

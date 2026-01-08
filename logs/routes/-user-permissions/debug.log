@@ -1,0 +1,222 @@
+[2026-01-08 16:40:48.946] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 16:40:48.949] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 16:40:48.950] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 16:40:48.950] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 16:41:15.216] [DEBUG] Update request received | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "user_id": "1",
+  "permissions_count": 11,
+  "updating_admin": "System Administrator"
+}
+[2026-01-08 16:41:15.216] [DEBUG] First permission structure: | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tab_name": "planning",
+  "tab_label": "Production Planning",
+  "tab_path": "/dashboard/planning",
+  "is_allowed": false,
+  "has_all_keys": [
+    "tab_name",
+    "tab_label",
+    "tab_path",
+    "is_allowed"
+  ]
+}
+[2026-01-08 16:41:15.217] [DEBUG] Starting database transaction
+[2026-01-08 16:41:15.250] [DEBUG] Deleting existing permissions
+[2026-01-08 16:41:15.254] [DEBUG] Deleted 11 existing permissions
+[2026-01-08 16:41:15.255] [DEBUG] Processing 11 new permissions
+[2026-01-08 16:41:15.255] [DEBUG] First permission validated: Production Planning (planning)
+[2026-01-08 16:41:15.255] [DEBUG] Executing batch insert query
+[2026-01-08 16:41:15.263] [DEBUG] Insert completed | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "inserted_count": 11,
+  "allowed_permissions": 2,
+  "denied_permissions": 9
+}
+[2026-01-08 16:41:15.271] [DEBUG] Transaction committed successfully
+[2026-01-08 16:41:15.272] [INFO] Permissions updated for user: 1 | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "total_permissions": 11,
+  "allowed": 2,
+  "denied": 9,
+  "updated_by": "System Administrator"
+}
+[2026-01-08 16:41:15.296] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 16:41:15.299] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 16:41:15.300] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": false
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": false
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": false
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 16:41:15.300] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 16:41:46.558] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-08 16:41:46.566] [DEBUG] Found 2 custom permissions for user
+[2026-01-08 16:41:46.569] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 2,
+  "sample_tabs": [
+    "Form Checksheet",
+    "User Master"
+  ]
+}
+[2026-01-08 16:41:46.571] [INFO] Returned 2 custom tabs for user: 1
+[2026-01-08 16:41:46.607] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-08 16:41:46.614] [DEBUG] Found 2 custom permissions for user
+[2026-01-08 16:41:46.614] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 2,
+  "sample_tabs": [
+    "Form Checksheet",
+    "User Master"
+  ]
+}
+[2026-01-08 16:41:46.615] [INFO] Returned 2 custom tabs for user: 1
+[2026-01-08 16:42:11.813] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 16:42:11.821] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 16:42:11.822] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 16:42:11.824] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:11.927] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 16:42:11.932] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 16:42:11.932] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 16:42:11.934] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:22.225] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 16:42:22.307] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 16:42:22.307] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 16:42:22.308] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:22.325] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 16:42:22.327] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 16:42:22.328] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 16:42:22.329] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 16:42:23.553] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 16:42:23.555] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 16:42:23.556] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": false
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": false
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": false
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 16:42:23.556] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 16:42:33.377] [DEBUG] Update request received | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "user_id": "1",
+  "permissions_count": 11,
+  "updating_admin": "System Administrator"
+}
+[2026-01-08 16:42:33.378] [DEBUG] First permission structure: | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tab_name": "planning",
+  "tab_label": "Production Planning",
+  "tab_path": "/dashboard/planning",
+  "is_allowed": true,
+  "has_all_keys": [
+    "tab_name",
+    "tab_label",
+    "tab_path",
+    "is_allowed"
+  ]
+}
+[2026-01-08 16:42:33.379] [DEBUG] Starting database transaction
+[2026-01-08 16:42:33.383] [DEBUG] Deleting existing permissions
+[2026-01-08 16:42:33.387] [DEBUG] Deleted 11 existing permissions
+[2026-01-08 16:42:33.388] [DEBUG] Processing 11 new permissions
+[2026-01-08 16:42:33.389] [DEBUG] First permission validated: Production Planning (planning)
+[2026-01-08 16:42:33.390] [DEBUG] Executing batch insert query
+[2026-01-08 16:42:33.398] [DEBUG] Insert completed | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "inserted_count": 11,
+  "allowed_permissions": 11,
+  "denied_permissions": 0
+}
+[2026-01-08 16:42:33.405] [DEBUG] Transaction committed successfully
+[2026-01-08 16:42:33.407] [INFO] Permissions updated for user: 1 | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "total_permissions": 11,
+  "allowed": 11,
+  "denied": 0,
+  "updated_by": "System Administrator"
+}
+[2026-01-08 16:42:33.440] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 16:42:33.442] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 16:42:33.443] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 16:42:33.443] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 16:54:01.973] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 16:54:02.190] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 16:54:02.192] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 16:54:02.193] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 16:54:02.216] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 16:54:02.221] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 16:54:02.222] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 16:54:02.223] [INFO] Returned 11 default tabs for user: 6

@@ -1,0 +1,18 @@
+[2026-01-08 16:11:33.514] [ERROR] Password reset request failed
+Meta: {
+  "service": "express-app",
+  "route": "/auth/forgot-password",
+  "error": "connect ETIMEDOUT 108.177.97.108:587",
+  "empId": "EMP001"
+}
+---
+
+[2026-01-08 16:11:33.518] [ERROR] Error Response: POST /Backend/api/forgot-password/request-reset
+Meta: {
+  "service": "express-app",
+  "route": "/auth/forgot-password",
+  "statusCode": 500,
+  "body": "{\"success\":false,\"message\":\"Failed to send verification code. Please try again.\"}"
+}
+---
+

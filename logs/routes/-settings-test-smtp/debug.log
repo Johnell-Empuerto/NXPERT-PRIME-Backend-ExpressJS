@@ -1,0 +1,87 @@
+[2026-01-08 16:47:34.136] [DEBUG] SMTP test request received | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "smtpHost": "smtp.gmail.com...",
+  "smtpPort": "587",
+  "smtpUser": "empuertojo...",
+  "has_smtpPass": true,
+  "smtpSecure": false,
+  "smtpFromEmail": "empuertojohnellchess@gmail.com",
+  "smtpFromName": "NXPERT EON System"
+}
+[2026-01-08 16:47:34.138] [DEBUG] Creating nodemailer transporter
+[2026-01-08 16:47:34.145] [DEBUG] Verifying SMTP connection
+[2026-01-08 16:47:36.022] [DEBUG] SMTP connection verified successfully
+[2026-01-08 16:47:36.023] [DEBUG] Sending test email
+[2026-01-08 16:47:36.024] [DEBUG] Test email configuration | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "from": "\"NXPERT EON System\" <empuertojohnellchess@gmail.com>",
+  "to": "empuertojohnellchess@gmail.com",
+  "subject": "SMTP Test Successful"
+}
+[2026-01-08 16:47:38.620] [DEBUG] Test email sent successfully | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "messageId": "<d442022f-1354-2615-44b9-ce3d97540cb6@gmail.com>",
+  "response": "250 2.0.0 OK  1767862059 d9443c01a7336-2a3e3c491e7sm72439705ad.38 - gsmtp"
+}
+[2026-01-08 16:47:38.621] [INFO] SMTP test completed successfully | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "host": "smtp.gmail.com",
+  "port": "587",
+  "user": "empuertojohnellchess@gmail.com"
+}
+[2026-01-08 16:48:22.458] [DEBUG] SMTP test request received | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "smtpHost": "smtp.gmail.com...",
+  "smtpPort": "587",
+  "smtpUser": "empuertojo...",
+  "has_smtpPass": true,
+  "smtpSecure": true,
+  "smtpFromEmail": "empuertojohnellchess@gmail.com",
+  "smtpFromName": "NXPERT EON System"
+}
+[2026-01-08 16:48:22.459] [DEBUG] Creating nodemailer transporter
+[2026-01-08 16:48:22.461] [DEBUG] Verifying SMTP connection
+[2026-01-08 16:48:22.867] [ERROR] SMTP connection verification failed | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "error": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+  "host": "smtp.gmail.com",
+  "port": "587",
+  "user": "empuertojohnellchess@gmail.com"
+}
+[2026-01-08 16:48:22.868] [ERROR] SMTP test failed | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "error": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+  "error_code": "ESOCKET",
+  "host": "smtp.gmail.com",
+  "port": "587",
+  "user": "empuertojohnellchess@gmail.com",
+  "stack": "Error: CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n"
+}
+[2026-01-08 16:48:22.869] [DEBUG] Translated error message for user | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "original": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+  "translated": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n"
+}
+[2026-01-08 16:48:22.871] [ERROR] Error Response: POST /Backend/api/test-smtp | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "CC480000:error:0A00010B:SSL routines:tls_validate_record_header:wrong version number:openssl\\ssl\\record\\methods\\tlsany_meth.c:85:\n",
+    "error_code": "ESOCKET"
+  }
+}
+[2026-01-08 16:48:22.872] [ERROR] Error Response: POST /Backend/api/test-smtp | {
+  "service": "express-app",
+  "route": "/settings/test-smtp",
+  "statusCode": 500
+}

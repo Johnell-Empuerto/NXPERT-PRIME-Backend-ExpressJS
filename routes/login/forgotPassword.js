@@ -1,11 +1,14 @@
+const routeLogger = require("../../middleware/routeLogger");
 const express = require("express");
 const router = express.Router();
 const pool = require("../../db");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
-const crypto = require("crypto");
 require("dotenv").config();
+
+// Apply route-specific logger middleware
+router.use(routeLogger("/auth/forgot-password"));
 
 // Enable CORS
 router.use(
@@ -16,7 +19,7 @@ router.use(
   })
 );
 
-// Store verification codes temporarily (in production, use Redis or database)
+// Store verification codes temporarily
 const verificationCodes = new Map();
 
 // Generate 6-digit verification code
@@ -43,8 +46,10 @@ const getSmtpSettings = async () => {
 // Step 1: Request password reset and send verification code
 router.post("/request-reset", async (req, res) => {
   const { empId } = req.body;
+  const logger = req.logger || console; // Fallback to console if logger not available
 
   if (!empId) {
+    logger.warn("Password reset request failed: Missing empId");
     return res.status(400).json({
       success: false,
       message: "Employee ID is required",
@@ -52,6 +57,8 @@ router.post("/request-reset", async (req, res) => {
   }
 
   try {
+    logger.info(`Password reset requested for empId: ${empId}`);
+
     // Check if employee exists and has email
     const userResult = await pool.query(
       "SELECT * FROM Usermaster WHERE emp_id = $1",
@@ -59,6 +66,7 @@ router.post("/request-reset", async (req, res) => {
     );
 
     if (userResult.rows.length === 0) {
+      logger.warn(`Employee ID not found: ${empId}`);
       return res.json({
         success: false,
         message: "Employee ID not found",
@@ -68,6 +76,7 @@ router.post("/request-reset", async (req, res) => {
     const user = userResult.rows[0];
 
     if (!user.email) {
+      logger.warn(`No email associated with account: ${empId}`);
       return res.json({
         success: false,
         message:
@@ -124,13 +133,18 @@ router.post("/request-reset", async (req, res) => {
       `,
     });
 
+    logger.info(`Verification code sent to ${user.email} for empId: ${empId}`);
+
     res.json({
       success: true,
       message: "Verification code sent to your email",
-      email: user.email, // Return masked email for display
+      email: user.email,
     });
   } catch (err) {
-    console.error("Request reset error:", err);
+    logger.error("Password reset request failed", {
+      error: err.message,
+      empId: empId,
+    });
 
     if (err.message.includes("SMTP settings not configured")) {
       return res.status(500).json({
@@ -147,12 +161,13 @@ router.post("/request-reset", async (req, res) => {
   }
 });
 
-// Step 2: Verify code and reset password
 // Step 2: Verify code only
 router.post("/verify-code", async (req, res) => {
   const { empId, verificationCode } = req.body;
+  const logger = req.logger || console;
 
   if (!empId || !verificationCode) {
+    logger.warn("Verification code validation failed: Missing fields");
     return res.status(400).json({
       success: false,
       message: "Employee ID and verification code are required",
@@ -164,6 +179,7 @@ router.post("/verify-code", async (req, res) => {
     const storedData = verificationCodes.get(empId);
 
     if (!storedData) {
+      logger.warn(`No verification code found for empId: ${empId}`);
       return res.json({
         success: false,
         message:
@@ -174,6 +190,7 @@ router.post("/verify-code", async (req, res) => {
     // Check if code expired
     if (Date.now() > storedData.expiresAt) {
       verificationCodes.delete(empId);
+      logger.warn(`Verification code expired for empId: ${empId}`);
       return res.json({
         success: false,
         message: "Verification code has expired. Please request a new one.",
@@ -182,6 +199,7 @@ router.post("/verify-code", async (req, res) => {
 
     // Verify code
     if (storedData.code !== verificationCode) {
+      logger.warn(`Invalid verification code for empId: ${empId}`);
       return res.json({
         success: false,
         message: "Invalid verification code",
@@ -194,12 +212,18 @@ router.post("/verify-code", async (req, res) => {
       verified: true,
     });
 
+    logger.info(`Code verified successfully for empId: ${empId}`);
+
     res.json({
       success: true,
       message: "Code verified successfully",
     });
   } catch (err) {
-    console.error("Verify code error:", err);
+    logger.error("Verify code error", {
+      error: err.message,
+      empId: empId,
+    });
+
     res.status(500).json({
       success: false,
       message: "Failed to verify code. Please try again.",
@@ -210,8 +234,10 @@ router.post("/verify-code", async (req, res) => {
 // Step 3: Reset password after verification
 router.post("/reset-password", async (req, res) => {
   const { empId, verificationCode, newPassword } = req.body;
+  const logger = req.logger || console;
 
   if (!empId || !verificationCode || !newPassword) {
+    logger.warn("Password reset failed: Missing required fields");
     return res.status(400).json({
       success: false,
       message: "All fields are required",
@@ -219,6 +245,7 @@ router.post("/reset-password", async (req, res) => {
   }
 
   if (newPassword.length < 6) {
+    logger.warn("Password reset failed: Password too short");
     return res.json({
       success: false,
       message: "Password must be at least 6 characters long",
@@ -230,6 +257,7 @@ router.post("/reset-password", async (req, res) => {
     const storedData = verificationCodes.get(empId);
 
     if (!storedData) {
+      logger.warn(`No verification session found for empId: ${empId}`);
       return res.json({
         success: false,
         message: "Verification session expired. Please start over.",
@@ -239,6 +267,7 @@ router.post("/reset-password", async (req, res) => {
     // Check if code expired
     if (Date.now() > storedData.expiresAt) {
       verificationCodes.delete(empId);
+      logger.warn(`Verification code expired for empId: ${empId}`);
       return res.json({
         success: false,
         message: "Verification code has expired. Please request a new one.",
@@ -247,6 +276,7 @@ router.post("/reset-password", async (req, res) => {
 
     // Verify code again
     if (storedData.code !== verificationCode) {
+      logger.warn(`Invalid verification code for empId: ${empId}`);
       return res.json({
         success: false,
         message: "Invalid verification code",
@@ -266,52 +296,18 @@ router.post("/reset-password", async (req, res) => {
     // Clear verification code after successful reset
     verificationCodes.delete(empId);
 
-    // Send confirmation email
-    try {
-      const smtpSettings = await getSmtpSettings();
-      const transporter = nodemailer.createTransport({
-        host: smtpSettings.smtphost,
-        port: smtpSettings.smtpport,
-        secure: smtpSettings.smtpsecure,
-        auth: {
-          user: smtpSettings.smtpuser,
-          pass: smtpSettings.smtppass,
-        },
-      });
-
-      await transporter.sendMail({
-        from: `"${smtpSettings.smtpfromname || "NXPERT EON"}" <${
-          smtpSettings.smtpfromemail || smtpSettings.smtpuser
-        }>`,
-        to: storedData.email,
-        subject: "Password Reset Successful",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #2563eb;">Password Reset Successful</h2>
-            <p>Hello,</p>
-            <p>Your NXPERT EON account password has been successfully reset.</p>
-            <div style="background-color: #f0fdf4; padding: 15px; border-left: 4px solid #22c55e; margin: 20px 0; border-radius: 4px;">
-              <p style="margin: 0; color: #166534;">✓ Password reset completed at ${new Date().toLocaleString()}</p>
-            </div>
-            <p>If you did not perform this action, please contact your system administrator immediately.</p>
-            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
-            <p style="color: #6b7280; font-size: 12px;">
-              This is an automated message from NXPERT EON System.
-            </p>
-          </div>
-        `,
-      });
-    } catch (emailError) {
-      console.error("Failed to send confirmation email:", emailError);
-      // Continue even if email fails - password is still reset
-    }
+    logger.info(`Password reset successful for empId: ${empId}`);
 
     res.json({
       success: true,
       message: "Password reset successfully!",
     });
   } catch (err) {
-    console.error("Reset password error:", err);
+    logger.error("Reset password error", {
+      error: err.message,
+      empId: empId,
+    });
+
     res.status(500).json({
       success: false,
       message: "Failed to reset password. Please try again.",

@@ -1,0 +1,29 @@
+[2026-01-08 16:28:41.006] [DEBUG] Fetching user details for user_id: 7
+[2026-01-08 16:28:41.007] [DEBUG] User found: Nielbert Pusayan (EMP004)
+[2026-01-08 16:28:58.381] [DEBUG] Update request data: | {
+  "service": "express-app",
+  "route": "/users/manage",
+  "emp_id": "EMP004",
+  "name": "Nielbert Pusayan",
+  "email": "nielbertpusayan@gmail.com",
+  "password_provided": false,
+  "is_admin": false
+}
+[2026-01-08 16:28:58.382] [DEBUG] Checking if user exists in database
+[2026-01-08 16:28:58.436] [DEBUG] Existing user found: Nielbert Pusayan (EMP004)
+[2026-01-08 16:28:58.437] [DEBUG] Checking for duplicate emp_id or email
+[2026-01-08 16:28:58.439] [DEBUG] No password provided - updating without password change
+[2026-01-08 16:28:58.440] [DEBUG] Executing update query
+[2026-01-08 16:28:58.444] [DEBUG] User updated successfully | {
+  "service": "express-app",
+  "route": "/users/manage",
+  "user_id": 7,
+  "emp_id": "EMP004",
+  "status": "Active",
+  "is_admin": false
+}
+[2026-01-08 16:28:58.445] [INFO] User updated: Nielbert Pusayan (ID: 7) by admin: System Administrator
+[2026-01-08 16:40:48.865] [DEBUG] Fetching user details for user_id: 1
+[2026-01-08 16:40:48.917] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-08 16:42:23.521] [DEBUG] Fetching user details for user_id: 1
+[2026-01-08 16:42:23.524] [DEBUG] User found: Johnell Empuerto (EMP001)

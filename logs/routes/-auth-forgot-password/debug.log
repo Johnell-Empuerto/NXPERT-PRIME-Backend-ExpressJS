@@ -1,0 +1,15 @@
+[2026-01-08 16:11:12.352] [DEBUG] User found: Johnell Empuerto (Email: jeempuerto@n-pax.com)
+[2026-01-08 16:11:33.514] [ERROR] Password reset request failed | {
+  "service": "express-app",
+  "route": "/auth/forgot-password",
+  "error": "connect ETIMEDOUT 108.177.97.108:587",
+  "empId": "EMP001"
+}
+[2026-01-08 16:11:33.518] [ERROR] Error Response: POST /Backend/api/forgot-password/request-reset | {
+  "service": "express-app",
+  "route": "/auth/forgot-password",
+  "statusCode": 500,
+  "body": "{\"success\":false,\"message\":\"Failed to send verification code. Please try again.\"}"
+}
+[2026-01-08 16:15:30.004] [INFO] Password reset requested for empId: EMP001
+[2026-01-08 16:15:33.469] [INFO] Verification code sent to jeempuerto@n-pax.com for empId: EMP001
