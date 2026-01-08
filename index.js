@@ -36,6 +36,7 @@ const uploadProfileRouter = require("./routes/profile/uploadprofile");
 const getAlluserMasterRouter = require("./routes/usersmaster/getAlluserMaster");
 const adduserMasterRouter = require("./routes/usersmaster/addUserMaster");
 const editUserMasterRouter = require("./routes/usersmaster/editUserMaster");
+const userPermissionsRouter = require("./routes/usersmaster/userPermissions");
 const testSmtpRouter = require("./routes/smtp/testSmtp");
 const settingsRouter = require("./routes/smtp/settings");
 const ProductionPlanningRouter = require("./routes/productionplanning/productionplanning");
@@ -61,6 +62,9 @@ app.use("/Backend/api/addtousermaster", adduserMasterRouter);
 
 //edit UserMaster
 app.use("/Backend/api/editusermaster", editUserMasterRouter);
+
+//user permissions
+app.use("/Backend/api/userpermissions", userPermissionsRouter);
 
 //smtp
 app.use("/Backend/api/test-smtp", testSmtpRouter);
