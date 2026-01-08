@@ -276,8 +276,9 @@ router.post("/templates", async (req, res) => {
    date_format, show_time_select, DatetimeFormat, min_date, max_date,
    allow_camera, allow_upload,
    max_file_size, time_format, allow_seconds, min_time, max_time,
-   required, disabled)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44)
+   required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, 
+   text_font_size)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49)
   `,
           [
             templateId,
@@ -324,6 +325,12 @@ router.post("/templates", async (req, res) => {
             config.maxTime || null,
             config.required || false,
             config.disabled || false,
+            // SIGNATURE FIELD PROPERTIES
+            config.mode || "signature_over_text",
+            config.allowTextInput !== false,
+            config.allowSignature !== false,
+            config.allowSignatureOverText !== false,
+            config.textFontSize || 16,
           ]
         );
       }
@@ -551,7 +558,7 @@ router.get("/templates/:id", async (req, res) => {
         date_format, show_time_select, DatetimeFormat, min_date, max_date,
         allow_camera, allow_upload, allow_drawing, allow_cropping,
         max_file_size, aspect_ratio_width, aspect_ratio_height,
-        time_format, allow_seconds, min_time, max_time, required, disabled
+        time_format, allow_seconds, min_time, max_time, required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, text_font_size
       FROM template_fields 
       WHERE template_id = $1 
       ORDER BY id
@@ -668,6 +675,12 @@ router.get("/templates/:id", async (req, res) => {
         max_time: field.max_time,
         required: field.required,
         disabled: field.disabled,
+        // SIGNATURE FIELD PROPERTIES
+        mode: field.mode || "signature_over_text",
+        allowTextInput: field.allow_text_input !== false,
+        allowSignature: field.allow_signature !== false,
+        allowSignatureOverText: field.allow_signature_over_text !== false,
+        textFontSize: field.text_font_size || 16,
       };
 
       return processedField;
