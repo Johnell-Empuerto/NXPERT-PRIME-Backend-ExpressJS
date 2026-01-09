@@ -178,7 +178,7 @@ router.delete("/:groupId", auth, isAdmin, async (req, res) => {
   const { groupId } = req.params;
 
   try {
-    logger.route(`=== DELETE GROUP STARTED: ${groupId} ===`);
+    logger.route(`=== HARD DELETE GROUP STARTED: ${groupId} ===`);
 
     // Check if group exists
     const groupCheck = await pool.query(
@@ -191,23 +191,43 @@ router.delete("/:groupId", auth, isAdmin, async (req, res) => {
       return res.status(404).json({ error: "Group not found" });
     }
 
-    // Soft delete
-    await pool.query(
-      `UPDATE user_groups 
-       SET is_active = false, updated_at = NOW() 
-       WHERE group_id = $1`,
+    // First, delete all user memberships (if you don't have CASCADE foreign key)
+    logger.info("Deleting group memberships...");
+    await pool.query("DELETE FROM user_group_memberships WHERE group_id = $1", [
+      groupId,
+    ]);
+
+    // Hard delete the group
+    logger.info("Deleting group...");
+    const deleteResult = await pool.query(
+      "DELETE FROM user_groups WHERE group_id = $1 RETURNING group_name",
       [groupId]
     );
 
-    logger.route(`=== DELETE GROUP COMPLETED: ${groupId} ===`);
+    const deletedGroupName = deleteResult.rows[0]?.group_name;
 
-    res.json({ message: "Group deleted successfully" });
+    logger.route(`=== HARD DELETE GROUP COMPLETED: ${groupId} ===`);
+    logger.info(`Group permanently deleted: ${deletedGroupName}`);
+
+    res.json({
+      message: "Group permanently deleted",
+      deletedGroup: deletedGroupName,
+    });
   } catch (err) {
-    logger.error("Error deleting group", {
+    logger.error("Error hard deleting group", {
       error: err.message,
       group_id: groupId,
       stack: err.stack,
     });
+
+    // Check for foreign key constraint errors
+    if (err.code === "23503") {
+      // Foreign key violation
+      return res.status(400).json({
+        error: "Cannot delete group. Remove all users from the group first.",
+      });
+    }
+
     res.status(500).json({ error: "Database error" });
   }
 });

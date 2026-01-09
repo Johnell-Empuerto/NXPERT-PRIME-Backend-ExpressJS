@@ -58,3 +58,11 @@
   "is_admin": false
 }
 [2026-01-08 17:56:30.809] [INFO] User updated: Johnell Empuerto (ID: 1) by admin: System Administrator
+[2026-01-09 08:32:25.534] [DEBUG] Fetching user details for user_id: 1
+[2026-01-09 08:32:25.537] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-09 08:32:50.650] [DEBUG] Fetching user details for user_id: 1
+[2026-01-09 08:32:50.707] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-09 08:33:36.006] [DEBUG] Fetching user details for user_id: 1
+[2026-01-09 08:33:36.055] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-09 08:33:45.274] [DEBUG] Fetching user details for user_id: 1
+[2026-01-09 08:33:45.276] [DEBUG] User found: Johnell Empuerto (EMP001)

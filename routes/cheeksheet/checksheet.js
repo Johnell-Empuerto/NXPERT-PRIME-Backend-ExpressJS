@@ -16,6 +16,7 @@ router.post("/templates", async (req, res) => {
     form_values,
     css_content = "",
     images = {}, // Base64 images data
+    access_control,
   } = req.body;
 
   if (!name) {
@@ -35,13 +36,14 @@ router.post("/templates", async (req, res) => {
     console.log("Sheets count:", sheets?.length || 1);
 
     // 1. Insert template
+    // In checksheet.js, update the publish endpoint:
     const templateRes = await client.query(
       `
-      INSERT INTO checksheet_templates 
-      (name, html_content, field_configurations, field_positions, sheets, css_content, original_html_content)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING id
-      `,
+  INSERT INTO checksheet_templates 
+  (name, html_content, field_configurations, field_positions, sheets, css_content, original_html_content, access_control)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)  
+  RETURNING id
+  `,
       [
         name,
         html_content || "",
@@ -50,6 +52,7 @@ router.post("/templates", async (req, res) => {
         sheets ? JSON.stringify(sheets) : null,
         css_content || "",
         original_html_content || "",
+        access_control ? JSON.stringify(access_control) : null,
       ]
     );
 
@@ -529,7 +532,7 @@ router.get("/templates/:id", async (req, res) => {
       SELECT 
         id, name, html_content, field_configurations, 
         field_positions, sheets, table_name, created_at,
-        css_content, original_html_content
+        css_content, original_html_content,access_control
       FROM checksheet_templates 
       WHERE id = $1
       `,
@@ -1662,6 +1665,7 @@ router.post("/forms/move", async (req, res) => {
 });
 
 // Update GET templates endpoint to include folder info
+// In checksheet.js backend, update the GET /templates endpoint:
 router.get("/templates", async (req, res) => {
   try {
     const templatesRes = await pool.query(
@@ -1671,7 +1675,8 @@ router.get("/templates", async (req, res) => {
         ct.table_name, 
         ct.created_at,
         ct.folder_id,
-        ff.name as folder_name
+        ff.name as folder_name,
+        ct.access_control 
        FROM checksheet_templates ct
        LEFT JOIN form_folders ff ON ct.folder_id = ff.id
        ORDER BY ct.created_at DESC`
@@ -1687,6 +1692,261 @@ router.get("/templates", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+// Save/update form access control
+router.post("/templates/:id/access-control", async (req, res) => {
+  const { id } = req.params;
+  const { groups, field_permissions, default_access } = req.body;
+
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+
+    // 1. Update template with access control
+    await client.query(
+      `UPDATE checksheet_templates 
+       SET access_control = $1 
+       WHERE id = $2`,
+      [
+        JSON.stringify({
+          groups,
+          field_permissions,
+          default_access,
+          updated_at: new Date().toISOString(),
+        }),
+        id,
+      ]
+    );
+
+    // 2. Clear existing group permissions
+    await client.query(`DELETE FROM form_access_control WHERE form_id = $1`, [
+      id,
+    ]);
+
+    // 3. Insert new group permissions
+    if (groups && groups.length > 0) {
+      for (const groupId of groups) {
+        await client.query(
+          `INSERT INTO form_access_control 
+           (form_id, group_id, can_view, can_edit, can_delete)
+           VALUES ($1, $2, $3, $4, $5)`,
+          [id, groupId, true, false, false]
+        );
+      }
+    }
+
+    // 4. Clear existing field permissions
+    await client.query(`DELETE FROM field_permissions WHERE form_id = $1`, [
+      id,
+    ]);
+
+    // 5. Insert field-level permissions
+    if (field_permissions && Object.keys(field_permissions).length > 0) {
+      for (const [permissionKey, permission] of Object.entries(
+        field_permissions
+      )) {
+        // Split using the new separator |||
+        const parts = permissionKey.split("|||");
+        if (parts.length !== 2) {
+          console.warn(
+            "Invalid permission key format (skipping):",
+            permissionKey
+          );
+          continue;
+        }
+        const fieldInstanceId = parts[0];
+        const groupIdStr = parts[1];
+        const groupId = parseInt(groupIdStr, 10);
+
+        if (isNaN(groupId)) {
+          console.warn(
+            "Invalid group ID in permission key (skipping):",
+            permissionKey
+          );
+          continue;
+        }
+
+        await client.query(
+          `INSERT INTO field_permissions 
+       (form_id, field_instance_id, group_id, can_view, can_edit, can_delete)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+          [
+            id,
+            fieldInstanceId,
+            groupId,
+            permission.canView ?? true,
+            permission.canEdit ?? true,
+            permission.canDelete || false,
+          ]
+        );
+      }
+    }
+
+    await client.query("COMMIT");
+
+    res.json({
+      success: true,
+      message: "Access control settings saved successfully",
+    });
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("Save access control error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to save access control settings",
+    });
+  } finally {
+    client.release();
+  }
+});
+
+// Get form access control
+router.get("/templates/:id/access-control", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Get template access control
+    const templateRes = await pool.query(
+      `SELECT access_control FROM checksheet_templates WHERE id = $1`,
+      [id]
+    );
+
+    if (templateRes.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Template not found",
+      });
+    }
+
+    let accessControl = {};
+    if (templateRes.rows[0].access_control) {
+      try {
+        accessControl =
+          typeof templateRes.rows[0].access_control === "string"
+            ? JSON.parse(templateRes.rows[0].access_control)
+            : templateRes.rows[0].access_control;
+      } catch (e) {
+        console.error("Error parsing access control JSON:", e);
+      }
+    }
+
+    // Get form group permissions
+    const groupPermissionsRes = await pool.query(
+      `SELECT fac.group_id, ug.group_name, ug.color,
+              fac.can_view, fac.can_edit, fac.can_delete
+       FROM form_access_control fac
+       JOIN user_groups ug ON fac.group_id = ug.group_id
+       WHERE fac.form_id = $1`,
+      [id]
+    );
+
+    // Get field permissions
+    const fieldPermissionsRes = await pool.query(
+      `SELECT field_instance_id, group_id, 
+              can_view, can_edit, can_delete
+       FROM field_permissions 
+       WHERE form_id = $1`,
+      [id]
+    );
+
+    // Convert field permissions to object format
+    const fieldPermissions = {};
+    fieldPermissionsRes.rows.forEach((row) => {
+      const key = `${row.field_instance_id}_${row.group_id}`;
+      fieldPermissions[key] = {
+        canView: row.can_view,
+        canEdit: row.can_edit,
+        canDelete: row.can_delete,
+      };
+    });
+
+    res.json({
+      success: true,
+      access_control: {
+        ...accessControl,
+        groups: groupPermissionsRes.rows.map((g) => g.group_id),
+        field_permissions: fieldPermissions,
+        group_details: groupPermissionsRes.rows,
+      },
+    });
+  } catch (err) {
+    console.error("Get access control error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to get access control settings",
+    });
+  }
+});
+
+// Add this route to your auth or user routes
+// FIXED: Correct user-info endpoint for your database schema
+router.get("/user-info", async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.log("No Bearer token provided");
+      return res.status(401).json({ error: "No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    let userId;
+
+    // Decode JWT safely
+    try {
+      const payload = JSON.parse(
+        Buffer.from(token.split(".")[1], "base64").toString()
+      );
+      userId = payload.user_id || payload.sub || payload.id;
+
+      if (!userId) {
+        return res.status(401).json({ error: "Invalid token: no user_id" });
+      }
+    } catch (decodeErr) {
+      console.error("Token decode failed:", decodeErr.message);
+      return res.status(401).json({ error: "Invalid token" });
+    }
+
+    console.log("Fetching user info for user_id:", userId);
+
+    // CORRECT TABLE: usermaster
+    // CORRECT COLUMN: user_id
+    // ADD is_admin column safely
+    const userRes = await pool.query(
+      `SELECT 
+         user_id, 
+         name AS username, 
+         email, 
+         COALESCE(is_admin, false) AS is_admin 
+       FROM usermaster 
+       WHERE user_id = $1`,
+      [userId]
+    );
+
+    if (userRes.rows.length === 0) {
+      console.log("User not found with user_id:", userId);
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const user = userRes.rows[0];
+
+    console.log("User found:", user.username, "| is_admin:", user.is_admin);
+
+    res.json({
+      user_id: parseInt(user.user_id),
+      username: user.username || "Unknown",
+      email: user.email || "",
+      is_admin: Boolean(user.is_admin),
+    });
+  } catch (err) {
+    console.error("Get user info ERROR:", err.message);
+    console.error(err.stack);
+    res.status(500).json({
+      error: "Server error",
+      details: err.message,
+    });
   }
 });
 
