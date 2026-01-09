@@ -220,3 +220,95 @@
 [2026-01-08 16:54:02.221] [DEBUG] Found 0 custom permissions for user
 [2026-01-08 16:54:02.222] [DEBUG] No custom permissions found - returning all default tabs
 [2026-01-08 16:54:02.223] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 17:01:12.122] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-08 17:01:12.304] [DEBUG] Found 0 custom permissions for user
+[2026-01-08 17:01:12.305] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-08 17:01:12.306] [INFO] Returned 11 default tabs for user: 6
+[2026-01-08 17:01:20.269] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 17:01:20.274] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 17:01:20.275] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 17:01:20.276] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 17:53:47.847] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 17:53:47.850] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 17:53:47.850] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 17:53:47.851] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 17:53:50.293] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 17:53:50.295] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 17:53:50.295] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 17:53:50.295] [INFO] Returned 11 permissions for user: 1
+[2026-01-08 17:56:26.440] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-08 17:56:26.444] [DEBUG] Found 11 permissions for user: 1
+[2026-01-08 17:56:26.445] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-08 17:56:26.445] [INFO] Returned 11 permissions for user: 1

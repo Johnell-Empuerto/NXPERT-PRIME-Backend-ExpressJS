@@ -1,0 +1,132 @@
+[2026-01-09 07:52:09.417] [ERROR] Login error occurred
+Stack: Error: connect ETIMEDOUT 192.168.0.109:5432
+    at C:\Backend\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Backend\routes\login\getlogin.js:43:20
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "empId": "ADMIN001"
+}
+---
+
+[2026-01-09 07:52:09.419] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+---
+
+[2026-01-09 07:52:09.420] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+---
+
+[2026-01-09 07:53:40.561] [ERROR] Login error occurred
+Stack: Error: connect ETIMEDOUT 192.168.0.109:5432
+    at C:\Backend\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Backend\routes\login\getlogin.js:43:20
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "empId": "ADMIN001"
+}
+---
+
+[2026-01-09 07:53:40.562] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+---
+
+[2026-01-09 07:53:40.562] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+---
+
+[2026-01-09 07:54:52.669] [ERROR] Login error occurred
+Stack: Error: connect ETIMEDOUT 192.168.0.109:5432
+    at C:\Backend\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Backend\routes\login\getlogin.js:43:20
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "empId": "ADMIN001"
+}
+---
+
+[2026-01-09 07:54:52.671] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+---
+
+[2026-01-09 07:54:52.672] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+---
+
+[2026-01-09 07:55:06.521] [ERROR] Login error occurred
+Stack: Error: connect ETIMEDOUT 192.168.0.109:5432
+    at C:\Backend\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Backend\routes\login\getlogin.js:43:20
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "empId": "ADMIN001"
+}
+---
+
+[2026-01-09 07:55:06.522] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+---
+
+[2026-01-09 07:55:06.523] [ERROR] Error Response: POST /Backend/api/login
+Meta: {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+---
+

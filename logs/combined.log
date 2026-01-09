@@ -49,3 +49,52 @@
 [2026-01-08 16:54:02.347] [INFO] [/users/get-all] Successfully served 4 users in 4ms
 [2026-01-08 16:54:35.533] [INFO] [/production/plans] New production plan created
 [2026-01-08 16:54:35.559] [INFO] [/production/plans] Returned 3 production plans to user: System Administrator
+[2026-01-08 17:01:12.201] [INFO] [/users/get-all] Successfully served 4 users in 120ms
+[2026-01-08 17:01:12.222] [INFO] [/users/get-all] Successfully served 4 users in 9ms
+[2026-01-08 17:01:12.306] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-08 17:01:20.276] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 17:30:30.825] [INFO] [/users/get-all] Successfully served 4 users in 153ms
+[2026-01-08 17:30:30.849] [INFO] [/user-groups] Returned 0 groups
+[2026-01-08 17:31:20.488] [INFO] [/user-groups] Group created: Production (ID: 1)
+[2026-01-08 17:31:20.512] [INFO] [/user-groups] Returned 1 groups
+[2026-01-08 17:31:22.887] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:31:51.331] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:32:04.901] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:32:11.830] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:32:30.042] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:33:28.309] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:40:49.330] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:40:55.969] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:41:02.690] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:41:09.079] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:41:12.977] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:41:14.005] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:41:29.000] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:52:26.791] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:52:32.047] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:53:47.851] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 17:53:50.295] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 17:54:20.349] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:54:53.414] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:55:13.185] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:55:18.743] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:55:21.375] [INFO] [/user-groups] Returned 1 members for group 1
+[2026-01-08 17:55:26.019] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:55:32.956] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:56:26.445] [INFO] [/user-permissions] Returned 11 permissions for user: 1
+[2026-01-08 17:56:30.809] [INFO] [/users/manage] User updated: Johnell Empuerto (ID: 1) by admin: System Administrator
+[2026-01-08 17:56:30.833] [INFO] [/users/get-all] Successfully served 4 users in 5ms
+[2026-01-08 17:57:13.327] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-08 17:57:30.570] [INFO] [/user-groups] Returned 0 members for group 1
+[2026-01-09 07:52:09.417] [ERROR] [/auth/login] Login error occurred
+[2026-01-09 07:52:09.419] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:52:09.420] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:53:40.561] [ERROR] [/auth/login] Login error occurred
+[2026-01-09 07:53:40.562] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:53:40.562] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:54:52.669] [ERROR] [/auth/login] Login error occurred
+[2026-01-09 07:54:52.671] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:54:52.672] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:55:06.521] [ERROR] [/auth/login] Login error occurred
+[2026-01-09 07:55:06.522] [ERROR] [/auth/login] Error Response: POST /Backend/api/login
+[2026-01-09 07:55:06.523] [ERROR] [/auth/login] Error Response: POST /Backend/api/login

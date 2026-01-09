@@ -27,3 +27,34 @@
 [2026-01-08 16:40:48.917] [DEBUG] User found: Johnell Empuerto (EMP001)
 [2026-01-08 16:42:23.521] [DEBUG] Fetching user details for user_id: 1
 [2026-01-08 16:42:23.524] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-08 17:01:20.229] [DEBUG] Fetching user details for user_id: 1
+[2026-01-08 17:01:20.236] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-08 17:53:47.754] [DEBUG] Fetching user details for user_id: 1
+[2026-01-08 17:53:47.819] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-08 17:53:50.276] [DEBUG] Fetching user details for user_id: 1
+[2026-01-08 17:53:50.278] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-08 17:56:26.368] [DEBUG] Fetching user details for user_id: 1
+[2026-01-08 17:56:26.419] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-08 17:56:30.791] [DEBUG] Update request data: | {
+  "service": "express-app",
+  "route": "/users/manage",
+  "emp_id": "EMP001",
+  "name": "Johnell Empuerto",
+  "email": "jeempuerto@n-pax.com",
+  "password_provided": false,
+  "is_admin": false
+}
+[2026-01-08 17:56:30.792] [DEBUG] Checking if user exists in database
+[2026-01-08 17:56:30.796] [DEBUG] Existing user found: Johnell Empuerto (EMP001)
+[2026-01-08 17:56:30.797] [DEBUG] Checking for duplicate emp_id or email
+[2026-01-08 17:56:30.800] [DEBUG] No password provided - updating without password change
+[2026-01-08 17:56:30.801] [DEBUG] Executing update query
+[2026-01-08 17:56:30.807] [DEBUG] User updated successfully | {
+  "service": "express-app",
+  "route": "/users/manage",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "status": "Active",
+  "is_admin": false
+}
+[2026-01-08 17:56:30.809] [INFO] User updated: Johnell Empuerto (ID: 1) by admin: System Administrator

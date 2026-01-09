@@ -256,3 +256,117 @@
   "exp": 1767948130
 }
 [2026-01-08 16:42:10.546] [INFO] Login successful for user: System Administrator (ID: 6)
+[2026-01-09 07:52:09.417] [ERROR] Login error occurred | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "stack": "Error: connect ETIMEDOUT 192.168.0.109:5432\n    at C:\\Backend\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async C:\\Backend\\routes\\login\\getlogin.js:43:20",
+  "empId": "ADMIN001"
+}
+[2026-01-09 07:52:09.419] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+[2026-01-09 07:52:09.420] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+[2026-01-09 07:53:40.561] [ERROR] Login error occurred | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "stack": "Error: connect ETIMEDOUT 192.168.0.109:5432\n    at C:\\Backend\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async C:\\Backend\\routes\\login\\getlogin.js:43:20",
+  "empId": "ADMIN001"
+}
+[2026-01-09 07:53:40.562] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+[2026-01-09 07:53:40.562] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+[2026-01-09 07:54:52.669] [ERROR] Login error occurred | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "stack": "Error: connect ETIMEDOUT 192.168.0.109:5432\n    at C:\\Backend\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async C:\\Backend\\routes\\login\\getlogin.js:43:20",
+  "empId": "ADMIN001"
+}
+[2026-01-09 07:54:52.671] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+[2026-01-09 07:54:52.672] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+[2026-01-09 07:55:06.521] [ERROR] Login error occurred | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "error": "connect ETIMEDOUT 192.168.0.109:5432",
+  "stack": "Error: connect ETIMEDOUT 192.168.0.109:5432\n    at C:\\Backend\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async C:\\Backend\\routes\\login\\getlogin.js:43:20",
+  "empId": "ADMIN001"
+}
+[2026-01-09 07:55:06.522] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500,
+  "data": {
+    "success": false,
+    "message": "Database error"
+  }
+}
+[2026-01-09 07:55:06.523] [ERROR] Error Response: POST /Backend/api/login | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "statusCode": 500
+}
+[2026-01-09 07:58:51.187] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-09 07:58:51.189] [DEBUG] User is_admin value from DB: true
+[2026-01-09 07:58:51.189] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 07:58:51.190] [DEBUG] User status: Active
+[2026-01-09 07:58:51.190] [DEBUG] Starting password comparison...
+[2026-01-09 07:58:51.260] [DEBUG] Password validation successful
+[2026-01-09 07:58:51.261] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-09 07:58:51.262] [DEBUG] is_admin value for JWT: true
+[2026-01-09 07:58:51.263] [DEBUG] is_admin type for JWT: boolean
+[2026-01-09 07:58:51.263] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator"
+}
+[2026-01-09 07:58:51.270] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator",
+  "iat": 1767916731,
+  "exp": 1768003131
+}
+[2026-01-09 07:58:51.272] [INFO] Login successful for user: System Administrator (ID: 6)
