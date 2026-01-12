@@ -289,6 +289,11 @@ router.get("/me/tabs", auth, async (req, res) => {
           tab_path: "/dashboard/forms",
         },
         {
+          tab_name: "form_submissions",
+          tab_label: "Form Submissions",
+          tab_path: "/dashboard/all-submissions",
+        },
+        {
           tab_name: "usermaster",
           tab_label: "User Master",
           tab_path: "/dashboard/usermaster",

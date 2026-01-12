@@ -946,8 +946,10 @@ router.get("/templates/:id/submissions/all", async (req, res) => {
   try {
     // Get all versions
     const versionsRes = await pool.query(
-      `SELECT id, version, table_name FROM checksheet_templates 
-       WHERE (id = $1 OR parent_template_id = $1) AND table_name IS NOT NULL
+      `SELECT id, version, table_name 
+       FROM checksheet_templates
+       WHERE (id = $1 OR parent_template_id = $1) 
+         AND table_name IS NOT NULL
        ORDER BY version DESC`,
       [id]
     );
@@ -961,43 +963,54 @@ router.get("/templates/:id/submissions/all", async (req, res) => {
       });
     }
 
-    // Build union query to get submissions from all versions
-    const unionParts = versionsRes.rows
-      .map((row) => {
-        return `SELECT 
-                ${row.id} as template_id,
-                ${row.version} as version,
-                t.* 
-              FROM "${row.table_name}" t`;
-      })
-      .join(" UNION ALL ");
+    let allSubmissions = [];
+    let total = 0;
 
-    // Get total count
-    const countQuery = `
-      SELECT COUNT(*) as total
-      FROM (${unionParts}) as all_submissions
-    `;
+    // Fetch each version separately
+    for (const row of versionsRes.rows) {
+      // Count
+      const countRes = await pool.query(
+        `SELECT COUNT(*) as cnt FROM "${row.table_name}"`
+      );
+      total += parseInt(countRes.rows[0].cnt);
 
-    const countRes = await pool.query(countQuery);
-    const total = parseInt(countRes.rows[0].total);
+      // Data
+      const dataRes = await pool.query(
+        `
+        SELECT 
+          ${row.id} as template_id,
+          ${row.version} as version,
+          *
+        FROM "${row.table_name}"
+        ORDER BY submitted_at DESC
+        LIMIT $1 OFFSET $2
+      `,
+        [limit, offset]
+      );
 
-    // Get paginated results
-    const dataQuery = `
-      SELECT *
-      FROM (${unionParts}) as all_submissions
-      ORDER BY submitted_at DESC
-      LIMIT $1 OFFSET $2
-    `;
+      allSubmissions = allSubmissions.concat(
+        dataRes.rows.map((sub) => ({
+          ...sub,
+          version_id: row.id, // optional: which version record
+          version_number: row.version,
+        }))
+      );
+    }
 
-    const dataRes = await pool.query(dataQuery, [limit, offset]);
+    // Optional: sort all together by submitted_at
+    allSubmissions.sort(
+      (a, b) => new Date(b.submitted_at) - new Date(a.submitted_at)
+    );
+
+    // If you want pagination across all → it's more complex
+    // For now this returns up to N×limit items
 
     res.json({
       success: true,
-      submissions: dataRes.rows,
-      total: total,
+      submissions: allSubmissions,
+      total,
       versions: versionsRes.rows.map((v) => ({ id: v.id, version: v.version })),
-      current_limit: parseInt(limit),
-      current_offset: parseInt(offset),
+      note: "Pagination is per-version when using separate queries",
     });
   } catch (err) {
     console.error("Get all submissions error:", err);
@@ -1005,6 +1018,7 @@ router.get("/templates/:id/submissions/all", async (req, res) => {
       success: false,
       message: "Failed to get submissions",
       details: err.message,
+      error_code: err.code,
     });
   }
 });

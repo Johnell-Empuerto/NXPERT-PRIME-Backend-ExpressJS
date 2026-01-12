@@ -5286,3 +5286,253 @@
   ]
 }
 [2026-01-12 13:49:34.331] [INFO] Returned 11 custom tabs for user: 1
+[2026-01-12 14:55:18.424] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-12 14:55:18.439] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 14:55:18.440] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 14:55:18.441] [INFO] Returned 11 custom tabs for user: 1
+[2026-01-12 14:55:18.455] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-12 14:55:18.457] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 14:55:18.457] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 14:55:18.458] [INFO] Returned 11 custom tabs for user: 1
+[2026-01-12 15:33:27.522] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:33:27.526] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:33:27.526] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:33:27.527] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:33:27.539] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:33:27.544] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:33:27.545] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:33:27.546] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:33:32.066] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:33:32.070] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:33:32.070] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:33:32.071] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:33:32.083] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:33:32.085] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:33:32.086] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:33:32.086] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:34:29.545] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:34:29.547] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:34:29.547] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:34:29.548] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:34:29.560] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:34:29.562] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:34:29.562] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:34:29.563] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:50:55.779] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:50:55.844] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:50:55.845] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:50:55.846] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 15:50:55.858] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 15:50:55.860] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 15:50:55.860] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 15:50:55.860] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:39:42.188] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:39:42.262] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:39:42.263] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:39:42.263] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:39:42.278] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:39:42.284] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:39:42.285] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:39:42.286] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:45:46.288] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:45:46.342] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:45:46.343] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:45:46.343] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:45:46.354] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:45:46.356] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:45:46.357] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:45:46.357] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:46:12.758] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:46:12.818] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:46:12.818] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:46:12.819] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:46:12.830] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:46:12.832] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:46:12.834] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:46:12.834] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:46:32.470] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:46:32.531] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:46:32.531] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:46:32.532] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:46:32.546] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:46:32.548] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:46:32.548] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:46:32.549] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:48:12.266] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:48:12.343] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:48:12.343] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:48:12.344] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:48:12.354] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:48:12.355] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:48:12.356] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:48:12.356] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:49:25.280] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:49:25.332] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:49:25.332] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:49:25.332] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:49:25.345] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:49:25.346] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:49:25.347] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:49:25.347] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:51:58.968] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:51:59.036] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:51:59.037] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:51:59.037] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:51:59.049] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:51:59.051] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:51:59.051] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:51:59.052] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:51:59.063] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:51:59.065] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:51:59.066] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:51:59.066] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:51:59.077] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:51:59.079] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:51:59.079] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:51:59.080] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:53:50.767] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:53:50.830] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:53:50.830] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:53:50.831] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:53:50.841] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:53:50.843] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:53:50.843] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:53:50.843] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:53:50.853] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:53:50.856] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:53:50.856] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:53:50.856] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:53:50.866] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:53:50.868] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:53:50.868] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:53:50.869] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:54:59.809] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:54:59.816] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:54:59.817] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:54:59.817] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:54:59.828] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:54:59.830] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:54:59.830] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:54:59.830] [INFO] Returned 11 default tabs for user: 6
+[2026-01-12 16:59:52.450] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:59:52.551] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:59:52.552] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:59:52.553] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 16:59:52.567] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:59:52.572] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:59:52.572] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:59:52.573] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 16:59:56.196] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:59:56.199] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:59:56.200] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:59:56.201] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 16:59:56.214] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 16:59:56.217] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 16:59:56.217] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 16:59:56.217] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:01:03.351] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:01:03.418] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:01:03.419] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:01:03.419] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:01:03.430] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:01:03.432] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:01:03.433] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:01:03.433] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:01:51.948] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:01:51.951] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:01:51.952] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:01:51.953] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:01:51.966] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:01:51.968] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:01:51.969] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:01:51.970] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:02:28.244] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:02:28.248] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:02:28.250] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:02:28.251] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:02:28.268] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:02:28.303] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:02:28.311] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:02:28.317] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:03:11.212] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:03:11.281] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:03:11.282] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:03:11.282] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:03:11.296] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:03:11.300] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:03:11.300] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:03:11.301] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:03:11.311] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:03:11.314] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:03:11.316] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:03:11.316] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:03:11.331] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:03:11.333] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:03:11.334] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:03:11.334] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:47.890] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:47.980] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:47.981] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:47.982] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:47.996] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:48.000] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:48.001] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:48.002] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:48.016] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:48.021] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:48.022] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:48.023] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:48.038] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:48.204] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:48.205] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:48.206] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:56.248] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:56.323] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:56.324] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:56.324] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:56.336] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:56.338] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:56.338] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:56.339] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:56.353] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:56.357] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:56.358] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:56.360] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:07:56.370] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:07:56.372] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:07:56.373] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:07:56.374] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:08:17.906] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:08:17.994] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:08:17.995] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:08:17.995] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:08:18.009] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:08:18.013] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:08:18.014] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:08:18.015] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:08:18.026] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:08:18.029] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:08:18.029] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:08:18.030] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:08:18.043] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:08:18.045] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:08:18.046] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:08:18.046] [INFO] Returned 12 default tabs for user: 6

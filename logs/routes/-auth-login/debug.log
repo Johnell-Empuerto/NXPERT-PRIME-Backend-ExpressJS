@@ -1234,3 +1234,69 @@
   "exp": 1768275354
 }
 [2026-01-12 11:35:54.942] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 15:33:20.195] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-12 15:33:20.196] [DEBUG] User is_admin value from DB: true
+[2026-01-12 15:33:20.196] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 15:33:20.197] [DEBUG] User status: Active
+[2026-01-12 15:33:20.197] [DEBUG] Starting password comparison...
+[2026-01-12 15:33:20.280] [WARN] Password comparison failed for emp_id: ADMIN001
+[2026-01-12 15:33:26.707] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-12 15:33:26.707] [DEBUG] User is_admin value from DB: true
+[2026-01-12 15:33:26.707] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 15:33:26.708] [DEBUG] User status: Active
+[2026-01-12 15:33:26.708] [DEBUG] Starting password comparison...
+[2026-01-12 15:33:26.795] [DEBUG] Password validation successful
+[2026-01-12 15:33:26.796] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 15:33:26.796] [DEBUG] is_admin value for JWT: true
+[2026-01-12 15:33:26.797] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 15:33:26.797] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator"
+}
+[2026-01-12 15:33:26.803] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator",
+  "iat": 1768203206,
+  "exp": 1768289606
+}
+[2026-01-12 15:33:26.806] [INFO] Login successful for user: System Administrator (ID: 6)
+[2026-01-12 16:54:58.955] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-12 16:54:58.956] [DEBUG] User is_admin value from DB: true
+[2026-01-12 16:54:58.956] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 16:54:58.956] [DEBUG] User status: Active
+[2026-01-12 16:54:58.957] [DEBUG] Starting password comparison...
+[2026-01-12 16:54:59.024] [DEBUG] Password validation successful
+[2026-01-12 16:54:59.024] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 16:54:59.025] [DEBUG] is_admin value for JWT: true
+[2026-01-12 16:54:59.025] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 16:54:59.025] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator"
+}
+[2026-01-12 16:54:59.030] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator",
+  "iat": 1768208099,
+  "exp": 1768294499
+}
+[2026-01-12 16:54:59.031] [INFO] Login successful for user: System Administrator (ID: 6)
