@@ -928,3 +928,309 @@
   "exp": 1768036992
 }
 [2026-01-09 17:23:12.128] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-09 17:43:15.827] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-09 17:43:15.828] [DEBUG] User is_admin value from DB: true
+[2026-01-09 17:43:15.828] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 17:43:15.829] [DEBUG] User status: Active
+[2026-01-09 17:43:15.830] [DEBUG] Starting password comparison...
+[2026-01-09 17:43:15.970] [DEBUG] Password validation successful
+[2026-01-09 17:43:15.971] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-09 17:43:15.971] [DEBUG] is_admin value for JWT: true
+[2026-01-09 17:43:15.972] [DEBUG] is_admin type for JWT: boolean
+[2026-01-09 17:43:15.972] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator"
+}
+[2026-01-09 17:43:15.974] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator",
+  "iat": 1767951795,
+  "exp": 1768038195
+}
+[2026-01-09 17:43:15.976] [INFO] Login successful for user: System Administrator (ID: 6)
+[2026-01-09 17:44:24.532] [DEBUG] User found: Johnell Empuerto (ID: 1)
+[2026-01-09 17:44:24.533] [DEBUG] User is_admin value from DB: false
+[2026-01-09 17:44:24.534] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 17:44:24.534] [DEBUG] User status: Active
+[2026-01-09 17:44:24.535] [DEBUG] Starting password comparison...
+[2026-01-09 17:44:24.666] [DEBUG] Password validation successful
+[2026-01-09 17:44:24.666] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-09 17:44:24.667] [DEBUG] is_admin value for JWT: false
+[2026-01-09 17:44:24.667] [DEBUG] is_admin type for JWT: boolean
+[2026-01-09 17:44:24.668] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto"
+}
+[2026-01-09 17:44:24.669] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto",
+  "iat": 1767951864,
+  "exp": 1768038264
+}
+[2026-01-09 17:44:24.669] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-09 17:44:59.733] [DEBUG] User found: Romnick Muana (ID: 5)
+[2026-01-09 17:44:59.733] [DEBUG] User is_admin value from DB: false
+[2026-01-09 17:44:59.734] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 17:44:59.734] [DEBUG] User status: Active
+[2026-01-09 17:44:59.735] [DEBUG] Starting password comparison...
+[2026-01-09 17:44:59.844] [DEBUG] Password validation successful
+[2026-01-09 17:44:59.845] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-09 17:44:59.846] [DEBUG] is_admin value for JWT: false
+[2026-01-09 17:44:59.846] [DEBUG] is_admin type for JWT: boolean
+[2026-01-09 17:44:59.846] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 5,
+  "emp_id": "EMP003",
+  "role": "Supervisor",
+  "is_admin": false,
+  "name": "Romnick Muana"
+}
+[2026-01-09 17:44:59.847] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 5,
+  "emp_id": "EMP003",
+  "role": "Supervisor",
+  "is_admin": false,
+  "name": "Romnick Muana",
+  "iat": 1767951899,
+  "exp": 1768038299
+}
+[2026-01-09 17:44:59.847] [INFO] Login successful for user: Romnick Muana (ID: 5)
+[2026-01-09 17:46:09.031] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-09 17:46:09.032] [DEBUG] User is_admin value from DB: true
+[2026-01-09 17:46:09.032] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 17:46:09.033] [DEBUG] User status: Active
+[2026-01-09 17:46:09.034] [DEBUG] Starting password comparison...
+[2026-01-09 17:46:09.157] [WARN] Password comparison failed for emp_id: ADMIN001
+[2026-01-09 17:46:14.993] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-09 17:46:14.993] [DEBUG] User is_admin value from DB: true
+[2026-01-09 17:46:14.994] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 17:46:14.994] [DEBUG] User status: Active
+[2026-01-09 17:46:14.994] [DEBUG] Starting password comparison...
+[2026-01-09 17:46:15.141] [DEBUG] Password validation successful
+[2026-01-09 17:46:15.142] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-09 17:46:15.143] [DEBUG] is_admin value for JWT: true
+[2026-01-09 17:46:15.144] [DEBUG] is_admin type for JWT: boolean
+[2026-01-09 17:46:15.144] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator"
+}
+[2026-01-09 17:46:15.146] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator",
+  "iat": 1767951975,
+  "exp": 1768038375
+}
+[2026-01-09 17:46:15.147] [INFO] Login successful for user: System Administrator (ID: 6)
+[2026-01-09 17:58:42.595] [DEBUG] User found: Johnell Empuerto (ID: 1)
+[2026-01-09 17:58:42.595] [DEBUG] User is_admin value from DB: false
+[2026-01-09 17:58:42.596] [DEBUG] User is_admin type from DB: boolean
+[2026-01-09 17:58:42.596] [DEBUG] User status: Active
+[2026-01-09 17:58:42.597] [DEBUG] Starting password comparison...
+[2026-01-09 17:58:42.668] [DEBUG] Password validation successful
+[2026-01-09 17:58:42.669] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-09 17:58:42.669] [DEBUG] is_admin value for JWT: false
+[2026-01-09 17:58:42.670] [DEBUG] is_admin type for JWT: boolean
+[2026-01-09 17:58:42.670] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto"
+}
+[2026-01-09 17:58:42.671] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto",
+  "iat": 1767952722,
+  "exp": 1768039122
+}
+[2026-01-09 17:58:42.672] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 08:23:32.954] [DEBUG] User found: Johnell Empuerto (ID: 1)
+[2026-01-12 08:23:32.956] [DEBUG] User is_admin value from DB: false
+[2026-01-12 08:23:32.956] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 08:23:32.957] [DEBUG] User status: Active
+[2026-01-12 08:23:32.957] [DEBUG] Starting password comparison...
+[2026-01-12 08:23:33.046] [DEBUG] Password validation successful
+[2026-01-12 08:23:33.047] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 08:23:33.048] [DEBUG] is_admin value for JWT: false
+[2026-01-12 08:23:33.049] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 08:23:33.051] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto"
+}
+[2026-01-12 08:23:33.063] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto",
+  "iat": 1768177413,
+  "exp": 1768263813
+}
+[2026-01-12 08:23:33.066] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 10:26:13.429] [DEBUG] User found: Johnell Empuerto (ID: 1)
+[2026-01-12 10:26:13.430] [DEBUG] User is_admin value from DB: false
+[2026-01-12 10:26:13.430] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 10:26:13.431] [DEBUG] User status: Active
+[2026-01-12 10:26:13.431] [DEBUG] Starting password comparison...
+[2026-01-12 10:26:13.505] [DEBUG] Password validation successful
+[2026-01-12 10:26:13.506] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 10:26:13.507] [DEBUG] is_admin value for JWT: false
+[2026-01-12 10:26:13.508] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 10:26:13.508] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto"
+}
+[2026-01-12 10:26:13.513] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto",
+  "iat": 1768184773,
+  "exp": 1768271173
+}
+[2026-01-12 10:26:13.514] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 11:31:40.548] [DEBUG] User found: Johnell Empuerto (ID: 1)
+[2026-01-12 11:31:40.548] [DEBUG] User is_admin value from DB: false
+[2026-01-12 11:31:40.549] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 11:31:40.550] [DEBUG] User status: Active
+[2026-01-12 11:31:40.550] [DEBUG] Starting password comparison...
+[2026-01-12 11:31:40.624] [DEBUG] Password validation successful
+[2026-01-12 11:31:40.624] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 11:31:40.624] [DEBUG] is_admin value for JWT: false
+[2026-01-12 11:31:40.625] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 11:31:40.625] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto"
+}
+[2026-01-12 11:31:40.627] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto",
+  "iat": 1768188700,
+  "exp": 1768275100
+}
+[2026-01-12 11:31:40.628] [INFO] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 11:35:33.451] [DEBUG] User found: System Administrator (ID: 6)
+[2026-01-12 11:35:33.452] [DEBUG] User is_admin value from DB: true
+[2026-01-12 11:35:33.452] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 11:35:33.453] [DEBUG] User status: Active
+[2026-01-12 11:35:33.454] [DEBUG] Starting password comparison...
+[2026-01-12 11:35:33.524] [DEBUG] Password validation successful
+[2026-01-12 11:35:33.525] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 11:35:33.525] [DEBUG] is_admin value for JWT: true
+[2026-01-12 11:35:33.526] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 11:35:33.526] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator"
+}
+[2026-01-12 11:35:33.527] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 6,
+  "emp_id": "ADMIN001",
+  "role": "Admin",
+  "is_admin": true,
+  "name": "System Administrator",
+  "iat": 1768188933,
+  "exp": 1768275333
+}
+[2026-01-12 11:35:33.528] [INFO] Login successful for user: System Administrator (ID: 6)
+[2026-01-12 11:35:54.869] [DEBUG] User found: Johnell Empuerto (ID: 1)
+[2026-01-12 11:35:54.870] [DEBUG] User is_admin value from DB: false
+[2026-01-12 11:35:54.870] [DEBUG] User is_admin type from DB: boolean
+[2026-01-12 11:35:54.870] [DEBUG] User status: Active
+[2026-01-12 11:35:54.871] [DEBUG] Starting password comparison...
+[2026-01-12 11:35:54.940] [DEBUG] Password validation successful
+[2026-01-12 11:35:54.940] [DEBUG] === CREATING JWT TOKEN ===
+[2026-01-12 11:35:54.940] [DEBUG] is_admin value for JWT: false
+[2026-01-12 11:35:54.941] [DEBUG] is_admin type for JWT: boolean
+[2026-01-12 11:35:54.941] [DEBUG] JWT Payload: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto"
+}
+[2026-01-12 11:35:54.942] [DEBUG] JWT Decoded: | {
+  "service": "express-app",
+  "route": "/auth/login",
+  "user_id": 1,
+  "emp_id": "EMP001",
+  "role": "Operator",
+  "is_admin": false,
+  "name": "Johnell Empuerto",
+  "iat": 1768188954,
+  "exp": 1768275354
+}
+[2026-01-12 11:35:54.942] [INFO] Login successful for user: Johnell Empuerto (ID: 1)

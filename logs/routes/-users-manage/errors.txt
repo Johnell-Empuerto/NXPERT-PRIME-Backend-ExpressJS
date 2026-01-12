@@ -1,0 +1,120 @@
+[2026-01-12 09:05:55.946] [ERROR] Error Response: GET /Backend/api/editusermaster/1
+Meta: {
+  "service": "express-app",
+  "route": "/users/manage",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+---
+
+[2026-01-12 09:05:55.949] [ERROR] Error Response: GET /Backend/api/editusermaster/1
+Meta: {
+  "service": "express-app",
+  "route": "/users/manage",
+  "statusCode": 403
+}
+---
+
+[2026-01-12 09:11:39.704] [ERROR] Error Response: DELETE /Backend/api/editusermaster/1
+Meta: {
+  "service": "express-app",
+  "route": "/users/manage",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+---
+
+[2026-01-12 09:11:39.705] [ERROR] Error Response: DELETE /Backend/api/editusermaster/1
+Meta: {
+  "service": "express-app",
+  "route": "/users/manage",
+  "statusCode": 403
+}
+---
+
+[2026-01-12 09:11:41.790] [ERROR] Error Response: GET /Backend/api/editusermaster/1
+Meta: {
+  "service": "express-app",
+  "route": "/users/manage",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+---
+
+[2026-01-12 09:11:41.791] [ERROR] Error Response: GET /Backend/api/editusermaster/1
+Meta: {
+  "service": "express-app",
+  "route": "/users/manage",
+  "statusCode": 403
+}
+---
+

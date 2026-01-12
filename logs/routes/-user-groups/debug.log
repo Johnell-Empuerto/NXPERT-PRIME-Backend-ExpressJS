@@ -156,3 +156,161 @@
 [2026-01-09 17:22:56.000] [INFO] Returned 1 members for group 3
 [2026-01-09 17:24:03.386] [INFO] Returned 2 groups
 [2026-01-09 17:24:03.401] [INFO] Returned 2 groups
+[2026-01-09 17:43:20.179] [INFO] Returned 2 groups
+[2026-01-09 17:43:20.203] [INFO] Returned 2 groups
+[2026-01-09 17:48:42.735] [INFO] Returned 2 groups
+[2026-01-09 17:48:42.753] [INFO] Returned 2 groups
+[2026-01-09 17:48:47.479] [INFO] Returned 1 members for group 4
+[2026-01-09 17:48:48.180] [INFO] Returned 1 members for group 3
+[2026-01-09 17:48:48.952] [INFO] Returned 1 members for group 4
+[2026-01-09 17:48:52.690] [INFO] Returned 1 members for group 3
+[2026-01-09 17:48:53.066] [INFO] Returned 1 members for group 4
+[2026-01-09 17:56:36.369] [INFO] Returned 2 groups
+[2026-01-09 17:56:36.389] [INFO] Returned 2 groups
+[2026-01-09 17:57:57.944] [INFO] Returned 2 groups
+[2026-01-09 17:57:57.961] [INFO] Returned 2 groups
+[2026-01-09 17:58:11.128] [INFO] Returned 1 members for group 4
+[2026-01-09 17:58:15.931] [INFO] Returned 1 members for group 3
+[2026-01-09 17:58:21.152] [INFO] Returned 1 members for group 4
+[2026-01-09 17:58:21.711] [INFO] Returned 1 members for group 3
+[2026-01-09 17:58:26.096] [INFO] Returned 1 members for group 4
+[2026-01-09 17:58:26.652] [INFO] Returned 1 members for group 3
+[2026-01-09 17:58:32.212] [INFO] Returned 0 members for group 3
+[2026-01-12 08:24:44.223] [INFO] Returned 2 groups
+[2026-01-12 08:24:44.237] [INFO] Returned 2 groups
+[2026-01-12 08:27:12.418] [INFO] Returned 2 groups
+[2026-01-12 08:27:12.431] [INFO] Returned 2 groups
+[2026-01-12 08:31:49.891] [INFO] Returned 2 groups
+[2026-01-12 08:31:49.905] [INFO] Returned 2 groups
+[2026-01-12 08:35:20.081] [INFO] Returned 1 members for group 4
+[2026-01-12 08:35:26.570] [INFO] Returned 0 members for group 3
+[2026-01-12 08:36:06.633] [INFO] Returned 1 members for group 4
+[2026-01-12 08:53:51.559] [INFO] Returned 1 members for group 4
+[2026-01-12 08:53:55.273] [INFO] Returned 0 members for group 3
+[2026-01-12 08:54:09.359] [INFO] Returned 1 members for group 4
+[2026-01-12 09:06:00.494] [INFO] Returned 1 members for group 4
+[2026-01-12 09:06:06.300] [INFO] Returned 0 members for group 3
+[2026-01-12 09:07:56.000] [INFO] Returned 1 members for group 4
+[2026-01-12 09:10:28.275] [INFO] Returned 0 members for group 3
+[2026-01-12 09:12:55.655] [INFO] Returned 2 groups
+[2026-01-12 09:12:55.684] [INFO] Returned 2 groups
+[2026-01-12 09:14:15.696] [INFO] Returned 2 groups
+[2026-01-12 09:14:15.730] [INFO] Returned 2 groups
+[2026-01-12 10:26:46.422] [INFO] Returned 2 groups
+[2026-01-12 10:26:46.432] [INFO] Returned 2 groups
+[2026-01-12 10:27:02.755] [INFO] Returned 2 groups
+[2026-01-12 10:27:02.766] [INFO] Returned 2 groups
+[2026-01-12 10:29:21.755] [INFO] Returned 2 groups
+[2026-01-12 10:29:21.774] [INFO] Returned 2 groups
+[2026-01-12 10:33:22.614] [INFO] Returned 2 groups
+[2026-01-12 10:33:50.944] [INFO] Returned 2 groups
+[2026-01-12 10:33:50.967] [INFO] Returned 2 groups
+[2026-01-12 10:34:12.140] [INFO] Returned 2 groups
+[2026-01-12 10:34:12.151] [INFO] Returned 2 groups
+[2026-01-12 11:11:52.818] [INFO] Returned 2 groups
+[2026-01-12 11:11:52.829] [INFO] Returned 2 groups
+[2026-01-12 11:26:37.705] [INFO] Returned 2 groups
+[2026-01-12 11:26:37.718] [INFO] Returned 2 groups
+[2026-01-12 11:28:11.066] [INFO] Returned 2 groups
+[2026-01-12 11:28:11.078] [INFO] Returned 2 groups
+[2026-01-12 11:35:08.751] [INFO] Returned 2 groups
+[2026-01-12 11:35:08.773] [INFO] Returned 2 groups
+[2026-01-12 11:35:11.239] [INFO] Returned 0 members for group 3
+[2026-01-12 11:35:15.107] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1 | {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+[2026-01-12 11:35:15.108] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1 | {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403
+}
+[2026-01-12 11:35:17.915] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1 | {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+[2026-01-12 11:35:17.916] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1 | {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403
+}
+[2026-01-12 11:35:39.565] [INFO] Returned 2 groups
+[2026-01-12 11:35:39.584] [INFO] Returned 2 groups
+[2026-01-12 11:35:42.352] [INFO] Returned 0 members for group 3
+[2026-01-12 11:35:44.505] [INFO] Returned 1 members for group 3
+[2026-01-12 11:39:18.293] [INFO] Returned 2 groups
+[2026-01-12 11:39:18.305] [INFO] Returned 2 groups
+[2026-01-12 11:51:58.768] [INFO] Returned 2 groups
+[2026-01-12 11:51:58.779] [INFO] Returned 2 groups
+[2026-01-12 11:53:02.664] [INFO] Returned 2 groups
+[2026-01-12 11:53:02.677] [INFO] Returned 2 groups
+[2026-01-12 12:14:44.221] [INFO] Returned 2 groups
+[2026-01-12 12:14:44.237] [INFO] Returned 2 groups
+[2026-01-12 12:15:28.242] [INFO] Returned 2 groups
+[2026-01-12 12:15:28.254] [INFO] Returned 2 groups
+[2026-01-12 12:15:36.249] [INFO] Returned 2 groups
+[2026-01-12 12:15:36.258] [INFO] Returned 2 groups
+[2026-01-12 12:31:35.635] [INFO] Returned 2 groups
+[2026-01-12 12:31:35.650] [INFO] Returned 2 groups
+[2026-01-12 12:34:36.872] [INFO] Returned 2 groups
+[2026-01-12 12:34:36.886] [INFO] Returned 2 groups
+[2026-01-12 12:35:47.091] [INFO] Returned 2 groups
+[2026-01-12 12:35:47.106] [INFO] Returned 2 groups
+[2026-01-12 13:12:01.446] [INFO] Returned 2 groups
+[2026-01-12 13:12:01.461] [INFO] Returned 2 groups
+[2026-01-12 13:17:20.309] [INFO] Returned 2 groups
+[2026-01-12 13:17:20.326] [INFO] Returned 2 groups
+[2026-01-12 13:28:38.235] [INFO] Returned 2 groups
+[2026-01-12 13:28:38.253] [INFO] Returned 2 groups
+[2026-01-12 13:29:01.058] [INFO] Returned 2 groups
+[2026-01-12 13:29:01.071] [INFO] Returned 2 groups

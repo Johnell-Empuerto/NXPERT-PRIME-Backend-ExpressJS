@@ -95,3 +95,171 @@
   "route": "/production/plans"
 }
 [2026-01-08 16:54:35.559] [INFO] Returned 3 production plans to user: System Administrator
+[2026-01-12 08:26:07.102] [DEBUG] Fetching all production plans from database
+[2026-01-12 08:26:07.184] [DEBUG] Retrieved 3 production plans
+[2026-01-12 08:26:07.185] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-12 08:26:07.186] [INFO] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 08:26:07.199] [DEBUG] Fetching all production plans from database
+[2026-01-12 08:26:07.202] [DEBUG] Retrieved 3 production plans
+[2026-01-12 08:26:07.203] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-12 08:26:07.204] [INFO] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:25.485] [DEBUG] Fetching all production plans from database
+[2026-01-12 09:12:25.627] [DEBUG] Retrieved 3 production plans
+[2026-01-12 09:12:25.629] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-12 09:12:25.630] [INFO] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:25.643] [DEBUG] Fetching all production plans from database
+[2026-01-12 09:12:25.648] [DEBUG] Retrieved 3 production plans
+[2026-01-12 09:12:25.648] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-12 09:12:25.649] [INFO] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:42.155] [DEBUG] Fetching all production plans from database
+[2026-01-12 09:12:42.247] [DEBUG] Retrieved 3 production plans
+[2026-01-12 09:12:42.248] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-12 09:12:42.249] [INFO] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:42.258] [DEBUG] Fetching all production plans from database
+[2026-01-12 09:12:42.261] [DEBUG] Retrieved 3 production plans
+[2026-01-12 09:12:42.262] [DEBUG] Sample plans retrieved: | {
+  "0": {
+    "id": 5,
+    "product_name": "Steel Bracket",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2026-01-07T16:00:00.000Z"
+  },
+  "1": {
+    "id": 4,
+    "product_name": "Steel Bracket - B",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-21T16:00:00.000Z"
+  },
+  "2": {
+    "id": 3,
+    "product_name": "Steel Bracket - A",
+    "process_type": "machining",
+    "status": "Planned",
+    "start_date": "2025-12-12T16:00:00.000Z"
+  },
+  "service": "express-app",
+  "route": "/production/plans"
+}
+[2026-01-12 09:12:42.262] [INFO] Returned 3 production plans to user: Johnell Empuerto

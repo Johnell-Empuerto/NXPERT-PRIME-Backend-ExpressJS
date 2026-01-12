@@ -55,3 +55,83 @@ Meta: {
 }
 ---
 
+[2026-01-12 11:35:15.107] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1
+Meta: {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+---
+
+[2026-01-12 11:35:15.108] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1
+Meta: {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403
+}
+---
+
+[2026-01-12 11:35:17.915] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1
+Meta: {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403,
+  "data": {
+    "success": false,
+    "message": "Admin access only",
+    "debug": {
+      "user_id": 1,
+      "emp_id": "EMP001",
+      "name": "Johnell Empuerto",
+      "is_admin_value": false,
+      "is_admin_type": "boolean",
+      "comparisons": {
+        "strictTrue": false,
+        "looseTrue": false,
+        "strictFalse": true,
+        "looseFalse": true,
+        "stringTrue": false,
+        "stringFalse": false,
+        "numberOne": false,
+        "numberZero": false,
+        "booleanTrue": false,
+        "booleanFalse": true
+      },
+      "isAdminUser_result": false
+    }
+  }
+}
+---
+
+[2026-01-12 11:35:17.916] [ERROR] Error Response: POST /Backend/api/usergroups/3/users/1
+Meta: {
+  "service": "express-app",
+  "route": "/user-groups",
+  "statusCode": 403
+}
+---
+

@@ -2,20 +2,324 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../../db");
 
+// Helper function: Detect schema changes
+const detectSchemaChanges = (oldFields, newFields) => {
+  const changes = [];
+
+  // Convert old fields to map for easy lookup
+  const oldFieldMap = {};
+  oldFields.forEach((field) => {
+    oldFieldMap[field.instance_id] = field;
+  });
+
+  // Check each new field
+  Object.keys(newFields).forEach((fieldId) => {
+    const oldField = oldFieldMap[fieldId];
+    const newField = newFields[fieldId];
+
+    if (oldField && oldField.field_type !== newField.type) {
+      changes.push({
+        fieldId,
+        fieldName: newField.field_name || fieldId,
+        oldType: oldField.field_type,
+        newType: newField.type,
+        breakingChange: isBreakingChange(oldField.field_type, newField.type),
+      });
+    }
+  });
+
+  return changes;
+};
+
+// Helper function: Check if change is breaking
+const isBreakingChange = (oldType, newType) => {
+  const breakingPairs = [
+    ["text", "number"],
+    ["text", "date"],
+    ["text", "datetime"],
+    ["text", "time"],
+    ["text", "boolean"],
+    ["textbox", "number"],
+    ["textbox", "date"],
+    ["number", "text"],
+    ["number", "textbox"],
+    ["date", "text"],
+    ["datetime", "text"],
+    ["boolean", "text"],
+    ["calculation", "text"],
+  ];
+
+  return breakingPairs.some(([from, to]) => from === oldType && to === newType);
+};
+
+// Helper function: Create optimized table with proper data types
+const createOptimizedTable = async (client, tableName, fieldConfigs) => {
+  const columns = [];
+
+  // Always include metadata columns
+  columns.push("id SERIAL PRIMARY KEY");
+  columns.push("user_id INTEGER");
+  columns.push("submitted_at TIMESTAMP DEFAULT NOW()");
+  columns.push("template_version INTEGER DEFAULT 1");
+  columns.push("original_submission_id INTEGER");
+
+  // Add columns based on field types
+  Object.values(fieldConfigs).forEach((config) => {
+    const safeName = (config.field_name || config.instanceId)
+      .toLowerCase()
+      .replace(/[^a-z0-9_]/g, "_")
+      .replace(/_{2,}/g, "_")
+      .replace(/^_+|_+$/g, "");
+
+    let columnType = "TEXT";
+
+    switch (config.type) {
+      case "number":
+      case "calculation":
+        columnType = "DECIMAL(12,4)";
+        break;
+      case "date":
+        columnType = "DATE";
+        break;
+      case "datetime":
+        columnType = "TIMESTAMP";
+        break;
+      case "time":
+        columnType = "TIME";
+        break;
+      case "boolean":
+        columnType = "BOOLEAN";
+        break;
+      default:
+        columnType = "TEXT";
+    }
+
+    columns.push(`"${safeName}" ${columnType}`);
+  });
+
+  const createSQL = `CREATE TABLE "${tableName}" (${columns.join(", ")})`;
+  await client.query(createSQL);
+
+  // Create indexes
+  await client.query(`
+    CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_user 
+    ON "${tableName}" (user_id);
+    
+    CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_date 
+    ON "${tableName}" (submitted_at DESC);
+    
+    CREATE INDEX IF NOT EXISTS idx_${tableName.replace(
+      /[^a-z0-9]/g,
+      "_"
+    )}_version 
+    ON "${tableName}" (template_version);
+  `);
+};
+
+// Helper function: Migrate non-breaking data
+// Helper function: Migrate non-breaking data WITH TYPE CHECKING
+const migrateNonBreakingData = async (
+  client,
+  oldTableName,
+  newTableName,
+  changes,
+  version
+) => {
+  try {
+    // Get all columns from old table WITH THEIR TYPES
+    const oldColumnsRes = await client.query(
+      `
+      SELECT column_name, data_type 
+      FROM information_schema.columns 
+      WHERE table_name = $1
+      ORDER BY ordinal_position
+    `,
+      [oldTableName]
+    );
+
+    if (oldColumnsRes.rows.length === 0) return 0;
+
+    // Get all columns from new table WITH THEIR TYPES
+    const newColumnsRes = await client.query(
+      `
+      SELECT column_name, data_type 
+      FROM information_schema.columns 
+      WHERE table_name = $1
+      ORDER BY ordinal_position
+    `,
+      [newTableName]
+    );
+
+    if (newColumnsRes.rows.length === 0) return 0;
+
+    // Create maps for quick lookup
+    const oldColumnsMap = {};
+    oldColumnsRes.rows.forEach((row) => {
+      oldColumnsMap[row.column_name] = row.data_type;
+    });
+
+    const newColumnsMap = {};
+    newColumnsRes.rows.forEach((row) => {
+      newColumnsMap[row.column_name] = row.data_type;
+    });
+
+    // Filter out breaking changes fields
+    const breakingFields = changes
+      .filter((c) => c.breakingChange)
+      .map((c) => c.fieldName.toLowerCase().replace(/[^a-z0-9_]/g, "_"));
+
+    // Get columns that can be migrated (non-breaking AND compatible types)
+    const migratableColumns = [];
+    const selectExpressions = [];
+
+    oldColumnsRes.rows.forEach((row) => {
+      const columnName = row.column_name;
+      const oldType = row.data_type;
+
+      // Skip system columns and breaking changes
+      if (
+        [
+          "id",
+          "user_id",
+          "submitted_at",
+          "template_version",
+          "original_submission_id",
+        ].includes(columnName)
+      ) {
+        return;
+      }
+
+      if (breakingFields.some((bf) => bf === columnName.toLowerCase())) {
+        return;
+      }
+
+      // Check if column exists in new table
+      if (!newColumnsMap[columnName]) {
+        console.log(`Skipping ${columnName}: not in new table`);
+        return;
+      }
+
+      const newType = newColumnsMap[columnName];
+
+      // Check type compatibility
+      if (!areTypesCompatible(oldType, newType)) {
+        console.log(
+          `Skipping ${columnName}: type mismatch (${oldType} -> ${newType})`
+        );
+        return;
+      }
+
+      migratableColumns.push(columnName);
+
+      // Handle type conversions in SELECT
+      if (oldType === "date" && newType.includes("character")) {
+        // DATE -> TEXT
+        selectExpressions.push(
+          `TO_CHAR("${columnName}", 'YYYY-MM-DD') as "${columnName}"`
+        );
+      } else if (
+        oldType.includes("timestamp") &&
+        newType.includes("character")
+      ) {
+        // TIMESTAMP -> TEXT
+        selectExpressions.push(
+          `TO_CHAR("${columnName}", 'YYYY-MM-DD HH24:MI:SS') as "${columnName}"`
+        );
+      } else if (oldType === "boolean" && newType.includes("character")) {
+        // BOOLEAN -> TEXT
+        selectExpressions.push(
+          `CASE WHEN "${columnName}" = true THEN 'true' WHEN "${columnName}" = false THEN 'false' ELSE NULL END as "${columnName}"`
+        );
+      } else if (oldType.includes("character") && newType === "date") {
+        // TEXT -> DATE (if format matches)
+        selectExpressions.push(
+          `CASE WHEN "${columnName}" ~ '^\\d{4}-\\d{2}-\\d{2}$' THEN TO_DATE("${columnName}", 'YYYY-MM-DD') ELSE NULL END as "${columnName}"`
+        );
+      } else {
+        // Compatible types
+        selectExpressions.push(`"${columnName}"`);
+      }
+    });
+
+    if (migratableColumns.length === 0) {
+      console.log("No migratable columns found");
+      return 0;
+    }
+
+    // Migrate data (limit to last 1000 submissions for performance)
+    const migrateQuery = `
+      INSERT INTO "${newTableName}" 
+      (user_id, submitted_at, template_version, original_submission_id, ${migratableColumns
+        .map((c) => `"${c}"`)
+        .join(", ")})
+      SELECT 
+        user_id, 
+        submitted_at, 
+        ${version} as template_version, 
+        id as original_submission_id,
+        ${selectExpressions.join(", ")}
+      FROM "${oldTableName}"
+      ORDER BY submitted_at DESC
+      LIMIT 1000
+    `;
+
+    console.log("Migration query executing...");
+    const result = await client.query(migrateQuery);
+    console.log(
+      `Migrated ${result.rowCount} records from ${oldTableName} to ${newTableName}`
+    );
+    return result.rowCount;
+  } catch (err) {
+    console.warn(
+      `Migration failed from ${oldTableName} to ${newTableName}:`,
+      err.message
+    );
+    return 0;
+  }
+};
+
+// Helper function to check type compatibility
+const areTypesCompatible = (oldType, newType) => {
+  // Simplify type comparison
+  const oldSimple = simplifyType(oldType);
+  const newSimple = simplifyType(newType);
+
+  // Compatible if same type or TEXT can accept anything
+  if (newSimple === "text") return true;
+  if (oldSimple === newSimple) return true;
+
+  // Some specific compatibilities
+  if (oldSimple === "integer" && newSimple === "decimal") return true;
+  if (oldSimple === "decimal" && newSimple === "integer") return true;
+
+  return false;
+};
+
+const simplifyType = (type) => {
+  if (type.includes("character") || type.includes("text")) return "text";
+  if (type.includes("integer")) return "integer";
+  if (type.includes("decimal") || type.includes("numeric")) return "decimal";
+  if (type.includes("date")) return "date";
+  if (type.includes("timestamp")) return "timestamp";
+  if (type.includes("time")) return "time";
+  if (type.includes("boolean")) return "boolean";
+  return type;
+};
+
 // ==============================
 // PUBLISH FORM TEMPLATE WITH PROPER IMAGE POSITIONS
 // ==============================
 router.post("/templates", async (req, res) => {
   const {
     name,
-    html_content, // HTML with placeholders
-    original_html_content, // Original HTML
+    html_content,
+    original_html_content,
     field_configurations,
     field_positions,
     sheets,
     form_values,
     css_content = "",
-    images = {}, // Base64 images data
+    images = {},
     access_control,
   } = req.body;
 
@@ -35,15 +339,16 @@ router.post("/templates", async (req, res) => {
     console.log("Images count:", Object.keys(images).length);
     console.log("Sheets count:", sheets?.length || 1);
 
-    // 1. Insert template
-    // In checksheet.js, update the publish endpoint:
+    // 1. Insert template with version 1
     const templateRes = await client.query(
       `
-  INSERT INTO checksheet_templates 
-  (name, html_content, field_configurations, field_positions, sheets, css_content, original_html_content, access_control)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)  
-  RETURNING id
-  `,
+      INSERT INTO checksheet_templates 
+      (name, html_content, field_configurations, field_positions, 
+       sheets, css_content, original_html_content, access_control,
+       version, is_active)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 1, true)  
+      RETURNING id
+      `,
       [
         name,
         html_content || "",
@@ -63,7 +368,6 @@ router.post("/templates", async (req, res) => {
     const imagePositions = [];
 
     if (html_content) {
-      // Find all img tags in HTML
       const imgRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/gi;
       let match;
       let index = 0;
@@ -72,7 +376,6 @@ router.post("/templates", async (req, res) => {
         const fullTag = match[0];
         const src = match[1];
 
-        // Extract filename from src
         let filename = "";
         if (src.includes("IMAGE_PLACEHOLDER:")) {
           filename = src.split("IMAGE_PLACEHOLDER:")[1].replace(/["']/g, "");
@@ -89,68 +392,42 @@ router.post("/templates", async (req, res) => {
 
         index++;
       }
-
-      console.log(
-        `Found ${imagePositions.length} images in HTML at positions:`,
-        imagePositions.map((ip) => `${ip.position}: ${ip.filename}`)
-      );
     }
 
     // 3. Save images with position information
     const savedImages = {};
     if (images && Object.keys(images).length > 0) {
-      // Create array to maintain order
       const imageEntries = Object.entries(images);
 
-      // Sort images by position, then by order
       imageEntries.sort((a, b) => {
         const posA = a[1].position !== undefined ? a[1].position : a[1].order;
         const posB = b[1].position !== undefined ? b[1].position : b[1].order;
         return posA - posB;
       });
 
-      console.log(
-        "Sorted images for saving:",
-        imageEntries.map(
-          ([name, data]) =>
-            `${name}: position=${data.position}, order=${data.order}`
-        )
-      );
-
-      // Keep track of used positions to avoid duplicates
       const usedPositions = new Set();
 
       for (let i = 0; i < imageEntries.length; i++) {
         const [originalPath, imageData] = imageEntries[i];
 
         try {
-          // Get position from imageData
           let positionIndex =
             imageData.position !== undefined ? imageData.position : i;
 
-          // If position is already used, find next available
           if (usedPositions.has(positionIndex)) {
-            console.log(
-              `Position ${positionIndex} already used for ${originalPath}, finding next available`
-            );
             let newPos = positionIndex;
             while (usedPositions.has(newPos)) {
               newPos++;
             }
             positionIndex = newPos;
-            console.log(
-              `Assigned new position ${positionIndex} to ${originalPath}`
-            );
           }
 
           usedPositions.add(positionIndex);
 
-          // Find matching original src
           let originalSrc = "";
           if (imageData.originalSrc) {
             originalSrc = imageData.originalSrc;
           } else {
-            // Try to find in imagePositions
             const simpleFilename = originalPath.includes("/")
               ? originalPath.split("/").pop()
               : originalPath;
@@ -162,7 +439,6 @@ router.post("/templates", async (req, res) => {
             }
           }
 
-          // Generate a unique element ID for this image
           const elementId = `img_${templateId}_${positionIndex}_${Date.now()}`;
 
           const imageRes = await client.query(
@@ -193,39 +469,23 @@ router.post("/templates", async (req, res) => {
             elementId: elementId,
             filename: imageData.filename,
           };
-
-          console.log(
-            `Saved image: ${imageData.filename} at position ${positionIndex} with ID: ${imageId}`
-          );
         } catch (imgErr) {
           console.error(`Failed to save image ${originalPath}:`, imgErr);
-          // Continue with other images
         }
       }
     }
 
-    // 4. Update HTML to replace placeholders with API endpoints using correct positions
+    // 4. Update HTML to replace placeholders with API endpoints
     let processedHtml = html_content;
     if (Object.keys(savedImages).length > 0) {
-      // Sort saved images by position
       const sortedImages = Object.entries(savedImages)
         .map(([path, data]) => ({ path, ...data }))
         .sort((a, b) => a.position - b.position);
 
-      console.log(
-        "Sorted images by position for HTML processing:",
-        sortedImages.map(
-          (img) => `${img.position}: ${img.filename} (ID: ${img.id})`
-        )
-      );
-
-      // Replace IMAGE_PLACEHOLDER:path with API endpoints
       for (const img of sortedImages) {
         const filename = img.filename || img.path.split("/").pop();
 
-        // Multiple patterns to catch different placeholder formats
         const patterns = [
-          // Pattern for IMAGE_PLACEHOLDER:filename
           new RegExp(
             `src=["']IMAGE_PLACEHOLDER:${filename.replace(
               /[.*+?^${}()|[\]\\]/g,
@@ -233,7 +493,6 @@ router.post("/templates", async (req, res) => {
             )}["']`,
             "gi"
           ),
-          // Pattern for blob URLs that might still exist
           new RegExp(
             `src=["']blob:[^"']*${filename.replace(
               /[.*+?^${}()|[\]\\]/g,
@@ -248,9 +507,6 @@ router.post("/templates", async (req, res) => {
         patterns.forEach((pattern) => {
           if (pattern.test(processedHtml)) {
             processedHtml = processedHtml.replace(pattern, imageUrl);
-            console.log(
-              `Replaced ${filename} with API URL at position ${img.position}`
-            );
           }
         });
       }
@@ -267,22 +523,22 @@ router.post("/templates", async (req, res) => {
       for (const [fieldId, config] of Object.entries(field_configurations)) {
         await client.query(
           `
-  INSERT INTO template_fields
-  (template_id, field_name, field_type, label, decimal_places, options,
-   bg_color, text_color, exact_match_text, exact_match_bg_color,
-   min_length, min_length_mode, min_length_warning_bg,
-   max_length, max_length_mode, max_length_warning_bg,
-   multiline, auto_shrink_font,
-   min_value, max_value, bg_color_in_range, bg_color_below_min,
-   bg_color_above_max, border_color_in_range, border_color_below_min,
-   border_color_above_max, formula, position, instance_id, sheet_index,
-   date_format, show_time_select, DatetimeFormat, min_date, max_date,
-   allow_camera, allow_upload,
-   max_file_size, time_format, allow_seconds, min_time, max_time,
-   required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, 
-   text_font_size)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49)
-  `,
+          INSERT INTO template_fields
+          (template_id, field_name, field_type, label, decimal_places, options,
+           bg_color, text_color, exact_match_text, exact_match_bg_color,
+           min_length, min_length_mode, min_length_warning_bg,
+           max_length, max_length_mode, max_length_warning_bg,
+           multiline, auto_shrink_font,
+           min_value, max_value, bg_color_in_range, bg_color_below_min,
+           bg_color_above_max, border_color_in_range, border_color_below_min,
+           border_color_above_max, formula, position, instance_id, sheet_index,
+           date_format, show_time_select, DatetimeFormat, min_date, max_date,
+           allow_camera, allow_upload,
+           max_file_size, time_format, allow_seconds, min_time, max_time,
+           required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, 
+           text_font_size)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49)
+          `,
           [
             templateId,
             config.field_name || fieldId,
@@ -328,7 +584,6 @@ router.post("/templates", async (req, res) => {
             config.maxTime || null,
             config.required || false,
             config.disabled || false,
-            // SIGNATURE FIELD PROPERTIES
             config.mode || "signature_over_text",
             config.allowTextInput !== false,
             config.allowSignature !== false,
@@ -339,83 +594,11 @@ router.post("/templates", async (req, res) => {
       }
     }
 
-    // 6. Create dynamic table for submissions
-    const tableName = `checksheet_${templateId}_${Date.now()}`.toLowerCase();
-    const tableFields = [];
+    // 6. Create optimized dynamic table for submissions (Version 1)
+    const tableName = `checksheet_${templateId}_1`;
 
-    if (field_configurations && Object.keys(field_configurations).length > 0) {
-      Object.values(field_configurations).forEach((config) => {
-        const fieldName = config.field_name || config.instanceId;
-        if (fieldName && fieldName.trim()) {
-          // Sanitize field name for SQL
-          const safeFieldName = fieldName
-            .replace(/[^a-zA-Z0-9_]/g, "_") // Replace non-alphanumeric with underscore
-            .replace(/_{2,}/g, "_") // Replace multiple underscores with single
-            .replace(/^_+|_+$/g, ""); // Remove leading/trailing underscores
-
-          if (safeFieldName) {
-            tableFields.push(`${safeFieldName} TEXT`);
-          }
-        }
-      });
-    }
-
-    let createTableSQL;
-
-    if (tableFields.length > 0) {
-      createTableSQL = `
-    CREATE TABLE IF NOT EXISTS "${tableName}" (
-      id SERIAL PRIMARY KEY,
-      user_id INTEGER,
-      submitted_at TIMESTAMP DEFAULT NOW(),
-      ${tableFields.join(", ")}
-    )
-  `;
-    } else {
-      // Create table without additional fields if none exist
-      createTableSQL = `
-    CREATE TABLE IF NOT EXISTS "${tableName}" (
-      id SERIAL PRIMARY KEY,
-      user_id INTEGER,
-      submitted_at TIMESTAMP DEFAULT NOW()
-    )
-  `;
-    }
-
-    console.log("Creating table with SQL:", createTableSQL);
-
-    try {
-      await client.query(createTableSQL);
-      console.log(`Table ${tableName} created successfully`);
-    } catch (createTableErr) {
-      console.error("Error creating table:", createTableErr);
-      // Try alternative approach
-      await client.query(`
-        CREATE TABLE IF NOT EXISTS "${tableName}" (
-          id SERIAL PRIMARY KEY,
-          user_id INTEGER,
-          submitted_at TIMESTAMP DEFAULT NOW()
-        )
-      `);
-
-      // Add columns separately
-      if (tableFields.length > 0) {
-        for (const fieldDef of tableFields) {
-          const fieldName = fieldDef.split(" ")[0]; // Extract field name
-          try {
-            await client.query(`
-              ALTER TABLE "${tableName}" 
-              ADD COLUMN IF NOT EXISTS ${fieldName} TEXT
-            `);
-          } catch (alterErr) {
-            console.warn(
-              `Could not add column ${fieldName}:`,
-              alterErr.message
-            );
-          }
-        }
-      }
-    }
+    // Create table with proper data types
+    await createOptimizedTable(client, tableName, field_configurations);
 
     // Update template with table name
     await client.query(
@@ -428,8 +611,9 @@ router.post("/templates", async (req, res) => {
     res.json({
       success: true,
       template_id: templateId,
-      message: "Form published successfully",
+      version: 1,
       table_name: tableName,
+      message: "Form published successfully",
     });
   } catch (err) {
     await client.query("ROLLBACK");
@@ -451,7 +635,6 @@ router.get("/templates/:id/images/:imageId", async (req, res) => {
   const { id, imageId } = req.params;
 
   try {
-    // First verify the template exists and image belongs to it
     const imageRes = await pool.query(
       `
       SELECT ti.mime_type, ti.image_data, ti.filename
@@ -471,14 +654,12 @@ router.get("/templates/:id/images/:imageId", async (req, res) => {
       return res.status(404).json({ error: "Image data not found" });
     }
 
-    // Convert base64 to buffer
     const buffer = Buffer.from(image_data, "base64");
 
-    // Set headers
     res.setHeader("Content-Type", mime_type);
     res.setHeader("Content-Length", buffer.length);
     res.setHeader("Content-Disposition", `inline; filename="${filename}"`);
-    res.setHeader("Cache-Control", "public, max-age=31536000"); // Cache for 1 year
+    res.setHeader("Cache-Control", "public, max-age=31536000");
     res.setHeader("ETag", `"${imageId}-${buffer.length}"`);
 
     res.send(buffer);
@@ -526,13 +707,14 @@ router.get("/templates/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Get template basic info including CSS
+    // Get template basic info including version
     const templateRes = await pool.query(
       `
       SELECT 
         id, name, html_content, field_configurations, 
         field_positions, sheets, table_name, created_at,
-        css_content, original_html_content,access_control
+        css_content, original_html_content, access_control,
+        version, parent_template_id, is_active
       FROM checksheet_templates 
       WHERE id = $1
       `,
@@ -561,7 +743,8 @@ router.get("/templates/:id", async (req, res) => {
         date_format, show_time_select, DatetimeFormat, min_date, max_date,
         allow_camera, allow_upload, allow_drawing, allow_cropping,
         max_file_size, aspect_ratio_width, aspect_ratio_height,
-        time_format, allow_seconds, min_time, max_time, required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, text_font_size
+        time_format, allow_seconds, min_time, max_time, required, disabled, 
+        mode, allow_text_input, allow_signature, allow_signature_over_text, text_font_size
       FROM template_fields 
       WHERE template_id = $1 
       ORDER BY id
@@ -698,6 +881,13 @@ router.get("/templates/:id", async (req, res) => {
       element_id: image.element_id,
     }));
 
+    // Get version info
+    const versionsRes = await pool.query(
+      `SELECT COUNT(*) as version_count FROM checksheet_templates 
+       WHERE parent_template_id = $1 OR id = $1`,
+      [id]
+    );
+
     res.json({
       success: true,
       template: {
@@ -705,6 +895,7 @@ router.get("/templates/:id", async (req, res) => {
         fields: fields,
         images: images,
         image_count: images.length,
+        version_count: parseInt(versionsRes.rows[0].version_count),
       },
     });
   } catch (err) {
@@ -712,6 +903,107 @@ router.get("/templates/:id", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Server error",
+      details: err.message,
+    });
+  }
+});
+
+router.get("/templates/:id/versions", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Get all versions (including the specified template and its children)
+    const versionsRes = await pool.query(
+      `
+      SELECT 
+        id, name, version, table_name, created_at, updated_at, 
+        is_active, parent_template_id
+      FROM checksheet_templates 
+      WHERE id = $1 OR parent_template_id = $1
+      ORDER BY version ASC
+      `,
+      [id]
+    );
+
+    res.json({
+      success: true,
+      versions: versionsRes.rows,
+      count: versionsRes.rows.length,
+    });
+  } catch (err) {
+    console.error("Get versions error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to get template versions",
+    });
+  }
+});
+
+router.get("/templates/:id/submissions/all", async (req, res) => {
+  const { id } = req.params;
+  const { limit = 100, offset = 0 } = req.query;
+
+  try {
+    // Get all versions
+    const versionsRes = await pool.query(
+      `SELECT id, version, table_name FROM checksheet_templates 
+       WHERE (id = $1 OR parent_template_id = $1) AND table_name IS NOT NULL
+       ORDER BY version DESC`,
+      [id]
+    );
+
+    if (versionsRes.rows.length === 0) {
+      return res.json({
+        success: true,
+        submissions: [],
+        total: 0,
+        versions: [],
+      });
+    }
+
+    // Build union query to get submissions from all versions
+    const unionParts = versionsRes.rows
+      .map((row) => {
+        return `SELECT 
+                ${row.id} as template_id,
+                ${row.version} as version,
+                t.* 
+              FROM "${row.table_name}" t`;
+      })
+      .join(" UNION ALL ");
+
+    // Get total count
+    const countQuery = `
+      SELECT COUNT(*) as total
+      FROM (${unionParts}) as all_submissions
+    `;
+
+    const countRes = await pool.query(countQuery);
+    const total = parseInt(countRes.rows[0].total);
+
+    // Get paginated results
+    const dataQuery = `
+      SELECT *
+      FROM (${unionParts}) as all_submissions
+      ORDER BY submitted_at DESC
+      LIMIT $1 OFFSET $2
+    `;
+
+    const dataRes = await pool.query(dataQuery, [limit, offset]);
+
+    res.json({
+      success: true,
+      submissions: dataRes.rows,
+      total: total,
+      versions: versionsRes.rows.map((v) => ({ id: v.id, version: v.version })),
+      current_limit: parseInt(limit),
+      current_offset: parseInt(offset),
+    });
+  } catch (err) {
+    console.error("Get all submissions error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to get submissions",
       details: err.message,
     });
   }
@@ -744,9 +1036,9 @@ router.post("/submissions", async (req, res) => {
   try {
     await client.query("BEGIN");
 
-    // 1. Get template info
+    // 1. Get template info with version
     const templateRes = await client.query(
-      `SELECT id, name, table_name FROM checksheet_templates WHERE id = $1`,
+      `SELECT id, name, table_name, version FROM checksheet_templates WHERE id = $1 AND is_active = true`,
       [template_id]
     );
 
@@ -754,14 +1046,21 @@ router.post("/submissions", async (req, res) => {
       await client.query("ROLLBACK");
       return res
         .status(404)
-        .json({ success: false, message: "Template not found" });
+        .json({ success: false, message: "Template not found or not active" });
     }
 
     const template = templateRes.rows[0];
     const submissionsTable = template.table_name;
+    const version = template.version || 1;
 
-    console.log("Template name:", template.name);
-    console.log("Submissions table:", submissionsTable);
+    console.log(
+      "Template:",
+      template.name,
+      "Version:",
+      version,
+      "Table:",
+      submissionsTable
+    );
 
     // 2. Get actual columns from the submissions table (case-insensitive)
     const tableColumnsRes = await client.query(`
@@ -796,24 +1095,20 @@ router.post("/submissions", async (req, res) => {
     );
 
     // 4. Create case-insensitive mapping
-    // Convert all existing columns to lowercase for comparison
     const existingColumnsLower = existingColumns.map((col) =>
       col.toLowerCase()
     );
 
-    // Create mapping of lowercase field names to actual column names
     const columnMap = {};
     existingColumns.forEach((col) => {
       columnMap[col.toLowerCase()] = col;
     });
 
-    // Create mapping of field names (from template_fields) to their lowercase versions
     const fieldMapping = {};
     fieldsRes.rows.forEach((field) => {
       const fieldName = field.field_name;
       const instanceId = field.instance_id;
 
-      // Map both original and lowercase versions
       const lowerFieldName = fieldName.toLowerCase();
       const lowerInstanceId = instanceId.toLowerCase();
 
@@ -823,7 +1118,6 @@ router.post("/submissions", async (req, res) => {
         lower: lowerInstanceId,
       };
 
-      // Also map lowercase to original
       fieldMapping[lowerFieldName] = {
         original: fieldName,
         lower: lowerFieldName,
@@ -834,39 +1128,24 @@ router.post("/submissions", async (req, res) => {
       };
     });
 
-    console.log(
-      "Column map (lowercase -> actual):",
-      Object.keys(columnMap).length
-    );
-    console.log(
-      "Field mapping (all variants):",
-      Object.keys(fieldMapping).length
-    );
-
     const submittedKeys = Object.keys(data);
-    console.log("Submitted keys:", submittedKeys);
 
     // 5. Prepare columns and values for insertion
-    const columnsToInsert = ["user_id"];
-    let valuesToInsert = [user_id];
+    const columnsToInsert = ["user_id", "template_version"];
+    let valuesToInsert = [user_id, version];
 
-    // Track successful mappings
     const mappings = [];
 
     // Validate each submitted field against template fields
     for (const submittedKey of submittedKeys) {
       let matchedColumn = null;
 
-      // Try to find the column using case-insensitive matching
       const submittedLower = submittedKey.toLowerCase();
 
-      // Strategy 1: Direct lowercase match in columnMap
       if (columnMap[submittedLower]) {
         matchedColumn = columnMap[submittedLower];
         console.log(`✓ Direct match: "${submittedKey}" -> "${matchedColumn}"`);
-      }
-      // Strategy 2: Try to find through field mapping
-      else if (fieldMapping[submittedKey] || fieldMapping[submittedLower]) {
+      } else if (fieldMapping[submittedKey] || fieldMapping[submittedLower]) {
         const fieldInfo =
           fieldMapping[submittedKey] || fieldMapping[submittedLower];
         const lowerFieldName = fieldInfo.lower;
@@ -881,31 +1160,50 @@ router.post("/submissions", async (req, res) => {
 
       if (matchedColumn) {
         columnsToInsert.push(matchedColumn);
-        valuesToInsert.push(data[submittedKey]);
-        mappings.push({ submitted: submittedKey, column: matchedColumn });
+
+        // Convert value based on field type
+        const fieldType = fieldsRes.rows.find(
+          (f) =>
+            f.field_name.toLowerCase() === submittedLower ||
+            f.instance_id.toLowerCase() === submittedLower
+        )?.field_type;
+
+        let value = data[submittedKey];
+
+        // Handle type conversions
+        if (fieldType === "number" || fieldType === "calculation") {
+          // Treat empty string, null, undefined, "NaN", etc. as null
+          if (
+            value == null ||
+            value === "" ||
+            value === "NaN" ||
+            Number.isNaN(value)
+          ) {
+            value = null;
+          } else {
+            const num = parseFloat(value);
+            value = Number.isNaN(num) ? null : num;
+          }
+        } else if (["date", "datetime", "time"].includes(fieldType)) {
+          value = (value || "").trim() === "" ? null : value;
+        }
+
+        valuesToInsert.push(value);
+        mappings.push({
+          submitted: submittedKey,
+          column: matchedColumn,
+          type: fieldType,
+        });
       } else {
         console.warn(`⚠️ No column found for field: "${submittedKey}"`);
-        console.warn(`  Tried lowercase: "${submittedLower}"`);
-
-        // Try to suggest similar columns
-        const suggestions = existingColumns.filter(
-          (col) =>
-            col.toLowerCase().includes(submittedLower) ||
-            submittedLower.includes(col.toLowerCase())
-        );
-
-        if (suggestions.length > 0) {
-          console.warn(`  Suggestions: ${suggestions.join(", ")}`);
-        }
       }
     }
 
     console.log("Final columns to insert:", columnsToInsert);
-    console.log("Mappings:", mappings);
 
     // 6. Validate we have data to insert
-    if (columnsToInsert.length <= 1) {
-      // Only user_id
+    if (columnsToInsert.length <= 2) {
+      // Only user_id and template_version
       await client.query("ROLLBACK");
       return res.status(400).json({
         success: false,
@@ -913,37 +1211,14 @@ router.post("/submissions", async (req, res) => {
         debug: {
           template_id: template_id,
           template_name: template.name,
+          version: version,
           table: submissionsTable,
           existing_columns: existingColumns,
-          field_names_in_db: fieldsRes.rows.map((f) => f.field_name),
           submitted_keys: submittedKeys,
           mappings: mappings,
-          suggestions:
-            "Field names might be case-sensitive. Check if field names in database match table columns.",
         },
       });
     }
-
-    valuesToInsert = valuesToInsert.map((value, index) => {
-      const columnName = columnsToInsert[index];
-
-      // Check if this is a date column (by name pattern or from field type)
-      const isDateColumn =
-        columnName.includes("_date_") ||
-        columnName.includes("start_") ||
-        columnName.includes("end_") ||
-        columnName.includes("time_");
-
-      // Convert empty strings to null for date columns
-      if (isDateColumn && (value === "" || value === undefined)) {
-        console.log(
-          `Converting empty date value to NULL for column: ${columnName}`
-        );
-        return null;
-      }
-
-      return value;
-    });
 
     // 7. Build and execute the insert query
     const placeholders = columnsToInsert.map((_, i) => `$${i + 1}`).join(", ");
@@ -958,283 +1233,12 @@ router.post("/submissions", async (req, res) => {
     `;
 
     console.log("Insert SQL:", insertQuery);
-    console.log("Values:", valuesToInsert);
 
     const submissionResult = await client.query(insertQuery, valuesToInsert);
     const submissionId = submissionResult.rows[0].id;
     const submittedAt = submissionResult.rows[0].submitted_at;
 
-    console.log("✅ Insert successful, ID:", submissionId);
-
-    // 8. AUTO-CREATE REPORT TABLE AND VIEW (only on first submission)
-    const reportTableName = `${submissionsTable}_report`;
-    const reportViewName = `${submissionsTable}_report_view`;
-
-    // Check if report table already exists
-    const tableExistsRes = await client.query(`
-      SELECT EXISTS (
-        SELECT FROM information_schema.tables 
-        WHERE table_name = '${reportTableName}'
-      )
-    `);
-
-    const reportTableExists = tableExistsRes.rows[0].exists;
-
-    if (!reportTableExists) {
-      console.log(
-        `First submission. Creating report table: ${reportTableName}`
-      );
-
-      // Create report table with all fields from this template (using lowercase column names)
-      const createReportTableSQL = `
-        CREATE TABLE "${reportTableName}" (
-          report_id SERIAL PRIMARY KEY,
-          submission_id INTEGER NOT NULL,
-          template_id INTEGER NOT NULL,
-          template_name VARCHAR(255) NOT NULL,
-          user_id INTEGER NOT NULL,
-          submitted_at TIMESTAMP NOT NULL,
-          report_created_at TIMESTAMP DEFAULT NOW(),
-          ${fieldsRes.rows
-            .map((field) => {
-              const columnName = (field.field_name || field.instance_id)
-                .toLowerCase()
-                .replace(/[^a-zA-Z0-9_]/g, "_")
-                .replace(/_{2,}/g, "_")
-                .replace(/^_+|_+$/g, "");
-
-              // Determine column type based on field type
-              let columnType = "TEXT";
-              if (field.field_type === "number") {
-                columnType = "DECIMAL(10,2)";
-              } else if (field.field_type === "date") {
-                columnType = "DATE";
-              } else if (field.field_type === "datetime") {
-                columnType = "TIMESTAMP";
-              } else if (field.field_type === "boolean") {
-                columnType = "BOOLEAN";
-              }
-
-              return `"${columnName}" ${columnType}`;
-            })
-            .join(",\n          ")}
-        )
-      `;
-
-      await client.query(createReportTableSQL);
-      console.log(`Created report table: ${reportTableName}`);
-
-      // CREATE VIEW ONLY ONCE (first submission)
-      const createViewSQL = `
-        CREATE VIEW "${reportViewName}" AS
-        SELECT 
-          r.report_id,
-          r.submission_id,
-          r.template_id,
-          r.template_name,
-          r.user_id,
-          r.submitted_at,
-          r.report_created_at,
-          ${fieldsRes.rows
-            .map((field) => {
-              const columnName = (field.field_name || field.instance_id)
-                .toLowerCase()
-                .replace(/[^a-zA-Z0-9_]/g, "_")
-                .replace(/_{2,}/g, "_")
-                .replace(/^_+|_+$/g, "");
-
-              return `r."${columnName}" AS "${field.label || columnName}"`;
-            })
-            .join(",\n          ")}
-        FROM "${reportTableName}" r
-        ORDER BY r.submitted_at DESC
-      `;
-
-      await client.query(createViewSQL);
-      console.log(`Created view: ${reportViewName}`);
-
-      // Create indexes for performance
-      await client.query(`
-        CREATE INDEX idx_${reportTableName.replace(
-          /[^a-zA-Z0-9_]/g,
-          "_"
-        )}_template_id 
-        ON "${reportTableName}" (template_id);
-        
-        CREATE INDEX idx_${reportTableName.replace(
-          /[^a-zA-Z0-9_]/g,
-          "_"
-        )}_submitted_at 
-        ON "${reportTableName}" (submitted_at DESC);
-      `);
-      console.log(`Created indexes for ${reportTableName}`);
-    }
-
-    // 9. Insert data into report table (if it exists)
-    if (reportTableExists) {
-      console.log(
-        `Report table exists, inserting data into: ${reportTableName}`
-      );
-
-      // Get columns from report table
-      const reportColumnsRes = await client.query(`
-        SELECT column_name 
-        FROM information_schema.columns 
-        WHERE table_name = '${reportTableName}'
-        AND column_name NOT IN (
-          'report_id', 'submission_id', 'template_id', 'template_name', 
-          'user_id', 'submitted_at', 'report_created_at'
-        )
-        ORDER BY ordinal_position
-      `);
-
-      const reportColumns = [
-        "submission_id",
-        "template_id",
-        "template_name",
-        "user_id",
-        "submitted_at",
-        ...reportColumnsRes.rows.map((row) => row.column_name),
-      ];
-
-      const reportPlaceholders = reportColumns
-        .map((_, i) => `$${i + 1}`)
-        .join(", ");
-
-      // Prepare values for report table
-      const reportValues = [
-        submissionId,
-        template_id,
-        template.name,
-        user_id,
-        submittedAt,
-      ];
-
-      // Map submitted data to report table columns
-      reportColumnsRes.rows.forEach((reportCol) => {
-        let foundValue = null;
-
-        // Try to find matching value from submitted data
-        for (const [submittedKey, submittedValue] of Object.entries(data)) {
-          const submittedLower = submittedKey.toLowerCase();
-          const reportColLower = reportCol.column_name.toLowerCase();
-
-          // Check if they match (case-insensitive)
-          if (
-            submittedLower === reportColLower ||
-            submittedLower.replace(/_/g, "") ===
-              reportColLower.replace(/_/g, "")
-          ) {
-            foundValue = submittedValue;
-            break;
-          }
-        }
-
-        reportValues.push(foundValue);
-      });
-
-      const safeReportCols = reportColumns.map((c) => `"${c}"`).join(", ");
-
-      // In your code where you insert into the report table, look for this section:
-
-      const insertReportQuery = `
-  INSERT INTO "${reportTableName}" (${safeReportCols})
-  VALUES (${reportPlaceholders})
-  RETURNING report_id
-`;
-
-      // Add date conversion BEFORE executing this query:
-      console.log("=== PROCESSING REPORT TABLE VALUES ===");
-
-      // Create a map of column names to field types using fieldsRes data
-      // Add date conversion BEFORE executing this query:
-      console.log("=== PROCESSING REPORT TABLE VALUES ===");
-
-      // Create a map of column names to field types using fieldsRes data
-      const fieldTypeMap = {};
-      fieldsRes.rows.forEach((field) => {
-        const columnName = (field.field_name || field.instance_id)
-          .toLowerCase()
-          .replace(/[^a-zA-Z0-9_]/g, "_")
-          .replace(/_{2,}/g, "_")
-          .replace(/^_+|_+$/g, "");
-        fieldTypeMap[columnName] = field.field_type;
-      });
-
-      console.log("Field type map for report table:", fieldTypeMap);
-
-      const processedReportValues = reportValues.map((value, index) => {
-        const columnName = reportColumns[index];
-
-        // Skip metadata columns
-        if (
-          [
-            "submission_id",
-            "template_id",
-            "template_name",
-            "user_id",
-            "submitted_at",
-            "report_created_at",
-          ].includes(columnName)
-        ) {
-          return value;
-        }
-
-        // Get the field type for this column
-        const fieldType = fieldTypeMap[columnName];
-
-        // Handle empty values based on field type
-        if (value === "" || value === undefined || value === null) {
-          // Convert empty strings to NULL for strict-type columns
-          if (
-            fieldType === "date" ||
-            fieldType === "time" ||
-            fieldType === "datetime" ||
-            fieldType === "number" ||
-            fieldType === "calculation"
-          ) {
-            console.log(
-              `[REPORT] Converting empty ${fieldType} value to NULL for column: ${columnName}`
-            );
-            return null;
-          }
-          // For text fields, empty string is OK
-          return value;
-        }
-
-        // For number fields, ensure they're valid numbers
-        if (
-          (fieldType === "number" || fieldType === "calculation") &&
-          value !== null
-        ) {
-          const numValue = parseFloat(value);
-          if (isNaN(numValue)) {
-            console.log(
-              `[REPORT] Invalid number "${value}" for column ${columnName}, converting to NULL`
-            );
-            return null;
-          }
-          return numValue; // Return as number, not string
-        }
-
-        return value;
-      });
-
-      console.log("Original report values:", reportValues);
-      console.log("Processed report values:", processedReportValues);
-
-      // Then use processedReportValues instead of reportValues
-      const reportResult = await client.query(
-        insertReportQuery,
-        processedReportValues
-      );
-
-      console.log("Original report values:", reportValues);
-      console.log("Processed report values:", processedReportValues);
-
-      const reportId = reportResult.rows[0].report_id;
-      console.log(`✅ Data inserted into report table, report ID: ${reportId}`);
-    }
+    console.log("✅ Insert successful, ID:", submissionId, "Version:", version);
 
     await client.query("COMMIT");
 
@@ -1243,21 +1247,18 @@ router.post("/submissions", async (req, res) => {
       submission_id: submissionId,
       submitted_at: submittedAt,
       template_name: template.name,
+      template_version: version,
       message: "Form submitted successfully",
-      report_created: !reportTableExists,
-      report_table: reportTableExists ? reportTableName : null,
-      report_view: reportTableExists ? reportViewName : null,
       debug: {
-        fields_mapped: columnsToInsert.length - 1, // minus user_id
+        fields_mapped: columnsToInsert.length - 2, // minus user_id and template_version
         total_fields: submittedKeys.length,
-        mappings: mappings,
+        version: version,
       },
     });
   } catch (err) {
     await client.query("ROLLBACK");
     console.error("Submission error:", err);
 
-    // Provide more detailed error information
     res.status(500).json({
       success: false,
       message: "Failed to save submission",
@@ -1280,9 +1281,9 @@ router.delete("/templates/:id", async (req, res) => {
   try {
     await client.query("BEGIN");
 
-    // 1. Get template info
+    // 1. Get template and all its versions
     const templateRes = await client.query(
-      "SELECT table_name FROM checksheet_templates WHERE id = $1",
+      "SELECT id, table_name, parent_template_id FROM checksheet_templates WHERE id = $1",
       [id]
     );
 
@@ -1294,35 +1295,65 @@ router.delete("/templates/:id", async (req, res) => {
       });
     }
 
-    const tableName = templateRes.rows[0].table_name;
+    const template = templateRes.rows[0];
 
-    // 2. Delete dynamic table if exists
-    if (tableName) {
-      try {
-        await client.query(`DROP TABLE IF EXISTS "${tableName}" CASCADE`);
-      } catch (dropError) {
-        console.warn(`Could not drop table ${tableName}:`, dropError.message);
+    // 2. Get all versions to delete
+    const versionsRes = await client.query(
+      `SELECT id, table_name FROM checksheet_templates 
+       WHERE id = $1 OR parent_template_id = $1`,
+      [id]
+    );
+
+    // 3. Delete dynamic tables for all versions
+    for (const version of versionsRes.rows) {
+      if (version.table_name) {
+        try {
+          await client.query(
+            `DROP TABLE IF EXISTS "${version.table_name}" CASCADE`
+          );
+          console.log(`Dropped table: ${version.table_name}`);
+        } catch (dropError) {
+          console.warn(
+            `Could not drop table ${version.table_name}:`,
+            dropError.message
+          );
+        }
       }
     }
 
-    // 3. Delete images
-    await client.query("DELETE FROM template_images WHERE template_id = $1", [
-      id,
-    ]);
+    // 4. Delete images for all versions
+    await client.query(
+      `DELETE FROM template_images 
+       WHERE template_id IN (
+         SELECT id FROM checksheet_templates 
+         WHERE id = $1 OR parent_template_id = $1
+       )`,
+      [id]
+    );
 
-    // 4. Delete field configurations
-    await client.query("DELETE FROM template_fields WHERE template_id = $1", [
-      id,
-    ]);
+    // 5. Delete field configurations for all versions
+    await client.query(
+      `DELETE FROM template_fields 
+       WHERE template_id IN (
+         SELECT id FROM checksheet_templates 
+         WHERE id = $1 OR parent_template_id = $1
+       )`,
+      [id]
+    );
 
-    // 5. Delete template
-    await client.query("DELETE FROM checksheet_templates WHERE id = $1", [id]);
+    // 6. Delete all versions of the template
+    await client.query(
+      `DELETE FROM checksheet_templates 
+       WHERE id = $1 OR parent_template_id = $1`,
+      [id]
+    );
 
     await client.query("COMMIT");
 
     res.json({
       success: true,
-      message: "Template deleted successfully with all associated images",
+      message: `Template and ${versionsRes.rows.length} version(s) deleted successfully`,
+      versions_deleted: versionsRes.rows.length,
     });
   } catch (err) {
     await client.query("ROLLBACK");
@@ -1803,6 +1834,9 @@ router.post("/templates/:id/access-control", async (req, res) => {
 });
 
 // Get form access control
+// In checksheet.js, update the GET /templates/:id/access-control endpoint:
+
+// Get form access control
 router.get("/templates/:id/access-control", async (req, res) => {
   const { id } = req.params;
 
@@ -1837,12 +1871,12 @@ router.get("/templates/:id/access-control", async (req, res) => {
       `SELECT fac.group_id, ug.group_name, ug.color,
               fac.can_view, fac.can_edit, fac.can_delete
        FROM form_access_control fac
-       JOIN user_groups ug ON fac.group_id = ug.group_id
+       LEFT JOIN user_groups ug ON fac.group_id = ug.group_id
        WHERE fac.form_id = $1`,
       [id]
     );
 
-    // Get field permissions
+    // Get field permissions - FIXED QUERY
     const fieldPermissionsRes = await pool.query(
       `SELECT field_instance_id, group_id, 
               can_view, can_edit, can_delete
@@ -1851,10 +1885,11 @@ router.get("/templates/:id/access-control", async (req, res) => {
       [id]
     );
 
-    // Convert field permissions to object format
+    // Convert field permissions to object format with ||| separator
     const fieldPermissions = {};
     fieldPermissionsRes.rows.forEach((row) => {
-      const key = `${row.field_instance_id}_${row.group_id}`;
+      // Use ||| separator to match how it's stored
+      const key = `${row.field_instance_id}|||${row.group_id}`;
       fieldPermissions[key] = {
         canView: row.can_view,
         canEdit: row.can_edit,
@@ -1862,13 +1897,26 @@ router.get("/templates/:id/access-control", async (req, res) => {
       };
     });
 
+    // Get group details even if not in form_access_control table
+    const allGroupsRes = await pool.query(
+      `SELECT group_id, group_name, color, description 
+       FROM user_groups 
+       ORDER BY group_name`
+    );
+
+    // Determine which groups are selected
+    const selectedGroupIds = groupPermissionsRes.rows.map((g) => g.group_id);
+
     res.json({
       success: true,
       access_control: {
         ...accessControl,
-        groups: groupPermissionsRes.rows.map((g) => g.group_id),
+        groups: selectedGroupIds, // Array of group IDs
         field_permissions: fieldPermissions,
-        group_details: groupPermissionsRes.rows,
+        group_details: allGroupsRes.rows.map((group) => ({
+          ...group,
+          selected: selectedGroupIds.includes(group.group_id),
+        })),
       },
     });
   } catch (err) {
@@ -1876,6 +1924,7 @@ router.get("/templates/:id/access-control", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to get access control settings",
+      details: err.message,
     });
   }
 });
@@ -1947,6 +1996,636 @@ router.get("/user-info", async (req, res) => {
       error: "Server error",
       details: err.message,
     });
+  }
+});
+
+// Add this to your backend (checksheet.js)
+router.get("/templates/:id/full", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Get template basic info including version
+    const templateRes = await pool.query(
+      `
+      SELECT 
+        id, name, html_content, field_configurations, 
+        field_positions, sheets, table_name, created_at,
+        css_content, original_html_content, access_control,
+        version, parent_template_id, is_active
+      FROM checksheet_templates 
+      WHERE id = $1
+      `,
+      [id]
+    );
+
+    if (templateRes.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Template not found",
+      });
+    }
+
+    // Get all field configurations
+    const fieldsRes = await pool.query(
+      `
+      SELECT 
+        field_name, field_type, label, decimal_places, options,
+        bg_color, text_color, exact_match_text, exact_match_bg_color,
+        min_length, min_length_mode, min_length_warning_bg,
+        max_length, max_length_mode, max_length_warning_bg,
+        multiline, auto_shrink_font,
+        min_value, max_value, bg_color_in_range, bg_color_below_min, 
+        bg_color_above_max, border_color_in_range, border_color_below_min, 
+        border_color_above_max, formula, position, instance_id, sheet_index,
+        date_format, show_time_select, DatetimeFormat, min_date, max_date,
+        allow_camera, allow_upload, max_file_size,
+        time_format, allow_seconds, min_time, max_time, 
+        required, disabled, mode, allow_text_input, allow_signature, 
+        allow_signature_over_text, text_font_size
+      FROM template_fields 
+      WHERE template_id = $1 
+      ORDER BY id
+      `,
+      [id]
+    );
+
+    // Get images for this template
+    const imagesRes = await pool.query(
+      `
+      SELECT id, filename, original_path, position_index, element_id
+      FROM template_images 
+      WHERE template_id = $1
+      ORDER BY position_index ASC NULLS LAST, filename
+      `,
+      [id]
+    );
+
+    // Parse JSON fields
+    const template = templateRes.rows[0];
+
+    // Parse JSON data if it exists
+    if (template.field_configurations) {
+      try {
+        template.field_configurations =
+          typeof template.field_configurations === "string"
+            ? JSON.parse(template.field_configurations)
+            : template.field_configurations;
+      } catch (e) {
+        template.field_configurations = {};
+      }
+    } else {
+      template.field_configurations = {};
+    }
+
+    if (template.field_positions) {
+      try {
+        template.field_positions =
+          typeof template.field_positions === "string"
+            ? JSON.parse(template.field_positions)
+            : template.field_positions;
+      } catch (e) {
+        template.field_positions = {};
+      }
+    } else {
+      template.field_positions = {};
+    }
+
+    if (template.sheets) {
+      try {
+        template.sheets =
+          typeof template.sheets === "string"
+            ? JSON.parse(template.sheets)
+            : template.sheets;
+      } catch (e) {
+        template.sheets = [];
+      }
+    } else {
+      template.sheets = [];
+    }
+
+    // Process field data
+    const fields = fieldsRes.rows.map((field) => {
+      const processedField = {
+        field_name: field.field_name,
+        type: field.field_type,
+        label: field.label,
+        decimal_places: field.decimal_places,
+        options: field.options
+          ? typeof field.options === "string"
+            ? JSON.parse(field.options)
+            : field.options
+          : null,
+        // All field settings
+        bgColor: field.bg_color,
+        textColor: field.text_color,
+        exactMatchText: field.exact_match_text,
+        exactMatchBgColor: field.exact_match_bg_color,
+        minLength: field.min_length,
+        minLengthMode: field.min_length_mode,
+        minLengthWarningBg: field.min_length_warning_bg,
+        maxLength: field.max_length,
+        maxLengthMode: field.max_length_mode,
+        maxLengthWarningBg: field.max_length_warning_bg,
+        multiline: field.multiline,
+        autoShrinkFont: field.auto_shrink_font,
+        min: field.min_value,
+        max: field.max_value,
+        bgColorInRange: field.bg_color_in_range,
+        bgColorBelowMin: field.bg_color_below_min,
+        bgColorAboveMax: field.bg_color_above_max,
+        borderColorInRange: field.border_color_in_range,
+        borderColorBelowMin: field.border_color_below_min,
+        borderColorAboveMax: field.border_color_above_max,
+        formula: field.formula,
+        position: field.position,
+        instanceId: field.instance_id,
+        sheetIndex: field.sheet_index,
+        dateFormat: field.date_format,
+        showTimeSelect: field.show_time_select,
+        DatetimeFormat: field.DatetimeFormat,
+        minDate: field.min_date,
+        maxDate: field.max_date,
+        allowCamera: field.allow_camera,
+        allowUpload: field.allow_upload,
+        maxFileSize: field.max_file_size,
+        timeFormat: field.time_format,
+        allowSeconds: field.allow_seconds,
+        minTime: field.min_time,
+        maxTime: field.max_time,
+        required: field.required,
+        disabled: field.disabled,
+        // SIGNATURE FIELD PROPERTIES
+        mode: field.mode || "signature_over_text",
+        allowTextInput: field.allow_text_input !== false,
+        allowSignature: field.allow_signature !== false,
+        allowSignatureOverText: field.allow_signature_over_text !== false,
+        textFontSize: field.text_font_size || 16,
+      };
+
+      return processedField;
+    });
+
+    // Convert fields array to object keyed by instanceId
+    const fieldConfigurations = {};
+    fields.forEach((field) => {
+      fieldConfigurations[field.instanceId] = field;
+    });
+
+    // Process images
+    const images = {};
+    imagesRes.rows.forEach((image) => {
+      images[image.filename] = {
+        id: image.id,
+        filename: image.filename,
+        original_path: image.original_path,
+        position_index: image.position_index,
+        element_id: image.element_id,
+      };
+    });
+
+    res.json({
+      success: true,
+      template: {
+        ...template,
+        field_configurations: fieldConfigurations,
+        images: images,
+        image_count: imagesRes.rows.length,
+      },
+    });
+  } catch (err) {
+    console.error("Get template error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      details: err.message,
+    });
+  }
+});
+
+// Add update endpoint to your backend
+router.put("/templates/:id", async (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    html_content,
+    original_html_content,
+    field_configurations,
+    field_positions,
+    sheets,
+    form_values,
+    css_content = "",
+    images = {},
+    access_control,
+    is_update = false,
+    original_template_id = null,
+  } = req.body;
+
+  if (!name) {
+    return res.status(400).json({
+      success: false,
+      message: "Form name is required",
+    });
+  }
+
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+
+    console.log("=== UPDATING FORM ===");
+    console.log("Form ID:", id);
+    console.log("Is update:", is_update);
+    console.log("Original template ID:", original_template_id);
+
+    // Check if template exists
+    const existingRes = await client.query(
+      "SELECT id, name, version, table_name FROM checksheet_templates WHERE id = $1",
+      [id]
+    );
+
+    if (existingRes.rows.length === 0) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({
+        success: false,
+        message: "Template not found",
+      });
+    }
+
+    const existingTemplate = existingRes.rows[0];
+    const currentVersion = existingTemplate.version || 1;
+
+    // Get current field configurations to detect changes
+    const currentFieldsRes = await client.query(
+      `SELECT field_name, field_type, instance_id 
+       FROM template_fields 
+       WHERE template_id = $1`,
+      [id]
+    );
+
+    // Detect schema changes
+    const changes = detectSchemaChanges(
+      currentFieldsRes.rows,
+      field_configurations || {}
+    );
+    const hasBreakingChanges = changes.some((c) => c.breakingChange);
+
+    console.log("Schema changes detected:", changes);
+    console.log("Has breaking changes:", hasBreakingChanges);
+
+    // If breaking changes, create new version
+    if (hasBreakingChanges) {
+      console.log("Creating new version due to breaking changes");
+
+      // Get parent template ID for versioning
+      const parentTemplateId = original_template_id || id;
+
+      // Get next version number
+      const versionRes = await client.query(
+        `SELECT COALESCE(MAX(version), 0) + 1 as new_version
+         FROM checksheet_templates 
+         WHERE parent_template_id = $1 OR id = $1`,
+        [parentTemplateId]
+      );
+
+      const newVersion = versionRes.rows[0].new_version;
+      const newTableName = `checksheet_${parentTemplateId}_${newVersion}`;
+
+      // Archive current template
+      await client.query(
+        `UPDATE checksheet_templates 
+         SET is_active = false,
+             archived_at = NOW(),
+             updated_at = NOW()
+         WHERE id = $1`,
+        [id]
+      );
+
+      // Create new template as version
+      const newTemplateRes = await client.query(
+        `INSERT INTO checksheet_templates 
+         (name, html_content, field_configurations, field_positions,
+          sheets, css_content, original_html_content, access_control,
+          table_name, version, parent_template_id, is_active)
+         SELECT 
+           $1,
+           $2, $3, $4,
+           $5, $6, $7, $8,
+           $9, $10, $11, true
+         FROM checksheet_templates 
+         WHERE id = $12
+         RETURNING id`,
+        [
+          name,
+          html_content || "",
+          field_configurations ? JSON.stringify(field_configurations) : null,
+          field_positions ? JSON.stringify(field_positions) : null,
+          sheets ? JSON.stringify(sheets) : null,
+          css_content || "",
+          original_html_content || "",
+          access_control ? JSON.stringify(access_control) : null,
+          newTableName,
+          newVersion,
+          parentTemplateId,
+          id,
+        ]
+      );
+
+      const newTemplateId = newTemplateRes.rows[0].id;
+
+      // Create optimized table for new version
+      if (field_configurations) {
+        await createOptimizedTable(client, newTableName, field_configurations);
+      }
+
+      // Migrate non-breaking data from old version
+      if (existingTemplate.table_name) {
+        const migratedCount = await migrateNonBreakingData(
+          client,
+          existingTemplate.table_name,
+          newTableName,
+          changes,
+          newVersion
+        );
+        console.log(`Migrated ${migratedCount} records to new version`);
+      }
+
+      // Copy images to new template
+      await client.query(
+        `INSERT INTO template_images 
+         (template_id, original_path, filename, mime_type, image_data, size, 
+          position_index, original_src, element_id)
+         SELECT $1, original_path, filename, mime_type, image_data, size, 
+                position_index, original_src, element_id
+         FROM template_images 
+         WHERE template_id = $2`,
+        [newTemplateId, id]
+      );
+
+      // Copy field configurations to new template
+      await client.query(
+        `INSERT INTO template_fields 
+         (template_id, field_name, field_type, label, decimal_places, options,
+          bg_color, text_color, exact_match_text, exact_match_bg_color,
+          min_length, min_length_mode, min_length_warning_bg,
+          max_length, max_length_mode, max_length_warning_bg,
+          multiline, auto_shrink_font,
+          min_value, max_value, bg_color_in_range, bg_color_below_min,
+          bg_color_above_max, border_color_in_range, border_color_below_min,
+          border_color_above_max, formula, position, instance_id, sheet_index,
+          date_format, show_time_select, DatetimeFormat, min_date, max_date,
+          allow_camera, allow_upload, max_file_size, time_format, allow_seconds, 
+          min_time, max_time, required, disabled, mode, allow_text_input, 
+          allow_signature, allow_signature_over_text, text_font_size)
+         SELECT $1, field_name, field_type, label, decimal_places, options,
+                bg_color, text_color, exact_match_text, exact_match_bg_color,
+                min_length, min_length_mode, min_length_warning_bg,
+                max_length, max_length_mode, max_length_warning_bg,
+                multiline, auto_shrink_font,
+                min_value, max_value, bg_color_in_range, bg_color_below_min,
+                bg_color_above_max, border_color_in_range, border_color_below_min,
+                border_color_above_max, formula, position, instance_id, sheet_index,
+                date_format, show_time_select, DatetimeFormat, min_date, max_date,
+                allow_camera, allow_upload, max_file_size, time_format, allow_seconds, 
+                min_time, max_time, required, disabled, mode, allow_text_input, 
+                allow_signature, allow_signature_over_text, text_font_size
+         FROM template_fields 
+         WHERE template_id = $2`,
+        [newTemplateId, id]
+      );
+
+      // Update new field configurations if provided
+      if (
+        field_configurations &&
+        Object.keys(field_configurations).length > 0
+      ) {
+        await client.query(
+          "DELETE FROM template_fields WHERE template_id = $1",
+          [newTemplateId]
+        );
+
+        for (const [fieldId, config] of Object.entries(field_configurations)) {
+          await client.query(
+            `
+            INSERT INTO template_fields
+            (template_id, field_name, field_type, label, decimal_places, options,
+             bg_color, text_color, exact_match_text, exact_match_bg_color,
+             min_length, min_length_mode, min_length_warning_bg,
+             max_length, max_length_mode, max_length_warning_bg,
+             multiline, auto_shrink_font,
+             min_value, max_value, bg_color_in_range, bg_color_below_min,
+             bg_color_above_max, border_color_in_range, border_color_below_min,
+             border_color_above_max, formula, position, instance_id, sheet_index,
+             date_format, show_time_select, DatetimeFormat, min_date, max_date,
+             allow_camera, allow_upload,
+             max_file_size, time_format, allow_seconds, min_time, max_time,
+             required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, 
+             text_font_size)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49)
+            `,
+            [
+              newTemplateId,
+              config.field_name || fieldId,
+              config.type || "text",
+              config.label || "",
+              config.decimal_places || null,
+              config.options ? JSON.stringify(config.options) : null,
+              config.bgColor || "#ffffff",
+              config.textColor || "#000000",
+              config.exactMatchText || "",
+              config.exactMatchBgColor || "#d4edda",
+              config.minLength || null,
+              config.minLengthMode || "warning",
+              config.minLengthWarningBg || "#ffebee",
+              config.maxLength || null,
+              config.maxLengthMode || "warning",
+              config.maxLengthWarningBg || "#fff3cd",
+              config.multiline || false,
+              config.autoShrinkFont !== false,
+              config.min || null,
+              config.max || null,
+              config.bgColorInRange || "#ffffff",
+              config.bgColorBelowMin || "#e3f2fd",
+              config.bgColorAboveMax || "#ffebee",
+              config.borderColorInRange || "#cccccc",
+              config.borderColorBelowMin || "#2196f3",
+              config.borderColorAboveMax || "#f44336",
+              config.formula || "",
+              config.position || "",
+              config.instanceId || fieldId,
+              config.sheetIndex || 0,
+              config.dateFormat || "yyyy-MMMM-dd",
+              config.showTimeSelect || false,
+              config.DatetimeFormat || "HH:mm",
+              config.minDate || null,
+              config.maxDate || null,
+              config.allowCamera || false,
+              config.allowUpload || false,
+              config.maxFileSize || null,
+              config.timeFormat || "HH:mm:ss",
+              config.allowSeconds || false,
+              config.minTime || null,
+              config.maxTime || null,
+              config.required || false,
+              config.disabled || false,
+              config.mode || "signature_over_text",
+              config.allowTextInput !== false,
+              config.allowSignature !== false,
+              config.allowSignatureOverText !== false,
+              config.textFontSize || 16,
+            ]
+          );
+        }
+      }
+
+      await client.query("COMMIT");
+
+      return res.json({
+        success: true,
+        template_id: newTemplateId,
+        parent_template_id: parentTemplateId,
+        version: newVersion,
+        table_name: newTableName,
+        message: "New version created due to breaking schema changes",
+        changes: changes,
+        is_new_version: true,
+      });
+    } else {
+      // No breaking changes, update in place
+      console.log("No breaking changes, updating in place");
+
+      // Update template
+      const updateRes = await client.query(
+        `
+        UPDATE checksheet_templates 
+        SET 
+          name = $1,
+          html_content = $2,
+          field_configurations = $3,
+          field_positions = $4,
+          sheets = $5,
+          css_content = $6,
+          original_html_content = $7,
+          access_control = $8,
+          updated_at = NOW()
+        WHERE id = $9
+        RETURNING id, name
+        `,
+        [
+          name,
+          html_content || "",
+          field_configurations ? JSON.stringify(field_configurations) : null,
+          field_positions ? JSON.stringify(field_positions) : null,
+          sheets ? JSON.stringify(sheets) : null,
+          css_content || "",
+          original_html_content || "",
+          access_control ? JSON.stringify(access_control) : null,
+          id,
+        ]
+      );
+
+      // Clear existing fields
+      await client.query("DELETE FROM template_fields WHERE template_id = $1", [
+        id,
+      ]);
+
+      // Save new field configurations
+      if (
+        field_configurations &&
+        Object.keys(field_configurations).length > 0
+      ) {
+        for (const [fieldId, config] of Object.entries(field_configurations)) {
+          await client.query(
+            `
+            INSERT INTO template_fields
+            (template_id, field_name, field_type, label, decimal_places, options,
+             bg_color, text_color, exact_match_text, exact_match_bg_color,
+             min_length, min_length_mode, min_length_warning_bg,
+             max_length, max_length_mode, max_length_warning_bg,
+             multiline, auto_shrink_font,
+             min_value, max_value, bg_color_in_range, bg_color_below_min,
+             bg_color_above_max, border_color_in_range, border_color_below_min,
+             border_color_above_max, formula, position, instance_id, sheet_index,
+             date_format, show_time_select, DatetimeFormat, min_date, max_date,
+             allow_camera, allow_upload,
+             max_file_size, time_format, allow_seconds, min_time, max_time,
+             required, disabled, mode, allow_text_input, allow_signature, allow_signature_over_text, 
+             text_font_size)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49)
+            `,
+            [
+              id,
+              config.field_name || fieldId,
+              config.type || "text",
+              config.label || "",
+              config.decimal_places || null,
+              config.options ? JSON.stringify(config.options) : null,
+              config.bgColor || "#ffffff",
+              config.textColor || "#000000",
+              config.exactMatchText || "",
+              config.exactMatchBgColor || "#d4edda",
+              config.minLength || null,
+              config.minLengthMode || "warning",
+              config.minLengthWarningBg || "#ffebee",
+              config.maxLength || null,
+              config.maxLengthMode || "warning",
+              config.maxLengthWarningBg || "#fff3cd",
+              config.multiline || false,
+              config.autoShrinkFont !== false,
+              config.min || null,
+              config.max || null,
+              config.bgColorInRange || "#ffffff",
+              config.bgColorBelowMin || "#e3f2fd",
+              config.bgColorAboveMax || "#ffebee",
+              config.borderColorInRange || "#cccccc",
+              config.borderColorBelowMin || "#2196f3",
+              config.borderColorAboveMax || "#f44336",
+              config.formula || "",
+              config.position || "",
+              config.instanceId || fieldId,
+              config.sheetIndex || 0,
+              config.dateFormat || "yyyy-MMMM-dd",
+              config.showTimeSelect || false,
+              config.DatetimeFormat || "HH:mm",
+              config.minDate || null,
+              config.maxDate || null,
+              config.allowCamera || false,
+              config.allowUpload || false,
+              config.maxFileSize || null,
+              config.timeFormat || "HH:mm:ss",
+              config.allowSeconds || false,
+              config.minTime || null,
+              config.maxTime || null,
+              config.required || false,
+              config.disabled || false,
+              config.mode || "signature_over_text",
+              config.allowTextInput !== false,
+              config.allowSignature !== false,
+              config.allowSignatureOverText !== false,
+              config.textFontSize || 16,
+            ]
+          );
+        }
+      }
+
+      await client.query("COMMIT");
+
+      return res.json({
+        success: true,
+        template_id: id,
+        message: "Form updated successfully",
+        is_version_update: false,
+        changes: changes,
+      });
+    }
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("Update form error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to update form",
+      details: err.message,
+    });
+  } finally {
+    client.release();
   }
 });
 

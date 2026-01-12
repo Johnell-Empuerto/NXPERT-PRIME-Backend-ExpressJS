@@ -679,3 +679,330 @@
 [2026-01-09 17:45:12.303] [INFO] [/user-permissions] Returned 11 default tabs for user: 5
 [2026-01-09 17:45:20.899] [INFO] [/user-permissions] Returned 11 default tabs for user: 5
 [2026-01-09 17:45:20.917] [INFO] [/user-permissions] Returned 11 default tabs for user: 5
+[2026-01-09 17:46:09.157] [WARN] [/auth/login] Password comparison failed for emp_id: ADMIN001
+[2026-01-09 17:46:15.147] [INFO] [/auth/login] Login successful for user: System Administrator (ID: 6)
+[2026-01-09 17:46:15.948] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:46:15.995] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:48:42.655] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:48:42.673] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:48:42.699] [INFO] [/users/get-all] Successfully served 4 users in 17ms
+[2026-01-09 17:48:42.735] [INFO] [/user-groups] Returned 2 groups
+[2026-01-09 17:48:42.753] [INFO] [/user-groups] Returned 2 groups
+[2026-01-09 17:48:42.810] [INFO] [/users/get-all] Successfully served 4 users in 82ms
+[2026-01-09 17:48:47.479] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-09 17:48:48.180] [INFO] [/user-groups] Returned 1 members for group 3
+[2026-01-09 17:48:48.952] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-09 17:48:52.690] [INFO] [/user-groups] Returned 1 members for group 3
+[2026-01-09 17:48:53.066] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-09 17:50:42.486] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:56:22.406] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:56:22.418] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:56:36.369] [INFO] [/user-groups] Returned 2 groups
+[2026-01-09 17:56:36.372] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:56:36.389] [INFO] [/user-groups] Returned 2 groups
+[2026-01-09 17:56:36.450] [INFO] [/users/get-all] Successfully served 4 users in 182ms
+[2026-01-09 17:56:36.463] [INFO] [/users/get-all] Successfully served 4 users in 5ms
+[2026-01-09 17:57:57.668] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:57:57.692] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:57:57.717] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:57:57.741] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-09 17:57:57.931] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-09 17:57:57.944] [INFO] [/user-groups] Returned 2 groups
+[2026-01-09 17:57:57.961] [INFO] [/user-groups] Returned 2 groups
+[2026-01-09 17:57:58.007] [INFO] [/users/get-all] Successfully served 4 users in 66ms
+[2026-01-09 17:58:11.128] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-09 17:58:15.931] [INFO] [/user-groups] Returned 1 members for group 3
+[2026-01-09 17:58:21.152] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-09 17:58:21.711] [INFO] [/user-groups] Returned 1 members for group 3
+[2026-01-09 17:58:26.096] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-09 17:58:26.652] [INFO] [/user-groups] Returned 1 members for group 3
+[2026-01-09 17:58:32.212] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-09 17:58:42.672] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-09 17:58:43.417] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-09 17:58:43.437] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-09 17:58:45.740] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-09 17:58:45.758] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-09 17:58:49.673] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-09 17:58:49.690] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:23:33.066] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 08:23:34.533] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:23:34.570] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:23:53.492] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:23:53.526] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:24:29.143] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:24:29.168] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:24:32.988] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:24:33.011] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:24:44.177] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:24:44.188] [INFO] [/users/get-all] Successfully served 4 users in 166ms
+[2026-01-12 08:24:44.207] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-12 08:24:44.223] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 08:24:44.237] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 08:26:07.159] [INFO] [/users/get-all] Successfully served 4 users in 67ms
+[2026-01-12 08:26:07.174] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-12 08:26:07.186] [INFO] [/production/plans] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 08:26:07.201] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:26:07.204] [INFO] [/production/plans] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 08:27:12.258] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:27:12.282] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:27:12.306] [INFO] [/users/get-all] Successfully served 4 users in 16ms
+[2026-01-12 08:27:12.323] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-12 08:27:12.418] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 08:27:12.431] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 08:31:49.664] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:31:49.682] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:31:49.701] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:31:49.730] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 08:31:49.865] [INFO] [/users/get-all] Successfully served 4 users in 8ms
+[2026-01-12 08:31:49.891] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 08:31:49.905] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 08:31:49.958] [INFO] [/users/get-all] Successfully served 4 users in 72ms
+[2026-01-12 08:35:20.081] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-12 08:35:26.570] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-12 08:36:06.633] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-12 08:53:51.559] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-12 08:53:55.273] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-12 08:54:09.359] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-12 09:05:55.946] [ERROR] [/users/manage] Error Response: GET /Backend/api/editusermaster/1
+[2026-01-12 09:05:55.949] [ERROR] [/users/manage] Error Response: GET /Backend/api/editusermaster/1
+[2026-01-12 09:06:00.494] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-12 09:06:06.300] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-12 09:07:56.000] [INFO] [/user-groups] Returned 1 members for group 4
+[2026-01-12 09:10:28.275] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-12 09:11:39.704] [ERROR] [/users/manage] Error Response: DELETE /Backend/api/editusermaster/1
+[2026-01-12 09:11:39.705] [ERROR] [/users/manage] Error Response: DELETE /Backend/api/editusermaster/1
+[2026-01-12 09:11:41.790] [ERROR] [/users/manage] Error Response: GET /Backend/api/editusermaster/1
+[2026-01-12 09:11:41.791] [ERROR] [/users/manage] Error Response: GET /Backend/api/editusermaster/1
+[2026-01-12 09:12:25.624] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:12:25.630] [INFO] [/production/plans] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:25.649] [INFO] [/production/plans] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:25.658] [INFO] [/users/get-all] Successfully served 4 users in 171ms
+[2026-01-12 09:12:25.668] [INFO] [/users/get-all] Successfully served 4 users in 4ms
+[2026-01-12 09:12:42.065] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:12:42.083] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:12:42.166] [INFO] [/users/get-all] Successfully served 4 users in 22ms
+[2026-01-12 09:12:42.206] [INFO] [/users/get-all] Successfully served 4 users in 16ms
+[2026-01-12 09:12:42.249] [INFO] [/production/plans] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:42.262] [INFO] [/production/plans] Returned 3 production plans to user: Johnell Empuerto
+[2026-01-12 09:12:51.907] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:12:51.924] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:12:55.536] [INFO] [/users/get-all] Successfully served 4 users in 14ms
+[2026-01-12 09:12:55.581] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:12:55.655] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 09:12:55.667] [INFO] [/users/get-all] Successfully served 4 users in 96ms
+[2026-01-12 09:12:55.684] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 09:14:15.696] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 09:14:15.710] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:14:15.730] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 09:42:13.171] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:42:24.311] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:42:24.334] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:42:32.334] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:42:32.354] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:43:17.865] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:43:17.884] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:59:39.525] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:59:39.540] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:59:39.559] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 09:59:39.580] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:26:13.514] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 10:26:14.391] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:26:14.418] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:26:44.850] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:26:44.972] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:26:46.422] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:26:46.432] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:26:59.975] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:26:59.999] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:27:02.755] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:27:02.766] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:29:13.871] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:29:13.885] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:29:13.902] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:29:13.919] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:29:21.671] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:29:21.704] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:29:21.755] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:29:21.774] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:33:22.614] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:33:50.927] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:33:50.944] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:33:50.950] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:33:50.967] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:34:10.458] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:34:10.472] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 10:34:12.140] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 10:34:12.151] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:11:50.906] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:11:50.930] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:11:52.818] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:11:52.829] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:12:04.270] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:12:04.289] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:12:12.745] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:12:12.760] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:26:35.665] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:26:35.682] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:26:37.705] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:26:37.718] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:28:07.624] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:28:07.641] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:28:08.806] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:28:08.820] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:28:08.840] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:28:08.856] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:28:11.066] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:28:11.078] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:31:06.776] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:06.789] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:29.559] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:29.576] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:40.628] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 11:31:41.349] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:41.368] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:43.252] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:31:43.268] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:34:08.581] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:34:08.594] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:34:42.822] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:34:42.837] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:34:46.082] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:34:46.097] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:35:08.714] [INFO] [/users/get-all] Successfully served 4 users in 84ms
+[2026-01-12 11:35:08.728] [INFO] [/users/get-all] Successfully served 4 users in 5ms
+[2026-01-12 11:35:08.747] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:35:08.751] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:35:08.773] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:35:11.239] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-12 11:35:15.107] [ERROR] [/user-groups] Error Response: POST /Backend/api/usergroups/3/users/1
+[2026-01-12 11:35:15.108] [ERROR] [/user-groups] Error Response: POST /Backend/api/usergroups/3/users/1
+[2026-01-12 11:35:17.915] [ERROR] [/user-groups] Error Response: POST /Backend/api/usergroups/3/users/1
+[2026-01-12 11:35:17.916] [ERROR] [/user-groups] Error Response: POST /Backend/api/usergroups/3/users/1
+[2026-01-12 11:35:33.528] [INFO] [/auth/login] Login successful for user: System Administrator (ID: 6)
+[2026-01-12 11:35:34.273] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-12 11:35:34.292] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-12 11:35:39.500] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-12 11:35:39.529] [INFO] [/user-permissions] Returned 11 default tabs for user: 6
+[2026-01-12 11:35:39.543] [INFO] [/users/get-all] Successfully served 4 users in 9ms
+[2026-01-12 11:35:39.565] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:35:39.584] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:35:39.640] [INFO] [/users/get-all] Successfully served 4 users in 81ms
+[2026-01-12 11:35:42.352] [INFO] [/user-groups] Returned 0 members for group 3
+[2026-01-12 11:35:44.505] [INFO] [/user-groups] Returned 1 members for group 3
+[2026-01-12 11:35:54.942] [INFO] [/auth/login] Login successful for user: Johnell Empuerto (ID: 1)
+[2026-01-12 11:35:55.653] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:35:55.683] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:35:57.587] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:35:57.603] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:37:45.174] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:37:45.200] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:39:18.293] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:39:18.305] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:48:58.104] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:48:58.123] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:51:57.327] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:51:57.341] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:51:58.768] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:51:58.779] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:52:17.605] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:52:17.625] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:52:19.434] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:52:19.454] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:52:53.308] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:52:53.323] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:53:02.664] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:53:02.677] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 11:53:27.173] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 11:53:27.189] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:14:44.221] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:14:44.237] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:14:52.451] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:14:52.469] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:01.489] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:01.503] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:05.368] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:05.383] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:09.609] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:09.623] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:13.305] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:13.322] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:16.603] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:16.624] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:22.188] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:22.206] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:28.242] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:15:28.254] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:15:34.835] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:34.853] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:36.249] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:15:36.258] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:15:57.864] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:15:57.880] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:24:50.040] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:24:50.057] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:31:35.635] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:31:35.650] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:34:35.212] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:34:35.239] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:34:36.872] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:34:36.886] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:35:35.683] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:35:35.701] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:35:47.091] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:35:47.106] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 12:40:03.436] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 12:40:03.457] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:06:38.145] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:06:38.161] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:12:01.446] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:12:01.461] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:17:20.290] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:17:20.303] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:17:20.309] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:17:20.326] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:27:43.173] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:27:43.189] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:28:32.340] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:28:32.355] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:28:38.150] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:28:38.235] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:28:38.253] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:28:55.621] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:28:59.799] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:28:59.823] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:29:01.058] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:29:01.071] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:29:14.898] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:29:14.916] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:43:27.642] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:43:27.660] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:43:33.086] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:43:33.100] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:43:42.300] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:43:42.323] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:45:54.186] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:45:54.220] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:45:59.231] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:45:59.248] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:46:07.722] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:46:07.740] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:46:56.855] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:46:56.881] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:47:05.522] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:47:05.534] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:47:38.130] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:47:38.150] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:47:55.646] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:47:55.668] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:48:07.949] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:48:07.965] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:48:18.837] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:48:18.852] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:48:33.940] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:48:33.965] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:48:44.751] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:48:44.768] [INFO] [/user-groups] Returned 2 groups
+[2026-01-12 13:49:03.822] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:49:03.839] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:49:34.311] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
+[2026-01-12 13:49:34.331] [INFO] [/user-permissions] Returned 11 custom tabs for user: 1
