@@ -168,3 +168,11 @@
   "route": "/users/manage",
   "statusCode": 403
 }
+[2026-01-12 17:44:36.094] [DEBUG] Fetching user details for user_id: 1
+[2026-01-12 17:44:36.096] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-12 17:47:16.548] [DEBUG] Fetching user details for user_id: 1
+[2026-01-12 17:47:16.550] [DEBUG] User found: Johnell Empuerto (EMP001)
+[2026-01-12 17:47:29.993] [DEBUG] Fetching user details for user_id: 4
+[2026-01-12 17:47:30.041] [DEBUG] User found: Ken Angelo Ardiente (EMP002)
+[2026-01-13 07:50:06.447] [DEBUG] Fetching user details for user_id: 1
+[2026-01-13 07:50:06.451] [DEBUG] User found: Johnell Empuerto (EMP001)

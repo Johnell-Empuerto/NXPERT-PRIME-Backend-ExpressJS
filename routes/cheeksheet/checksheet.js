@@ -63,6 +63,10 @@ const createOptimizedTable = async (client, tableName, fieldConfigs) => {
   columns.push("template_version INTEGER DEFAULT 1");
   columns.push("original_submission_id INTEGER");
 
+  // === NEW: ADD STATUS COLUMNS ===
+  columns.push("\"status\" VARCHAR(20) DEFAULT 'draft'");
+  columns.push('"updated_at" TIMESTAMP DEFAULT NOW()');
+
   // Add columns based on field types
   Object.values(fieldConfigs).forEach((config) => {
     const safeName = (config.field_name || config.instanceId)
@@ -101,19 +105,29 @@ const createOptimizedTable = async (client, tableName, fieldConfigs) => {
   await client.query(createSQL);
 
   // Create indexes
+  // Create indexes
   await client.query(`
-    CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_user 
-    ON "${tableName}" (user_id);
-    
-    CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_date 
-    ON "${tableName}" (submitted_at DESC);
-    
-    CREATE INDEX IF NOT EXISTS idx_${tableName.replace(
-      /[^a-z0-9]/g,
-      "_"
-    )}_version 
-    ON "${tableName}" (template_version);
-  `);
+  CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_user 
+  ON "${tableName}" (user_id);
+  
+  CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_date 
+  ON "${tableName}" (submitted_at DESC);
+  
+  CREATE INDEX IF NOT EXISTS idx_${tableName.replace(
+    /[^a-z0-9]/g,
+    "_"
+  )}_version 
+  ON "${tableName}" (template_version);
+  
+  CREATE INDEX IF NOT EXISTS idx_${tableName.replace(/[^a-z0-9]/g, "_")}_status 
+  ON "${tableName}" (status);
+  
+  CREATE INDEX IF NOT EXISTS idx_${tableName.replace(
+    /[^a-z0-9]/g,
+    "_"
+  )}_updated 
+  ON "${tableName}" (updated_at DESC);
+`);
 };
 
 // Helper function: Migrate non-breaking data
@@ -2640,6 +2654,487 @@ router.put("/templates/:id", async (req, res) => {
     });
   } finally {
     client.release();
+  }
+});
+
+// Add this to your checksheet.js file
+router.post("/migrate/status-columns", async (req, res) => {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+
+    // Get all template tables
+    const templatesRes = await client.query(
+      `SELECT id, table_name FROM checksheet_templates WHERE table_name IS NOT NULL`
+    );
+
+    const results = [];
+    for (const template of templatesRes.rows) {
+      try {
+        await client.query(`
+          ALTER TABLE "${template.table_name}" 
+          ADD COLUMN IF NOT EXISTS "status" VARCHAR(20) DEFAULT 'completed',
+          ADD COLUMN IF NOT EXISTS "updated_at" TIMESTAMP DEFAULT NOW()
+        `);
+
+        // Update existing rows to set updated_at = submitted_at
+        await client.query(`
+          UPDATE "${template.table_name}" 
+          SET updated_at = submitted_at 
+          WHERE updated_at IS NULL
+        `);
+
+        results.push({ table: template.table_name, success: true });
+      } catch (err) {
+        results.push({
+          table: template.table_name,
+          success: false,
+          error: err.message,
+        });
+      }
+    }
+
+    await client.query("COMMIT");
+    res.json({ success: true, results });
+  } catch (err) {
+    await client.query("ROLLBACK");
+    res.status(500).json({ success: false, error: err.message });
+  } finally {
+    client.release();
+  }
+});
+
+router.post("/transactions", async (req, res) => {
+  const {
+    template_id,
+    user_id,
+    data,
+    status = "draft",
+    transaction_id = null,
+  } = req.body;
+
+  console.log("=== SAVE TRANSACTION ===");
+  console.log("Template ID:", template_id);
+  console.log("User ID:", user_id);
+  console.log("Status:", status);
+  console.log("Transaction ID:", transaction_id);
+
+  if (!template_id || !user_id || !data || typeof data !== "object") {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid transaction data",
+    });
+  }
+
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+
+    // 1. Get template info
+    const templateRes = await client.query(
+      `SELECT id, name, table_name, version FROM checksheet_templates WHERE id = $1 AND is_active = true`,
+      [template_id]
+    );
+
+    if (templateRes.rows.length === 0) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({
+        success: false,
+        message: "Template not found or not active",
+      });
+    }
+
+    const template = templateRes.rows[0];
+    const submissionsTable = template.table_name;
+    const version = template.version || 1;
+
+    // 2. Check if we're updating an existing transaction
+    if (transaction_id) {
+      const existingRes = await client.query(
+        `SELECT id, status FROM "${submissionsTable}" WHERE id = $1 AND user_id = $2`,
+        [transaction_id, user_id]
+      );
+
+      if (existingRes.rows.length === 0) {
+        await client.query("ROLLBACK");
+        return res.status(404).json({
+          success: false,
+          message: "Transaction not found",
+        });
+      }
+
+      const existingTransaction = existingRes.rows[0];
+
+      // If transaction is already "completed", don't allow editing
+      if (existingTransaction.status === "completed" && status === "draft") {
+        await client.query("ROLLBACK");
+        return res.status(400).json({
+          success: false,
+          message: "Cannot edit completed transaction",
+        });
+      }
+
+      // 3. Get field definitions for this template
+      const fieldsRes = await client.query(
+        `SELECT field_name, instance_id, field_type 
+         FROM template_fields 
+         WHERE template_id = $1`,
+        [template_id]
+      );
+
+      // 4. Get existing columns
+      const tableColumnsRes = await client.query(`
+        SELECT column_name 
+        FROM information_schema.columns 
+        WHERE table_name = '${submissionsTable}'
+        ORDER BY ordinal_position
+      `);
+
+      const existingColumns = tableColumnsRes.rows.map(
+        (row) => row.column_name
+      );
+      const existingColumnsLower = existingColumns.map((col) =>
+        col.toLowerCase()
+      );
+      const columnMap = {};
+      existingColumns.forEach((col) => {
+        columnMap[col.toLowerCase()] = col;
+      });
+
+      // 5. Build update query
+      const updateFields = [];
+      const updateValues = [];
+      let paramCounter = 1;
+
+      // Add status to update
+      updateFields.push(`"status" = $${paramCounter}`);
+      updateValues.push(status);
+      paramCounter++;
+
+      // Add updated_at timestamp
+      updateFields.push(`"updated_at" = NOW()`);
+
+      // Process each field
+      const submittedKeys = Object.keys(data);
+      for (const submittedKey of submittedKeys) {
+        let matchedColumn = null;
+        const submittedLower = submittedKey.toLowerCase();
+
+        if (columnMap[submittedLower]) {
+          matchedColumn = columnMap[submittedLower];
+        } else {
+          // Try to find via field mapping
+          const fieldInfo = fieldsRes.rows.find(
+            (f) =>
+              f.field_name.toLowerCase() === submittedLower ||
+              f.instance_id.toLowerCase() === submittedLower
+          );
+          if (fieldInfo) {
+            const fieldName = fieldInfo.field_name;
+            const lowerFieldName = fieldName.toLowerCase();
+            if (columnMap[lowerFieldName]) {
+              matchedColumn = columnMap[lowerFieldName];
+            }
+          }
+        }
+
+        if (matchedColumn) {
+          let value = data[submittedKey];
+
+          // Convert value based on field type
+          const fieldType = fieldsRes.rows.find(
+            (f) =>
+              f.field_name.toLowerCase() === submittedLower ||
+              f.instance_id.toLowerCase() === submittedLower
+          )?.field_type;
+
+          if (fieldType === "number" || fieldType === "calculation") {
+            if (value == null || value === "" || value === "NaN") {
+              value = null;
+            } else {
+              const num = parseFloat(value);
+              value = Number.isNaN(num) ? null : num;
+            }
+          } else if (["date", "datetime", "time"].includes(fieldType)) {
+            value = (value || "").trim() === "" ? null : value;
+          }
+
+          updateFields.push(`"${matchedColumn}" = $${paramCounter}`);
+          updateValues.push(value);
+          paramCounter++;
+        }
+      }
+
+      // Add transaction_id as last parameter
+      updateValues.push(transaction_id);
+      updateValues.push(user_id); // Add user_id for security
+
+      // Execute update
+      const updateQuery = `
+        UPDATE "${submissionsTable}" 
+        SET ${updateFields.join(", ")}
+        WHERE id = $${paramCounter} AND user_id = $${paramCounter + 1}
+        RETURNING id, submitted_at, updated_at, status
+      `;
+
+      const updateResult = await client.query(updateQuery, updateValues);
+      const updatedTransaction = updateResult.rows[0];
+
+      await client.query("COMMIT");
+
+      return res.json({
+        success: true,
+        transaction_id: updatedTransaction.id,
+        status: updatedTransaction.status,
+        updated_at: updatedTransaction.updated_at,
+        message:
+          status === "completed"
+            ? "Transaction completed successfully"
+            : "Transaction saved as draft",
+        is_update: true,
+      });
+    } else {
+      // 6. CREATE NEW TRANSACTION
+      // Get field definitions
+      const fieldsRes = await client.query(
+        `SELECT field_name, instance_id, field_type 
+         FROM template_fields 
+         WHERE template_id = $1`,
+        [template_id]
+      );
+
+      // Get existing columns
+      const tableColumnsRes = await client.query(`
+        SELECT column_name 
+        FROM information_schema.columns 
+        WHERE table_name = '${submissionsTable}'
+        ORDER BY ordinal_position
+      `);
+
+      const existingColumns = tableColumnsRes.rows.map(
+        (row) => row.column_name
+      );
+      const existingColumnsLower = existingColumns.map((col) =>
+        col.toLowerCase()
+      );
+      const columnMap = {};
+      existingColumns.forEach((col) => {
+        columnMap[col.toLowerCase()] = col;
+      });
+
+      // 7. Prepare columns and values for insertion
+      const columnsToInsert = ["user_id", "template_version", "status"];
+      let valuesToInsert = [user_id, version, status];
+
+      // Process each field
+      const submittedKeys = Object.keys(data);
+      for (const submittedKey of submittedKeys) {
+        let matchedColumn = null;
+        const submittedLower = submittedKey.toLowerCase();
+
+        if (columnMap[submittedLower]) {
+          matchedColumn = columnMap[submittedLower];
+        } else {
+          // Try to find via field mapping
+          const fieldInfo = fieldsRes.rows.find(
+            (f) =>
+              f.field_name.toLowerCase() === submittedLower ||
+              f.instance_id.toLowerCase() === submittedLower
+          );
+          if (fieldInfo) {
+            const fieldName = fieldInfo.field_name;
+            const lowerFieldName = fieldName.toLowerCase();
+            if (columnMap[lowerFieldName]) {
+              matchedColumn = columnMap[lowerFieldName];
+            }
+          }
+        }
+
+        if (matchedColumn) {
+          columnsToInsert.push(matchedColumn);
+
+          let value = data[submittedKey];
+          const fieldType = fieldsRes.rows.find(
+            (f) =>
+              f.field_name.toLowerCase() === submittedLower ||
+              f.instance_id.toLowerCase() === submittedLower
+          )?.field_type;
+
+          if (fieldType === "number" || fieldType === "calculation") {
+            if (value == null || value === "" || value === "NaN") {
+              value = null;
+            } else {
+              const num = parseFloat(value);
+              value = Number.isNaN(num) ? null : num;
+            }
+          } else if (["date", "datetime", "time"].includes(fieldType)) {
+            value = (value || "").trim() === "" ? null : value;
+          }
+
+          valuesToInsert.push(value);
+        }
+      }
+
+      // 8. Build and execute insert query
+      const placeholders = columnsToInsert
+        .map((_, i) => `$${i + 1}`)
+        .join(", ");
+      const safeCols = columnsToInsert
+        .map((c) => `"${c.replace(/"/g, '""')}"`)
+        .join(", ");
+
+      const insertQuery = `
+        INSERT INTO "${submissionsTable}" (${safeCols})
+        VALUES (${placeholders})
+        RETURNING id, submitted_at, status, updated_at
+      `;
+
+      const insertResult = await client.query(insertQuery, valuesToInsert);
+      const newTransaction = insertResult.rows[0];
+
+      await client.query("COMMIT");
+
+      return res.json({
+        success: true,
+        transaction_id: newTransaction.id,
+        status: newTransaction.status,
+        submitted_at: newTransaction.submitted_at,
+        updated_at: newTransaction.updated_at,
+        message:
+          status === "completed"
+            ? "Transaction completed successfully"
+            : "Transaction saved as draft",
+        is_update: false,
+      });
+    }
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("Save transaction error:", err);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to save transaction",
+      details: err.message,
+      error_code: err.code,
+    });
+  } finally {
+    client.release();
+  }
+});
+
+router.get("/templates/:id/transactions", async (req, res) => {
+  const { id } = req.params;
+  const { user_id, status } = req.query;
+
+  if (!user_id) {
+    return res.status(400).json({
+      success: false,
+      message: "User ID is required",
+    });
+  }
+
+  try {
+    // Get template info
+    const templateRes = await pool.query(
+      `SELECT id, table_name FROM checksheet_templates WHERE id = $1`,
+      [id]
+    );
+
+    if (templateRes.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Template not found",
+      });
+    }
+
+    const template = templateRes.rows[0];
+    const tableName = template.table_name;
+
+    // Build query
+    let query = `SELECT id, user_id, submitted_at, updated_at, status, template_version FROM "${tableName}" WHERE user_id = $1`;
+    const queryParams = [user_id];
+    let paramCounter = 2;
+
+    if (status) {
+      query += ` AND status = $${paramCounter}`;
+      queryParams.push(status);
+      paramCounter++;
+    }
+
+    query += ` ORDER BY updated_at DESC`;
+
+    const transactionsRes = await pool.query(query, queryParams);
+
+    res.json({
+      success: true,
+      transactions: transactionsRes.rows,
+      count: transactionsRes.rows.length,
+    });
+  } catch (err) {
+    console.error("Get transactions error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to get transactions",
+      details: err.message,
+    });
+  }
+});
+
+// ==============================
+// GET SINGLE TRANSACTION
+// ==============================
+router.get("/transactions/:transaction_id", async (req, res) => {
+  const { transaction_id } = req.params;
+  const { template_id, user_id } = req.query;
+
+  if (!template_id || !user_id) {
+    return res.status(400).json({
+      success: false,
+      message: "Template ID and User ID are required",
+    });
+  }
+
+  try {
+    // Get template info
+    const templateRes = await pool.query(
+      `SELECT id, table_name FROM checksheet_templates WHERE id = $1`,
+      [template_id]
+    );
+
+    if (templateRes.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Template not found",
+      });
+    }
+
+    const template = templateRes.rows[0];
+    const tableName = template.table_name;
+
+    // Get the transaction
+    const transactionRes = await pool.query(
+      `SELECT * FROM "${tableName}" WHERE id = $1 AND user_id = $2`,
+      [transaction_id, user_id]
+    );
+
+    if (transactionRes.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Transaction not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      transaction: transactionRes.rows[0],
+    });
+  } catch (err) {
+    console.error("Get transaction error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to get transaction",
+      details: err.message,
+    });
   }
 });
 

@@ -3298,3 +3298,253 @@
   "route": "/users/get-all"
 }
 [2026-01-12 11:35:39.640] [INFO] Successfully served 4 users in 81ms
+[2026-01-12 17:44:34.237] [DEBUG] Request details: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "ip": "::ffff:192.168.0.109",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+  "queryParams": {}
+}
+[2026-01-12 17:44:34.239] [DEBUG] Executing database query for non-admin users
+[2026-01-12 17:44:34.248] [DEBUG] Database query completed in 11ms | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "rows_returned": 4,
+  "query_time_ms": 11
+}
+[2026-01-12 17:44:34.251] [DEBUG] User statistics: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "total_users": 4,
+  "active_users": 4,
+  "inactive_users": 0
+}
+[2026-01-12 17:44:34.255] [DEBUG] All users: | {
+  "0": {
+    "id": 1,
+    "name": "Johnell Empuerto",
+    "emp_id": "EMP001",
+    "role": "Operator"
+  },
+  "1": {
+    "id": 4,
+    "name": "Ken Angelo Ardiente",
+    "emp_id": "EMP002",
+    "role": "Operator"
+  },
+  "2": {
+    "id": 7,
+    "name": "Nielbert Pusayan",
+    "emp_id": "EMP004",
+    "role": "Operator"
+  },
+  "3": {
+    "id": 5,
+    "name": "Romnick Muana",
+    "emp_id": "EMP003",
+    "role": "Supervisor"
+  },
+  "service": "express-app",
+  "route": "/users/get-all"
+}
+[2026-01-12 17:44:34.256] [INFO] Successfully served 4 users in 19ms
+[2026-01-12 17:44:34.273] [DEBUG] Request details: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "ip": "::ffff:192.168.0.109",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+  "queryParams": {}
+}
+[2026-01-12 17:44:34.274] [DEBUG] Executing database query for non-admin users
+[2026-01-12 17:44:34.355] [DEBUG] Database query completed in 82ms | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "rows_returned": 4,
+  "query_time_ms": 82
+}
+[2026-01-12 17:44:34.355] [DEBUG] User statistics: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "total_users": 4,
+  "active_users": 4,
+  "inactive_users": 0
+}
+[2026-01-12 17:44:34.356] [DEBUG] All users: | {
+  "0": {
+    "id": 1,
+    "name": "Johnell Empuerto",
+    "emp_id": "EMP001",
+    "role": "Operator"
+  },
+  "1": {
+    "id": 4,
+    "name": "Ken Angelo Ardiente",
+    "emp_id": "EMP002",
+    "role": "Operator"
+  },
+  "2": {
+    "id": 7,
+    "name": "Nielbert Pusayan",
+    "emp_id": "EMP004",
+    "role": "Operator"
+  },
+  "3": {
+    "id": 5,
+    "name": "Romnick Muana",
+    "emp_id": "EMP003",
+    "role": "Supervisor"
+  },
+  "service": "express-app",
+  "route": "/users/get-all"
+}
+[2026-01-12 17:44:34.356] [INFO] Successfully served 4 users in 83ms
+[2026-01-12 17:47:14.658] [DEBUG] Request details: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "ip": "::ffff:192.168.0.109",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+  "queryParams": {}
+}
+[2026-01-12 17:47:14.658] [DEBUG] Executing database query for non-admin users
+[2026-01-12 17:47:14.716] [DEBUG] Database query completed in 58ms | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "rows_returned": 4,
+  "query_time_ms": 58
+}
+[2026-01-12 17:47:14.717] [DEBUG] User statistics: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "total_users": 4,
+  "active_users": 4,
+  "inactive_users": 0
+}
+[2026-01-12 17:47:14.717] [DEBUG] All users: | {
+  "0": {
+    "id": 1,
+    "name": "Johnell Empuerto",
+    "emp_id": "EMP001",
+    "role": "Operator"
+  },
+  "1": {
+    "id": 4,
+    "name": "Ken Angelo Ardiente",
+    "emp_id": "EMP002",
+    "role": "Operator"
+  },
+  "2": {
+    "id": 7,
+    "name": "Nielbert Pusayan",
+    "emp_id": "EMP004",
+    "role": "Operator"
+  },
+  "3": {
+    "id": 5,
+    "name": "Romnick Muana",
+    "emp_id": "EMP003",
+    "role": "Supervisor"
+  },
+  "service": "express-app",
+  "route": "/users/get-all"
+}
+[2026-01-12 17:47:14.718] [INFO] Successfully served 4 users in 60ms
+[2026-01-13 07:50:03.716] [DEBUG] Request details: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "ip": "::ffff:192.168.0.109",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+  "queryParams": {}
+}
+[2026-01-13 07:50:03.717] [DEBUG] Executing database query for non-admin users
+[2026-01-13 07:50:03.724] [DEBUG] Database query completed in 8ms | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "rows_returned": 4,
+  "query_time_ms": 8
+}
+[2026-01-13 07:50:03.725] [DEBUG] User statistics: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "total_users": 4,
+  "active_users": 4,
+  "inactive_users": 0
+}
+[2026-01-13 07:50:03.727] [DEBUG] All users: | {
+  "0": {
+    "id": 1,
+    "name": "Johnell Empuerto",
+    "emp_id": "EMP001",
+    "role": "Operator"
+  },
+  "1": {
+    "id": 4,
+    "name": "Ken Angelo Ardiente",
+    "emp_id": "EMP002",
+    "role": "Operator"
+  },
+  "2": {
+    "id": 7,
+    "name": "Nielbert Pusayan",
+    "emp_id": "EMP004",
+    "role": "Operator"
+  },
+  "3": {
+    "id": 5,
+    "name": "Romnick Muana",
+    "emp_id": "EMP003",
+    "role": "Supervisor"
+  },
+  "service": "express-app",
+  "route": "/users/get-all"
+}
+[2026-01-13 07:50:03.728] [INFO] Successfully served 4 users in 13ms
+[2026-01-13 07:50:03.743] [DEBUG] Request details: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "ip": "::ffff:192.168.0.109",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+  "queryParams": {}
+}
+[2026-01-13 07:50:03.744] [DEBUG] Executing database query for non-admin users
+[2026-01-13 07:50:03.857] [DEBUG] Database query completed in 115ms | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "rows_returned": 4,
+  "query_time_ms": 115
+}
+[2026-01-13 07:50:03.858] [DEBUG] User statistics: | {
+  "service": "express-app",
+  "route": "/users/get-all",
+  "total_users": 4,
+  "active_users": 4,
+  "inactive_users": 0
+}
+[2026-01-13 07:50:03.860] [DEBUG] All users: | {
+  "0": {
+    "id": 1,
+    "name": "Johnell Empuerto",
+    "emp_id": "EMP001",
+    "role": "Operator"
+  },
+  "1": {
+    "id": 4,
+    "name": "Ken Angelo Ardiente",
+    "emp_id": "EMP002",
+    "role": "Operator"
+  },
+  "2": {
+    "id": 7,
+    "name": "Nielbert Pusayan",
+    "emp_id": "EMP004",
+    "role": "Operator"
+  },
+  "3": {
+    "id": 5,
+    "name": "Romnick Muana",
+    "emp_id": "EMP003",
+    "role": "Supervisor"
+  },
+  "service": "express-app",
+  "route": "/users/get-all"
+}
+[2026-01-13 07:50:03.861] [INFO] Successfully served 4 users in 118ms

@@ -5536,3 +5536,759 @@
 [2026-01-12 17:08:18.045] [DEBUG] Found 0 custom permissions for user
 [2026-01-12 17:08:18.046] [DEBUG] No custom permissions found - returning all default tabs
 [2026-01-12 17:08:18.046] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:11:18.232] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:11:18.333] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:11:18.334] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:11:18.335] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:11:18.351] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:11:18.355] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:11:18.356] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:11:18.357] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:11:18.371] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:11:18.377] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:11:18.378] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:11:18.379] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:11:18.392] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:11:18.396] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:11:18.397] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:11:18.398] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:15:25.507] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:15:25.578] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:15:25.579] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:15:25.580] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:15:25.595] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:15:25.598] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:15:25.599] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:15:25.600] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:34:12.716] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:34:12.720] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:34:12.721] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:34:12.722] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:34:12.739] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:34:12.742] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:34:12.743] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:34:12.745] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:34:31.618] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:34:31.765] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:34:31.765] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:34:31.766] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:34:38.345] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:34:38.350] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:34:38.352] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:34:38.354] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:34:46.492] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:34:46.498] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:34:46.499] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:34:46.501] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:35:07.882] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:35:07.886] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:35:07.887] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:35:07.888] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:35:36.209] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:35:36.265] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:35:36.265] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:35:36.266] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:36:28.938] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:36:28.943] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:36:28.944] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:36:28.945] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:37:35.878] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:37:35.883] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:37:35.884] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:37:35.885] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:37:35.911] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:37:35.917] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:37:35.918] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:37:35.920] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:37:40.460] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:37:40.463] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:37:40.464] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:37:40.465] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:38:28.597] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:38:28.671] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:38:28.672] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:38:28.673] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:38:28.686] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:38:28.689] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:38:28.698] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:38:28.699] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:38:44.504] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:38:44.510] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:38:44.511] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:38:44.512] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:39:27.046] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:39:27.050] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:39:27.050] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:39:27.051] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:39:27.066] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:39:27.069] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:39:27.069] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:39:27.070] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:39:40.479] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:39:40.558] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:39:40.558] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:39:40.559] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:43:44.509] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:43:44.513] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 17:43:44.514] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:43:44.515] [INFO] Returned 11 custom tabs for user: 4
+[2026-01-12 17:43:44.526] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:43:44.532] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 17:43:44.535] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:43:44.537] [INFO] Returned 11 custom tabs for user: 4
+[2026-01-12 17:43:56.373] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:43:56.439] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 17:43:56.440] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:43:56.440] [INFO] Returned 11 custom tabs for user: 4
+[2026-01-12 17:43:56.452] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:43:56.454] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 17:43:56.455] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:43:56.455] [INFO] Returned 11 custom tabs for user: 4
+[2026-01-12 17:44:01.387] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:44:01.392] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 17:44:01.393] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:44:01.394] [INFO] Returned 11 custom tabs for user: 4
+[2026-01-12 17:44:01.412] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:44:01.415] [DEBUG] Found 11 custom permissions for user
+[2026-01-12 17:44:01.416] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:44:01.418] [INFO] Returned 11 custom tabs for user: 4
+[2026-01-12 17:44:20.364] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:44:20.371] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:44:20.372] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:44:20.372] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:44:20.408] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:44:20.419] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:44:20.424] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:44:20.428] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:44:34.135] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:44:34.198] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:44:34.199] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:44:34.200] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:44:34.212] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-12 17:44:34.215] [DEBUG] Found 0 custom permissions for user
+[2026-01-12 17:44:34.216] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-12 17:44:34.217] [INFO] Returned 12 default tabs for user: 6
+[2026-01-12 17:44:36.124] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-12 17:44:36.128] [DEBUG] Found 11 permissions for user: 1
+[2026-01-12 17:44:36.133] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-12 17:44:36.135] [INFO] Returned 11 permissions for user: 1
+[2026-01-12 17:47:16.577] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-12 17:47:16.580] [DEBUG] Found 11 permissions for user: 1
+[2026-01-12 17:47:16.581] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-12 17:47:16.581] [INFO] Returned 11 permissions for user: 1
+[2026-01-12 17:47:30.066] [DEBUG] Fetching permissions for user_id: 4
+[2026-01-12 17:47:30.069] [DEBUG] Found 11 permissions for user: 4
+[2026-01-12 17:47:30.069] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-12 17:47:30.070] [INFO] Returned 11 permissions for user: 4
+[2026-01-12 17:47:36.709] [DEBUG] Update request received | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "user_id": "4",
+  "permissions_count": 12,
+  "updating_admin": "System Administrator"
+}
+[2026-01-12 17:47:36.710] [DEBUG] First permission structure: | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tab_name": "planning",
+  "tab_label": "Production Planning",
+  "tab_path": "/dashboard/planning",
+  "is_allowed": true,
+  "has_all_keys": [
+    "tab_name",
+    "tab_label",
+    "tab_path",
+    "is_allowed"
+  ]
+}
+[2026-01-12 17:47:36.710] [DEBUG] Starting database transaction
+[2026-01-12 17:47:36.712] [DEBUG] Deleting existing permissions
+[2026-01-12 17:47:36.715] [DEBUG] Deleted 11 existing permissions
+[2026-01-12 17:47:36.715] [DEBUG] Processing 12 new permissions
+[2026-01-12 17:47:36.716] [DEBUG] First permission validated: Production Planning (planning)
+[2026-01-12 17:47:36.717] [DEBUG] Executing batch insert query
+[2026-01-12 17:47:36.729] [DEBUG] Insert completed | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "inserted_count": 12,
+  "allowed_permissions": 12,
+  "denied_permissions": 0
+}
+[2026-01-12 17:47:36.741] [DEBUG] Transaction committed successfully
+[2026-01-12 17:47:36.742] [INFO] Permissions updated for user: 4 | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "total_permissions": 12,
+  "allowed": 12,
+  "denied": 0,
+  "updated_by": "System Administrator"
+}
+[2026-01-12 17:47:36.773] [DEBUG] Fetching permissions for user_id: 4
+[2026-01-12 17:47:36.775] [DEBUG] Found 12 permissions for user: 4
+[2026-01-12 17:47:36.775] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-12 17:47:36.776] [INFO] Returned 12 permissions for user: 4
+[2026-01-12 17:47:46.669] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:47:46.671] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:47:46.672] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:47:46.673] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:47:46.695] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:47:46.697] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:47:46.698] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:47:46.700] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:04.843] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:04.900] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:04.901] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:04.901] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:04.914] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:04.916] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:04.917] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:04.918] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:16.213] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:16.215] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:16.215] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:16.216] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:16.226] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:16.227] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:16.228] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:16.228] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:20.903] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:20.905] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:20.906] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:20.906] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:20.949] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:20.954] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:20.955] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:20.956] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-12 17:48:24.132] [DEBUG] Fetching accessible tabs for user: 4 (Ken Angelo Ardiente)
+[2026-01-12 17:48:24.134] [DEBUG] Found 12 custom permissions for user
+[2026-01-12 17:48:24.134] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-12 17:48:24.135] [INFO] Returned 12 custom tabs for user: 4
+[2026-01-13 07:43:30.075] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 07:43:30.091] [DEBUG] Found 11 custom permissions for user
+[2026-01-13 07:43:30.091] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 07:43:30.092] [INFO] Returned 11 custom tabs for user: 1
+[2026-01-13 07:43:30.107] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 07:43:30.109] [DEBUG] Found 11 custom permissions for user
+[2026-01-13 07:43:30.110] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 11,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 07:43:30.111] [INFO] Returned 11 custom tabs for user: 1
+[2026-01-13 07:49:58.756] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 07:49:58.761] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 07:49:58.761] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 07:49:58.762] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 07:49:58.794] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 07:49:58.805] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 07:49:58.812] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 07:49:58.813] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 07:50:03.694] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 07:50:03.696] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 07:50:03.696] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 07:50:03.696] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 07:50:03.707] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 07:50:03.711] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 07:50:03.711] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 07:50:03.712] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 07:50:06.483] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-13 07:50:06.487] [DEBUG] Found 11 permissions for user: 1
+[2026-01-13 07:50:06.487] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-13 07:50:06.488] [INFO] Returned 11 permissions for user: 1
+[2026-01-13 07:50:16.517] [DEBUG] Update request received | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "user_id": "1",
+  "permissions_count": 12,
+  "updating_admin": "System Administrator"
+}
+[2026-01-13 07:50:16.518] [DEBUG] First permission structure: | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tab_name": "planning",
+  "tab_label": "Production Planning",
+  "tab_path": "/dashboard/planning",
+  "is_allowed": true,
+  "has_all_keys": [
+    "tab_name",
+    "tab_label",
+    "tab_path",
+    "is_allowed"
+  ]
+}
+[2026-01-13 07:50:16.519] [DEBUG] Starting database transaction
+[2026-01-13 07:50:16.554] [DEBUG] Deleting existing permissions
+[2026-01-13 07:50:16.562] [DEBUG] Deleted 11 existing permissions
+[2026-01-13 07:50:16.563] [DEBUG] Processing 12 new permissions
+[2026-01-13 07:50:16.563] [DEBUG] First permission validated: Production Planning (planning)
+[2026-01-13 07:50:16.563] [DEBUG] Executing batch insert query
+[2026-01-13 07:50:16.578] [DEBUG] Insert completed | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "inserted_count": 12,
+  "allowed_permissions": 12,
+  "denied_permissions": 0
+}
+[2026-01-13 07:50:16.581] [DEBUG] Transaction committed successfully
+[2026-01-13 07:50:16.582] [INFO] Permissions updated for user: 1 | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "total_permissions": 12,
+  "allowed": 12,
+  "denied": 0,
+  "updated_by": "System Administrator"
+}
+[2026-01-13 07:50:16.602] [DEBUG] Fetching permissions for user_id: 1
+[2026-01-13 07:50:16.605] [DEBUG] Found 12 permissions for user: 1
+[2026-01-13 07:50:16.606] [DEBUG] Sample permissions: | {
+  "0": {
+    "tab_name": "analytics",
+    "tab_label": "Analytics & Insights",
+    "is_allowed": true
+  },
+  "1": {
+    "tab_name": "create_checksheet",
+    "tab_label": "Create Checksheet Templates",
+    "is_allowed": true
+  },
+  "2": {
+    "tab_name": "daily_report",
+    "tab_label": "Daily Production Report",
+    "is_allowed": true
+  },
+  "service": "express-app",
+  "route": "/user-permissions"
+}
+[2026-01-13 07:50:16.606] [INFO] Returned 12 permissions for user: 1
+[2026-01-13 08:10:10.579] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 08:10:10.649] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 08:10:10.650] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 08:10:10.651] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 08:10:33.076] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 08:10:33.150] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 08:10:33.151] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 08:10:33.151] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 09:21:45.792] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:21:45.812] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:21:45.816] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:21:45.819] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:21:45.846] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:21:45.851] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:21:45.853] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:21:45.853] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:21:50.123] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:21:50.125] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:21:50.126] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:21:50.127] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:21:50.147] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:21:50.151] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:21:50.153] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:21:50.154] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:22:21.654] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:22:21.709] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:22:21.710] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:22:21.710] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:22:21.721] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:22:21.724] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:22:21.724] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:22:21.725] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:22:29.128] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:22:29.213] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:22:29.214] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:22:29.215] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:22:43.858] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:22:43.861] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:22:43.862] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:22:43.862] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:22:51.576] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:22:51.586] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:22:51.587] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:22:51.590] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:24:20.684] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 09:24:20.776] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 09:24:20.778] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 09:24:20.783] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 09:24:20.812] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 09:24:20.815] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 09:24:20.816] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 09:24:20.816] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 09:24:24.278] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 09:24:24.280] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 09:24:24.280] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 09:24:24.281] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 09:24:24.292] [DEBUG] Fetching accessible tabs for user: 6 (System Administrator)
+[2026-01-13 09:24:24.294] [DEBUG] Found 0 custom permissions for user
+[2026-01-13 09:24:24.294] [DEBUG] No custom permissions found - returning all default tabs
+[2026-01-13 09:24:24.295] [INFO] Returned 12 default tabs for user: 6
+[2026-01-13 09:28:22.729] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:28:22.742] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:28:22.743] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:28:22.746] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:28:22.769] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:28:22.771] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:28:22.771] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:28:22.772] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:28:27.274] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:28:27.277] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:28:27.278] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:28:27.279] [INFO] Returned 12 custom tabs for user: 1
+[2026-01-13 09:28:27.295] [DEBUG] Fetching accessible tabs for user: 1 (Johnell Empuerto)
+[2026-01-13 09:28:27.300] [DEBUG] Found 12 custom permissions for user
+[2026-01-13 09:28:27.301] [DEBUG] Returning custom permissions | {
+  "service": "express-app",
+  "route": "/user-permissions",
+  "tabs_found": 12,
+  "sample_tabs": [
+    "Analytics & Insights",
+    "Create Checksheet Templates",
+    "Daily Production Report"
+  ]
+}
+[2026-01-13 09:28:27.303] [INFO] Returned 12 custom tabs for user: 1
